@@ -24,7 +24,7 @@ SRC =	src/main.c \
 		src/prompt.c \
 		src/cleanup_lists.c \
 		src/parsing.c \
-		src/env_print.c \
+		src/built-ins/env_print.c \
 		src/built-ins/unset.c \
 		src/built-ins/export.c \
 
