@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 17:23:26 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:43:53 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 
-typedef struct	s_minishell
+typedef struct s_minishell
 {
 	t_list	*env;
 	t_list	*xprt;
@@ -30,15 +30,14 @@ typedef struct	s_minishell
 	char	**fq;
 }				t_minishell;
 
-
-typedef struct	s_env
+typedef struct s_env
 {
 	char	*name;
 	char	*info;
 }				t_env;
 
 //INPUTS
-int	read_input(t_minishell *ms);
+int		read_input(t_minishell *ms);
 
 //EXPORT
 t_list	*get_export(char **env);
@@ -54,7 +53,7 @@ char	*get_name(char *info);
 char	**ft_envcpy(t_list *env);
 
 //PROMPT
-char	*get_prompt();
+char	*get_prompt(void);
 
 //CLEANUP
 void	ft_free_lst(t_list *lst);

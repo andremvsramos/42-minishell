@@ -6,13 +6,19 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:19:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 12:48:14 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:33:50 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-char	*get_prompt()
+static void	get_env(char **user, char **temp)
+{
+	*user = getenv("USER");
+	*temp = getenv("SESSION_MANAGER");
+}
+
+char	*get_prompt(void)
 {
 	char	*prompt;
 	char	*user;
@@ -22,8 +28,7 @@ char	*get_prompt()
 
 	i = 0;
 	j = 0;
-	user = getenv("USER");
-	temp = getenv("SESSION_MANAGER");
+	get_env(&user, &temp);
 	if (!user || !temp)
 		return (NULL);
 	prompt = ft_strdup(user);

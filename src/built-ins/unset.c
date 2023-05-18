@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 16:36:55 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/17 17:15:17 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:42:11 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	do_unset(t_list *lst, char *name)
 	{
 		temp_name = ((t_env *)(temp->content))->name;
 		if (!ft_strncmp(temp_name, name, ft_strlen(name)
-			&& ft_strlen(temp_name) == ft_strlen(name)))
+				&& ft_strlen(temp_name) == ft_strlen(name)))
 		{
 			if (prev)
 				prev->next = temp->next;
