@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 12:10:02 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 14:54:34 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,9 @@ typedef struct	s_env
 	char	*name;
 	char	*info;
 }				t_env;
+
+//INPUTS
+int	read_input(t_minishell *ms);
 
 //EXPORT
 t_list	*get_export(char **env);

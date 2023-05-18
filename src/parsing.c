@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 12:45:02 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 15:13:48 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,6 @@ int	parse_query(t_minishell *ms)
 
 	if (!ms->query)
 		return (0);
-	ms->query = ft_strtrim(ms->query, " ");
 	if (check_if_builtin(ms))
 		return (1);
 	else if (check_valid_query("clear", ms))
