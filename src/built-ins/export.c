@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:33 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/17 17:10:31 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:23:15 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ t_list	*get_export(char **env)
 		temp = temp->next;
 		i++;
 	}
+	//sort_export(head);
 	return (head);
 }
 

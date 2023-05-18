@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 15:13:48 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 16:03:05 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ int	check_if_builtin(t_minishell *ms)
 	else if (check_valid_query("env", ms))
 		env_print(ms->env);
 	else if (check_valid_query("export", ms))
-		env_print(ms->xprt);
+		exp_print(ms->xprt);
 	else if (check_valid_query("exit", ms))
 		return (1);
 	return (0);

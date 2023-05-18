@@ -6,7 +6,7 @@
 #    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/17 17:00:22 by andvieir         ###   ########.fr        #
+#    Updated: 2023/05/18 15:41:17 by andvieir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -40,7 +40,7 @@ OBJ = ${SRC:.c=.o}
 
 #----------RULES----------#
 .c.o:
-			$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o ${<:.c=.o}
+			@$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o ${<:.c=.o}
 
 all:		$(NAME)
 
@@ -48,7 +48,7 @@ $(LIBFT):
 			cd $(LIBFTDIR) && $(MAKE)
 
 $(NAME):	$(OBJ) $(LIBFT)
-			$(CC) $(CFLAGS) -lreadline $(OBJ) $(LIBFTDIR)$(LIBFT) -o $(NAME)
+			@$(CC) $(CFLAGS) -lreadline $(OBJ) $(LIBFTDIR)$(LIBFT) -o $(NAME)
 
 clean:
 			$(RM) $(OBJ) $(OBJ_CHECKER)

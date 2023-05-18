@@ -6,68 +6,71 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:52:04 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 12:41:52 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:22:08 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-/* static int	ft_maxlen(char *s1, char *s2)
+int	ft_maxlen(char *s1, char *s2)
 {
-	if (ft_strlen(s1) > ft_strlen(s2))
-		return (ft_strlen(s1));
-	return (ft_strlen(s2));
-} */
+	int	i;
+	int j;
+
+	i = 0;
+	j = 0;
+	while (s1[i] != '=')
+		i++;
+	while (s2[j] != '=')
+		j++;
+	if (i > j)
+		return (i);
+	return (j);
+}
 
 void	env_print(t_list *lst)
 {
 	t_list	*temp;
-	//char	*info;
-	/* int		i;
-	int		j; */
-	/* char	*name_cpy;
-	char	**copy; */
 
 	temp = lst;
-	/* if (ft_strncmp("declare", ((t_env *)(temp->content))->info,
-			ft_strlen("declare")))
-	{ */
-		while (temp)
-		{
-			{
-				/* info = ft_strdup(((t_env *)(temp->content))->info);
-				if (info &&ft_strncmp("declare", info, 7)) */
-				printf("%s\n", ((t_env *)(temp->content))->info);
-				temp = temp->next;
-				//free(info);
-			}
-		}
-	/* }
-	else
+	while (temp)
 	{
-		i = 0;
-		copy = ft_envcpy(lst);
-		while (copy[i])
 		{
-			printf("COPY[%d] >> %s\n", i, copy[i]);
-			sleep(2);
-			j = i + 1;
-			while (copy[j])
-			{
-				if (ft_strncmp(copy[i], copy[j], ft_maxlen(copy[i], copy[j])))
-				{
-					name_cpy = ft_strdup(copy[i]);
-					ft_strlcpy(copy[i], copy[j], ft_strlen(copy[j]));
-					ft_strlcpy(copy[j], name_cpy, ft_strlen(name_cpy));
-				}
-				j++;
-			}
-			i++;
+			if (ft_strlen(((t_env *)(temp->content))->name)	+ 4 == ft_strlen(((t_env *)(temp->content))->info))
+				printf("%s\n", ((t_env *)(temp->content))->info);
+			temp = temp->next;
 		}
-
-		i = 0;
-		while (copy[i])
-			printf("%s\n", copy[i++]);
-	} */
+	}
 }
 
+void	exp_print(t_list *lst)
+{
+	int		i;
+	char	*cpy_i;
+	char	*cpy_j;
+	char	**copy;
+
+	i = 0;
+	copy = ft_envcpy(lst);
+	while (i < ft_lstsize(lst) - 1)
+	{
+		if (ft_strncmp(copy[i], copy[i + 1], ft_maxlen(copy[i], copy[i + 1])) > 0)
+		{
+			cpy_i = ft_strdup(copy[i]);
+			cpy_j = ft_strdup(copy[i + 1]);
+			free(copy[i]);
+			free(copy[i + 1]);
+			copy[i] = ft_strdup(cpy_j);
+			copy[i + 1] = ft_strdup(cpy_i);
+			free(cpy_i);
+			free(cpy_j);
+			i = 0;
+		}
+		else
+			i++;
+	}
+	i = 0;
+	while (i < ft_lstsize(lst))
+		printf("%s\n", copy[i++]);
+	free(copy);
+}

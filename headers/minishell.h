@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 14:54:34 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/18 17:23:26 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@ t_list	*get_export(char **env);
 t_env	*ft_create_export(char *info);
 char	*get_export_info(char *info);
 char	*get_info(char *info);
+int		ft_maxlen(char *s1, char *s2);
 
 //ENV VARIABLES
 t_list	*init_env(char **env);
@@ -66,6 +67,7 @@ int		check_valid_query(char *cmd, t_minishell *ms);
 int		check_unset_query(t_minishell *ms);
 int		check_if_builtin(t_minishell *ms);
 void	env_print(t_list *lst);
+void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
 
 #endif
