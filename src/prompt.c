@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:19:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 17:33:50 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:56:20 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ char	*get_prompt(void)
 	temp = ft_strjoin(user, prompt);
 	free(prompt);
 	free(user);
-	prompt = ft_strjoin(temp, ">");
+	prompt = ft_strjoin(temp, "> ");
 	free(temp);
 	return (prompt);
 }

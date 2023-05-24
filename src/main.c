@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:14 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/24 14:43:09 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/24 15:53:23 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,9 +25,12 @@ int	main(int ac, char **av, char **env)
 	ms.prompt = get_prompt();
 	while (1)
 	{
+		i = 0;
 		signal_handling();
 		i = read_input(&ms);
-		if (i)
+		if (!i)
+			continue ;
+		else if (i == -1)
 			break ;
 	}
 	ft_free_lst(ms.env);

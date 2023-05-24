@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/24 14:38:33 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:09:04 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,10 @@ char	**ft_envcpy(t_list *env);
 //PROMPT
 char	*get_prompt(void);
 
+//SIGNALS
+void	signal_handling(void);
+void	handler(int signal);
+
 //CLEANUP
 void	ft_free_lst(t_list *lst);
 
@@ -69,5 +73,6 @@ int		check_if_builtin(t_minishell *ms);
 void	env_print(t_list *lst);
 void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
+void    do_echo(t_minishell *ms);
 
 #endif

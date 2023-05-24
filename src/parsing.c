@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 17:30:55 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/24 17:15:15 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,8 @@
 
 int	check_if_builtin(t_minishell *ms)
 {
-	if (check_valid_query("echo", ms))
-	{
-	}
+	if (!ft_strncmp(ms->fq[0], "echo", ft_strlen("echo")))
+		do_echo(ms);
 	else if (check_valid_query("cd", ms))
 	{
 	}
@@ -67,6 +66,7 @@ int	parse_query(t_minishell *ms)
 	clear_temp = ft_calloc(2, sizeof(char *));
 	clear_temp[0] = ft_strdup(ms->query);
 	clear_temp[1] = NULL;
+	ms->fq = ft_split(ms->query, ' ');
 	if (!ms->query)
 		return (0);
 	if (check_if_builtin(ms))

@@ -6,7 +6,7 @@
 #    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/18 15:41:17 by andvieir         ###   ########.fr        #
+#    Updated: 2023/05/24 17:08:56 by andvieir         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,9 +25,11 @@ SRC =	src/main.c \
 		src/cleanup_lists.c \
 		src/parsing.c \
 		src/input_handling.c \
+		src/signals.c \
 		src/built-ins/env_print.c \
 		src/built-ins/unset.c \
 		src/built-ins/export.c \
+		src/built-ins/echo.c \
 
 #----------COMMANDS----------#
 
