@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 17:43:53 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:38:33 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/history.h>
 # include <sys/types.h>
 # include <sys/wait.h>
+# include <signal.h>
 
 typedef struct s_minishell
 {
