@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:52:04 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 17:41:21 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/25 16:02:11 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,9 +36,7 @@ void	env_print(t_list *lst)
 	while (temp)
 	{
 		{
-			if (ft_strlen(((t_env *)(temp->content))->name) + 4
-				== ft_strlen(((t_env *)(temp->content))->info))
-				printf("%s\n", ((t_env *)(temp->content))->info);
+			printf("%s\n", ((t_env *)(temp->content))->info);
 			temp = temp->next;
 		}
 	}

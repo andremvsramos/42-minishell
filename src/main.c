@@ -6,11 +6,13 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:14 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/24 15:53:23 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:45:54 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
+
+int	g_exit = 0;
 
 int	main(int ac, char **av, char **env)
 {
@@ -35,8 +37,8 @@ int	main(int ac, char **av, char **env)
 	}
 	ft_free_lst(ms.env);
 	ft_free_lst(ms.xprt);
-	if (ms.query)
-		free(ms.query);
+	if (ms.input)
+		free(ms.input);
 	if (ms.prompt)
 		free(ms.prompt);
 	return (0);

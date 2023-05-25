@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/24 17:09:04 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/25 15:46:17 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,13 +22,15 @@
 # include <sys/wait.h>
 # include <signal.h>
 
+extern int	g_exit;
+
 typedef struct s_minishell
 {
 	t_list	*env;
 	t_list	*xprt;
 	char	*prompt;
-	char	*query;
-	char	**fq;
+	char	*input;
+	char	**query;
 }				t_minishell;
 
 typedef struct s_env
@@ -74,5 +76,8 @@ void	env_print(t_list *lst);
 void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
 void    do_echo(t_minishell *ms);
+
+//ECHO FUNCTIONS
+void    	handle_quotes(char *input);
 
 #endif
