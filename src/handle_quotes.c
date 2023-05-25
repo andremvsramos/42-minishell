@@ -6,11 +6,22 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:16:40 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 16:46:35 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:27:04 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
+
+static int	print_vars(char *code)
+{
+	if (code[0] == '?')
+		return (printf("%d", g_exit));
+	else
+	{
+
+	}
+	return 0;
+}
 
 //Check how many single quotes there is int the string
 static int	count_quotes(char *input, char quote)
@@ -35,42 +46,36 @@ static int	count_quotes(char *input, char quote)
 	return (num_quotes);
 }
 
-void	handle_quotes(char *input)
+int	handle_quotes(char *input)
 {
-    size_t i;
-	int		q;
+	size_t	i;
+	int		quotes;
 
 	i = 0;
-    q = 0;
-	//printf("ISTO %c\n", input[ft_strlen(input) - 1]);
+	quotes = 0;
 	if(input[0] == '\'' || input[ft_strlen(input) - 1] == '\'')
-		q = count_quotes(input, '\'');
+		quotes = count_quotes(input, '\'');
 	else if (input[0] == '"' || input[ft_strlen(input) - 1] == '"')
-		q = count_quotes(input, '"');
-	if (input[1] == '$' && input[2] == '?' && ft_strlen(input) == 2)
-    {
-        printf("%d\n", g_exit);
-		return ;
-    }
+		quotes = count_quotes(input, '"');
+	if (quotes)
+	{
+		if (input[1] == '$')
+			return (print_vars(input + 2));
+		else if (input[0] == '$')
+			return (print_vars(input + 1));
+	}
 	else
 	{
-        if (q == 0)
-        {
-            i = 0;
-            while (i <= (ft_strlen(input)))
-            {
-                printf("%c", input[i]);
-                i++;
-            }
-        }
-        else
-        {
-            i = 1;
-            while (i <= (ft_strlen(input) - 2))
-            {
-                printf("%c", input[i]);
-                i++;
-            }
-        }
+		if (!quotes)
+			while (i <= (ft_strlen(input)))
+				printf("%c", input[i++]);
+		else
+			while (++i <= (ft_strlen(input) - 2))
+				printf("%c", input[i]);
 	}
+	return (0);
+    /*export abc=123
+      echo $abc
+	  >>> 123
+	*/
 }

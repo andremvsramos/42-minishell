@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 16:05:23 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:38:39 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ int	parse_query(t_minishell *ms)
 		return (0);
 	if (check_if_builtin(ms))
 		return (1);
-	else if (check_valid_query("clear", ms))
+	if (check_valid_query("clear", ms))
 	{
 		pid = fork();
 		if (!pid)

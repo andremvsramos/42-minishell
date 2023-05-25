@@ -17,7 +17,7 @@ void	do_echo(t_minishell *ms)
 	if (!ft_strncmp(ms->query[1], "-n", ft_strlen("-n"))
 		&& (ft_strlen(ms->query[1]) == ft_strlen("-n")))
 	{
-		handle_quotes(ms->query[1]);
+		handle_quotes(ms->query[2]);
 	}
 	else
     {

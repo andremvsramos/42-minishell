@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:52:04 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 16:02:11 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:36:19 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	env_print(t_list *lst)
 {
 	t_list	*temp;
 
+	puts("ENTREI");
+	sleep(2);
 	temp = lst;
 	while (temp)
 	{

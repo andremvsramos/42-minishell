@@ -6,7 +6,7 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 15:46:17 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/25 17:04:29 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,6 +78,6 @@ void	do_unset(t_list *lst, char *name);
 void    do_echo(t_minishell *ms);
 
 //ECHO FUNCTIONS
-void    	handle_quotes(char *input);
+int		handle_quotes(char *input);
 
 #endif
