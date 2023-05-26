@@ -8,6 +8,13 @@ or on the file to be outputten
 void	do_echo(t_minishell *ms)
 {
 	//imprimir
+	if (!ms->query[1])
+	{
+		printf("\n");
+		return ;
+	}
+	else if (ms->query[1][0] == '-' && ms->query[1][1] == 'n' && !ms->query[2])
+		return ;
 	if (!ft_strncmp(ms->query[1], "$?", ft_strlen("$?"))
 		&& ft_strlen("$?") == ft_strlen(ms->query[1]))
 	{

@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/25 15:16:23 by andvieir         ###   ########.fr        #
+#    Updated: 2023/05/26 13:30:51 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,7 +51,7 @@ $(LIBFT):
 			cd $(LIBFTDIR) && $(MAKE)
 
 $(NAME):	$(OBJ) $(LIBFT)
-			@$(CC) $(CFLAGS) -lreadline $(OBJ) $(LIBFTDIR)$(LIBFT) -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJ) -lreadline $(LIBFTDIR)$(LIBFT) -o $(NAME)
 
 clean:
 			$(RM) $(OBJ) $(OBJ_CHECKER)

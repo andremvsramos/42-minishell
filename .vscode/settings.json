@@ -4,6 +4,8 @@
 		"unistd.h": "c",
 		"history.h": "c",
 		"wait.h": "c",
-		"types.h": "c"
+		"types.h": "c",
+		"libft.h": "c",
+		"stdio.h": "c"
 	}
 }
