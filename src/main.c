@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:14 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 15:45:54 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:23:36 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ int	main(int ac, char **av, char **env)
 	t_minishell	ms;
 
 	(void)av;
+	ms.heredoc = false;
 	if (ac != 1)
 		return (0);
 	ms.env = init_env(env);

@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/26 13:30:51 by marvin           ###   ########.fr        #
+#    Updated: 2023/05/26 15:08:45 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,11 @@ SRC =	src/main.c \
 		src/prompt.c \
 		src/cleanup_lists.c \
 		src/parsing.c \
+		src/expander.c \
 		src/input_handling.c \
 		src/signals.c \
 		src/handle_quotes.c \
+		src/handle_heredoc.c \
 		src/built-ins/env_print.c \
 		src/built-ins/unset.c \
 		src/built-ins/export.c \

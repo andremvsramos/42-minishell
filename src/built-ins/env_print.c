@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   env_print.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:52:04 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 17:36:19 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/26 14:06:07 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,15 +32,11 @@ void	env_print(t_list *lst)
 {
 	t_list	*temp;
 
-	puts("ENTREI");
-	sleep(2);
 	temp = lst;
 	while (temp)
 	{
-		{
-			printf("%s\n", ((t_env *)(temp->content))->info);
-			temp = temp->next;
-		}
+		printf("%s\n", ((t_env *)(temp->content))->info);
+		temp = temp->next;
 	}
 }
 

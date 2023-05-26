@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 17:38:39 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/26 15:10:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,17 +64,22 @@ int	parse_query(t_minishell *ms)
 	pid_t	pid;
 	char	**clear_temp;
 
-	clear_temp = ft_calloc(2, sizeof(char *));
-	clear_temp[0] = ft_strdup(ms->input);
-	clear_temp[1] = NULL;
+
 	ms->query = ft_split(ms->input, ' ');
+	ms->query = expander(ms);
 	if (!ms->query)
 		return (0);
 	if (check_if_builtin(ms))
 		return (1);
+	if (ms->heredoc == true)
+		//do_heredoc(ms);
+		printf("DO HEREDOC IN THIS SITUATION\n");
 	if (check_valid_query("clear", ms))
 	{
 		pid = fork();
+		clear_temp = ft_calloc(2, sizeof(char *));
+		clear_temp[0] = ft_strdup(ms->input);
+		clear_temp[1] = NULL;
 		if (!pid)
 			execve("/usr/bin/clear", clear_temp, ft_envcpy(ms->env));
 	}

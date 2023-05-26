@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/26 12:41:38 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/26 15:09:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,7 @@ typedef struct s_minishell
 {
 	t_list	*env;
 	t_list	*xprt;
+	bool	heredoc;
 	char	*prompt;
 	char	*input;
 	char	**query;
@@ -79,5 +80,12 @@ void    do_echo(t_minishell *ms);
 
 //ECHO FUNCTIONS
 int		handle_quotes(char *input);
+
+//EXPANDER
+int		check_expandable(t_minishell *ms);
+char	**expander(t_minishell *ms);
+
+//HEREDOC
+void	do_heredoc(t_minishell *ms);
 
 #endif
