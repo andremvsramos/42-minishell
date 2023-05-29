@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:14 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/26 14:23:36 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/29 11:25:38 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,12 +20,10 @@ int	main(int ac, char **av, char **env)
 	t_minishell	ms;
 
 	(void)av;
-	ms.heredoc = false;
 	if (ac != 1)
 		return (0);
 	ms.env = init_env(env);
 	ms.xprt = get_export(env);
-	ms.prompt = get_prompt();
 	while (1)
 	{
 		i = 0;
@@ -35,6 +33,7 @@ int	main(int ac, char **av, char **env)
 			continue ;
 		else if (i == -1)
 			break ;
+		execute(&ms);
 	}
 	ft_free_lst(ms.env);
 	ft_free_lst(ms.xprt);

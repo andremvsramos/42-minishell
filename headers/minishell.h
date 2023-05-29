@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/26 15:09:35 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/29 11:14:34 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,16 @@ typedef struct s_minishell
 {
 	t_list	*env;
 	t_list	*xprt;
+	int		n_cmd;
+	int		n_pipe;
+	int		in_fd;
+	int		out_fd;
+	pid_t	*pid;
 	bool	heredoc;
 	char	*prompt;
 	char	*input;
 	char	**query;
+	char	**paths;
 }				t_minishell;
 
 typedef struct s_env
@@ -56,6 +62,9 @@ t_env	*ft_create_data(char *info);
 char	*get_name(char *info);
 char	**ft_envcpy(t_list *env);
 
+//EXECUTER
+void	execute(t_minishell *ms);
+
 //PROMPT
 char	*get_prompt(void);
 
@@ -69,6 +78,7 @@ void	ft_free_lst(t_list *lst);
 //PARSING
 int		parse_query(t_minishell *ms);
 int		check_valid_query(char *cmd, t_minishell *ms);
+int		count_quotes(char *input, char quote);
 
 //BUILT-INS
 int		check_unset_query(t_minishell *ms);
@@ -87,5 +97,18 @@ char	**expander(t_minishell *ms);
 
 //HEREDOC
 void	do_heredoc(t_minishell *ms);
+
+//UTILS
+char	get_quote(char c, char quote);
+char	*get_env_info(t_list **env, char *name);
+
+//SPLITTER
+int		ft_wordcounter(char *str, char c);
+int		ft_wordlen(char *str, char c);
+char	**splitter(char *s, char c);
+
+//ERROR HANDLING
+int	check_valid_input(char *input);
+int	check_quotes(char *input);
 
 #endif

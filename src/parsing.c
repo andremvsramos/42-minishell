@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/26 15:10:24 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/29 12:32:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,6 @@ int	parse_query(t_minishell *ms)
 {
 	pid_t	pid;
 	char	**clear_temp;
-
 
 	ms->query = ft_split(ms->input, ' ');
 	ms->query = expander(ms);
