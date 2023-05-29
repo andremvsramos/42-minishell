@@ -23,10 +23,14 @@
 
 void	execute(t_minishell *ms)
 {
+	char	*cmd;
+
+	cmd = 0;
 	if (ms->n_pipe > 0)
 		{}
 	else
 	{
+		cmd = add_whitespaces(ms->args[0]);
 		//exec_single_cmd(ms);
 		parse_query(ms);
 		free(ms->input);

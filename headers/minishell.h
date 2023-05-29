@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/29 11:14:34 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/29 16:32:51 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,8 @@
 # include <sys/types.h>
 # include <sys/wait.h>
 # include <signal.h>
+
+# define REDIRECT "><"
 
 extern int	g_exit;
 
@@ -37,6 +39,7 @@ typedef struct s_minishell
 	char	*prompt;
 	char	*input;
 	char	**query;
+	char	**args;
 	char	**paths;
 }				t_minishell;
 
@@ -101,6 +104,8 @@ void	do_heredoc(t_minishell *ms);
 //UTILS
 char	get_quote(char c, char quote);
 char	*get_env_info(t_list **env, char *name);
+char	*add_whitespaces(char *str);
+size_t	ft_cmdlen(char *str);
 
 //SPLITTER
 int		ft_wordcounter(char *str, char c);

@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:52:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/29 12:20:53 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/29 16:26:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ static void	ms_init(t_minishell *ms, char *input)
 	ms->heredoc = false;
 	ms->n_cmd = ft_wordcounter(input, '|');
 	ms->n_pipe = ms->n_cmd - 1;
-	//ms->query = splitter(input, '|');
+	ms->args = splitter(input, '|');
 	ms->in_fd = STDIN_FILENO;
 	ms->out_fd = STDOUT_FILENO;
 	ms->pid = ft_calloc(ms->n_cmd, sizeof(pid_t));
@@ -68,6 +68,6 @@ int	read_input(t_minishell *ms)
 		g_exit = 2;
 		return (0);
 	}
-	ms_init(ms,ms->input);
+	ms_init(ms, ms->input);
 	return (1);
 }
