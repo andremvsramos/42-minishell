@@ -29,9 +29,7 @@ char	*get_env_info(t_list **env, char *name)
 	temp = *env;
 	while (temp)
 	{
-		if ((ft_strlen(name) == ft_strlen(((t_env *)(temp->content))->name))
-			&& !ft_strncmp(name, ((t_env *)(temp->content))->name,
-			ft_strlen(((t_env *)(temp->content))->name)))
+		if (check_strcmp(((t_env *)(temp->content))->name, name))
 		{
 			info = ft_strchr(((t_env *)(temp->content))->info, '=');
 			info++;
@@ -91,4 +89,12 @@ size_t	ft_cmdlen(char *str)
 		i++;
 	}
 	return (len);
+}
+
+int	check_strcmp(char *s1, char *s2)
+{
+	if (ft_strlen(s1) == ft_strlen(s2)
+		&& !ft_strncmp(s1, s2, ft_strlen(s1)))
+		return (1);
+	return (0);
 }

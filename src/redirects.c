@@ -5,37 +5,28 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/26 13:49:39 by marvin            #+#    #+#             */
-/*   Updated: 2023/05/26 13:49:39 by marvin           ###   ########.fr       */
+/*   Created: 2023/05/30 14:27:17 by marvin            #+#    #+#             */
+/*   Updated: 2023/05/30 14:27:17 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-char	*expander(char	*name, t_minishell *ms)
+char	**handle_redirects(t_minishell *ms, char *input)
 {
-	t_list	*temp;
+	char	**cmd_query;
+	int		i;
+	int		n_args;
 
-	name = ft_strtrim(name, "\"\'");
-	if ((name[0] == '$' && ft_strlen(name) == 1) || check_strcmp("$?", name))
-		return (name);
-	name = ft_strtrim(name, "$");
-	temp = ms->env;
-	while (temp)
+	i = 0;
+	n_args = ft_wordcounter(input, ' ');
+	cmd_query = splitter(input, ' ');
+	free(input);
+	while (cmd_query[i])
 	{
-		if (check_strcmp(name, ((t_env *)(temp->content))->name))
-		{
-			free(name);
-			name = ft_strdup(((t_env *)(temp->content))->info
-				+ ft_strlen(((t_env *)(temp->content))->name) + 1);
-			break ;
-		}
-		temp = temp->next;
+		if (!ft_strncmp(cmd_query[i], "<<", ft_strlen(cmd_query[i])))
+			heredoc(cmd_query, ms, &i, &n_args);
+		i++;
 	}
-	if (!temp)
-	{
-		free(name);
-		name = ft_strdup("");
-	}
-	return (name);
+	return (cmd_query);
 }

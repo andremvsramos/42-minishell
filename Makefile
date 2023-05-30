@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/29 11:14:48 by marvin           ###   ########.fr        #
+#    Updated: 2023/05/30 14:46:47 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ LIBFTDIR = ./libft/
 HEADERDIR = ./headers/
 
 SRC =	src/main.c \
-		src/env.c \
+		src/get_env.c \
 		src/prompt.c \
 		src/cleanup_lists.c \
 		src/parsing.c \
@@ -30,10 +30,11 @@ SRC =	src/main.c \
 		src/signals.c \
 		src/utils.c \
 		src/splitter.c \
+		src/redirects.c \
 		src/handle_errors.c \
 		src/handle_quotes.c \
 		src/handle_heredoc.c \
-		src/built-ins/env_print.c \
+		src/built-ins/env.c \
 		src/built-ins/unset.c \
 		src/built-ins/export.c \
 		src/built-ins/echo.c \

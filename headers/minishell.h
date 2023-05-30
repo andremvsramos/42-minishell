@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/29 16:32:51 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/30 15:12:32 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,15 @@ typedef struct s_env
 	char	*info;
 }				t_env;
 
+typedef struct s_expander
+{
+	int		index;
+	int		len;
+	int		offset;
+	int		quote;
+	t_list	*temp;
+}				t_expander;
+
 //INPUTS
 int		read_input(t_minishell *ms);
 
@@ -79,33 +88,41 @@ void	handler(int signal);
 void	ft_free_lst(t_list *lst);
 
 //PARSING
-int		parse_query(t_minishell *ms);
-int		check_valid_query(char *cmd, t_minishell *ms);
+void	parse_query(t_minishell *ms, char **cmd_query);
 int		count_quotes(char *input, char quote);
+
+//EXECUTER
+void	execute(t_minishell *ms);
+void	exec_single_cmd(t_minishell *ms, char *cmd);
+
+//REDIRECTS
+char	**handle_redirects(t_minishell *ms, char *input);
 
 //BUILT-INS
 int		check_unset_query(t_minishell *ms);
-int		check_if_builtin(t_minishell *ms);
+int		check_if_builtin(t_minishell *ms, char **input);
 void	env_print(t_list *lst);
 void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
-void    do_echo(t_minishell *ms);
+void    do_echo(char **input);
 
 //ECHO FUNCTIONS
 int		handle_quotes(char *input);
 
 //EXPANDER
 int		check_expandable(t_minishell *ms);
-char	**expander(t_minishell *ms);
+char	*expander(char *name, t_minishell *ms);
 
 //HEREDOC
-void	do_heredoc(t_minishell *ms);
+void	do_heredoc(t_minishell *ms, char *lim);
+void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *n_args);
 
 //UTILS
 char	get_quote(char c, char quote);
 char	*get_env_info(t_list **env, char *name);
 char	*add_whitespaces(char *str);
 size_t	ft_cmdlen(char *str);
+int		check_strcmp(char *s1, char *s2);
 
 //SPLITTER
 int		ft_wordcounter(char *str, char c);

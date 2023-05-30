@@ -1,43 +1,69 @@
 #include "../../headers/minishell.h"
 
+static int	check_end(char *input, bool n)
+{
+	if (!input)
+	{
+		if (n == false)
+			printf("\n");
+		return (0);
+	}
+	else
+		printf(" ");
+	return (1);
+}
+
+static void	echo_print(char **input, bool n, int i)
+{
+	while (input[i])
+	{
+		input[i] = ft_strtrim(input[i], "\'\"");
+		if (check_strcmp("-n", input[i]))
+		{
+			n = true;
+			i++;
+		}
+		if (check_strcmp("$?", input[i]))
+		{
+			printf("%d", g_exit);
+			if (!check_end(input[i + 1], n))
+				break ;
+		}
+		else
+		{
+			printf("%s", input[i]);
+			if (!check_end(input[i + 1], n))
+				break ;
+		}
+		i++;
+	}
+}
+
 /*
 Echo prints text:
 -n flag doesn't output a newline on prompt
 or on the file to be outputten
 */
-void	do_echo(t_minishell *ms)
+void	do_echo(char **input)
 {
-	//imprimir
-	if (!ms->query[1])
+	int		i;
+	bool	n;
+
+	n = false;
+	if (!input)
 	{
 		printf("\n");
 		return ;
 	}
-	else if (ms->query[1][0] == '-' && ms->query[1][1] == 'n' && !ms->query[2])
+	else if (input[1][0] == '-' && input[1][1] == 'n' && !input[2])
 		return ;
-	if (!ft_strncmp(ms->query[1], "$?", ft_strlen("$?"))
-		&& ft_strlen("$?") == ft_strlen(ms->query[1]))
+	i = 1;
+	input[i] = ft_strtrim(input[i], "\'\"");
+	if (check_strcmp("-n", input[i]))
 	{
-		printf("%d\n", g_exit);
-		return ;
+		n = true;
+		i++;
 	}
-	if (!ft_strncmp(ms->query[1], "-n", ft_strlen("-n"))
-		&& (ft_strlen(ms->query[1]) == ft_strlen("-n")))
-	{
-		handle_quotes(ms->query[2]);
-	}
-	else
-    {
-		/*if (count_quotes(ms->query[1]) == 0)
-			printf("%s", "Error: unclosed quotes\n");
-		else
-		{
-			//handle_quotes(ms->query[1]);
-			printf("%s", ms->query[1]);
-        	printf("\n");
-		}*/
-		handle_quotes(ms->query[1]);
-		printf("\n");
-    }
+	echo_print(input, n, i);
 }
 

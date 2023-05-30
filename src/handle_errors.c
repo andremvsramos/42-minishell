@@ -31,5 +31,4 @@ int	check_valid_input(char *input)
 	if (check_invalid_syntax(input))
 		return (0); */
 	return (1);
-
 }

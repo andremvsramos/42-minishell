@@ -12,14 +12,17 @@
 
 #include "../headers/minishell.h"
 
-/* void	exec_single_cmd(t_minishell *ms)
+void	exec_single_cmd(t_minishell *ms, char *cmd)
 {
+	char	**cmd_query;
+
 	ms->pid[0] = fork();
 	if(!ms->pid[0])
 	{
-
+		cmd_query = handle_redirects(ms, cmd);
+		parse_query(ms, cmd_query);
 	}
-} */
+}
 
 void	execute(t_minishell *ms)
 {
@@ -31,8 +34,7 @@ void	execute(t_minishell *ms)
 	else
 	{
 		cmd = add_whitespaces(ms->args[0]);
-		//exec_single_cmd(ms);
-		parse_query(ms);
+		exec_single_cmd(ms, cmd);
 		free(ms->input);
 		wait(0);
 	}
