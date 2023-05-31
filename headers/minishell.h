@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/30 15:12:32 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/31 10:35:32 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ int		ft_wordlen(char *str, char c);
 char	**splitter(char *s, char c);
 
 //ERROR HANDLING
-int	check_valid_input(char *input);
-int	check_quotes(char *input);
+int		check_valid_input(char *input);
+int		check_quotes(char *input);
 
 #endif

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/30 15:41:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/31 12:01:56 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	}
 	else if (check_strcmp("pwd", input[0]))
 	{
+		//nao suporta '-' >> g_exit = 2
 	}
 	else if (check_strcmp("unset", input[0]))
 		check_unset_query(ms);
