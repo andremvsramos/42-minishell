@@ -55,5 +55,4 @@ void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *n_args)
 		printf("ERRO");
 		exit (1);
 	}
-	exit (1);
 }
