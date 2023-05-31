@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 08:46:18 by pealexan          #+#    #+#              #
-#    Updated: 2023/03/20 16:14:30 by andvieir         ###   ########.fr        #
+#    Updated: 2023/05/31 12:12:34 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,6 +86,7 @@ SRC =	ft_abs.c \
 	ft_putstr.c \
 	ft_putunsignednbr.c \
 	ft_wordcount.c \
+	ft_free_split.c \
 
 #--------COMMANDS--------#
 CC = cc

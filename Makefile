@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/30 14:46:47 by marvin           ###   ########.fr        #
+#    Updated: 2023/05/31 15:10:37 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -29,6 +29,7 @@ SRC =	src/main.c \
 		src/input_handling.c \
 		src/signals.c \
 		src/utils.c \
+		src/utils_2.c \
 		src/splitter.c \
 		src/redirects.c \
 		src/handle_errors.c \

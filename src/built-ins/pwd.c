@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:19:10 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/31 12:41:46 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:12:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-void	pwd_print(char **input)
+void	pwd_print(t_minishell *ms, char **input)
 {
 	//nao suporta '-' >> g_exit = 2
 	char	*path;
@@ -27,6 +27,7 @@ void	pwd_print(char **input)
 		{
 			printf("%s\n", "pwd: does not support options");
 			g_exit = 2;
+			free_child(ms, input, 0);
 			exit(g_exit);
 		}
 	}
@@ -34,5 +35,6 @@ void	pwd_print(char **input)
 	printf("%s\n", path);
 	g_exit = 0;
 	free(path);
+	free_child(ms, input, 0);
 	exit(0);
 }

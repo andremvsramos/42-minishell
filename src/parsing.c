@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 12:42:06 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:10:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	{
 	}
 	else if (check_strcmp("pwd", input[0]))
-		pwd_print(input);
+		pwd_print(ms, input);
 	else if (check_strcmp("unset", input[0]))
 		check_unset_query(ms);
 	else if (check_strcmp("env", input[0]))

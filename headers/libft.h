@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:06:17 by pealexan          #+#    #+#             */
-/*   Updated: 2023/05/26 12:32:47 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/31 12:12:02 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ int		ft_getlength(unsigned long long n, int base);
 
 /*-------------------------STRINGS-------------------------*/
 char	**ft_split(char const *s, char c);
+void	ft_free_split(char **split);
 char	*ft_strchr(const char *str, int c);
 char	*ft_strdup(const char *str);
 void	ft_striteri(char *s, void (*f)(unsigned int, char*));

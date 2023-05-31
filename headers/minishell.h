@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 12:41:14 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:09:54 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,7 @@ void	handler(int signal);
 
 //CLEANUP
 void	ft_free_lst(t_list *lst);
+void	free_child(t_minishell *ms, char **cmd_query, int i);
 
 //PARSING
 void	parse_query(t_minishell *ms, char **cmd_query);
@@ -105,7 +106,7 @@ void	env_print(t_list *lst);
 void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
 void	do_echo(char **input);
-void	pwd_print(char **input);
+void	pwd_print(t_minishell *ms, char **input);
 
 //ECHO FUNCTIONS
 int		handle_quotes(char *input);
