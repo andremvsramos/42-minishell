@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 16:20:49 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:35:29 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,5 +69,4 @@ void	parse_query(t_minishell *ms, char **cmd_query)
 		clear_temp[1] = NULL;
 		execve("/usr/bin/clear", clear_temp, ft_envcpy(ms->env));
 	}
-	exit(1);
 }
