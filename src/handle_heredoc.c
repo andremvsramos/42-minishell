@@ -12,13 +12,13 @@
 
 #include "../headers/minishell.h"
 
-static void	hd_create_error()
+static void	hd_create_error(t_minishell *ms, char **input)
 {
-	ft_putstr_fd("Error creating heredoc fil\n", STDERR_FILENO);
-	exit (1);
+	ft_putstr_fd("minishell: Error creating .heredoc", STDERR_FILENO);
+	free_child(ms, input, 1);
 }
 
-void	do_heredoc(t_minishell *ms, char *lim)
+void	do_heredoc(t_minishell *ms, char **input, char *lim)
 {
 	int		temp_file;
 	char	*buffer;
@@ -26,7 +26,7 @@ void	do_heredoc(t_minishell *ms, char *lim)
 	(void)ms;
 	temp_file = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
 	if (!temp_file)
-		hd_create_error();
+		hd_create_error(ms, input);
 	while(1)
 	{
 		buffer = readline(">");
@@ -48,7 +48,7 @@ void	do_heredoc(t_minishell *ms, char *lim)
 void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *n_args)
 {
 	(void)*n_args;
-	do_heredoc(ms, cmd_query[*i + 1]);
+	do_heredoc(ms, cmd_query, cmd_query[*i + 1]);
 	ms->in_fd = open(".heredoc", O_RDONLY);
 	if (ms->in_fd < 0)
 	{
