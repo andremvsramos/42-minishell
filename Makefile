@@ -38,6 +38,7 @@ SRC =	src/main.c \
 		src/built-ins/unset.c \
 		src/built-ins/export.c \
 		src/built-ins/echo.c \
+		src/built-ins/pwd.c \
 
 #----------COMMANDS----------#
 

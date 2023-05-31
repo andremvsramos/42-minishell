@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 10:35:32 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/31 12:41:14 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,8 @@ int		check_if_builtin(t_minishell *ms, char **input);
 void	env_print(t_list *lst);
 void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
-void    do_echo(char **input);
+void	do_echo(char **input);
+void	pwd_print(char **input);
 
 //ECHO FUNCTIONS
 int		handle_quotes(char *input);

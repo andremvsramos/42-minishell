@@ -24,6 +24,7 @@ char	**handle_redirects(t_minishell *ms, char *input)
 	free(input);
 	while (cmd_query[i])
 	{
+		// <<, >>, <, >
 		if (!ft_strncmp(cmd_query[i], "<<", ft_strlen(cmd_query[i])))
 			heredoc(cmd_query, ms, &i, &n_args);
 		i++;
