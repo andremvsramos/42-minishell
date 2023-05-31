@@ -5,38 +5,40 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 11:12:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/05/29 11:12:20 by marvin           ###   ########.fr       */
+/*   Created: 2023/05/31 16:14:01 by marvin            #+#    #+#             */
+/*   Updated: 2023/05/31 16:14:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-void	exec_single_cmd(t_minishell *ms, char *cmd)
+void	free_program(t_minishell *ms, int i)
 {
-	char	**cmd_query;
-
-	ms->pid[0] = fork();
-	if(!ms->pid[0])
-	{
-		cmd_query = handle_redirects(ms, cmd);
-		parse_query(ms, cmd_query);
-	}
+	free(ms->pid);
+	unlink(".heredoc");
+	if (ms->paths)
+		ft_free_split(ms->paths);
+	if (ms->args)
+		ft_free_split(ms->args);
+	if (i == 1)
+		ft_free_lst(ms->env);
 }
 
-void	execute(t_minishell *ms)
+void	free_child(t_minishell *ms, char **cmd_query, int i)
 {
-	char	*cmd;
-
-	cmd = 0;
-	if (ms->n_pipe > 0)
-		{}
-	else
+	if (cmd_query)
+		ft_free_split(cmd_query);
+	unlink(".heredoc");
+	if (ms->paths)
+		ft_free_split(ms->paths);
+	if (ms->args)
+		ft_free_split(ms->args);
+	ft_free_lst(ms->env);
+	free(ms->pid);
+	ft_free_lst(ms->xprt);
+	if (i == 1)
 	{
-		cmd = add_whitespaces(ms->args[0]);
-		exec_single_cmd(ms, cmd);
-		free(ms->input);
+		g_exit = 1;
+		exit (1);
 	}
-	get_exit_status(ms);
-	free_program(ms, 0);
 }

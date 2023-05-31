@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 15:10:10 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:20:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	check_if_builtin(t_minishell *ms, char **input)
 {
 	if (!ft_strncmp(input[0], "echo", ft_strlen("echo")))
-		do_echo(input);
+		do_echo(ms, input);
 	else if (check_strcmp("cd", input[0]))
 	{
 	}

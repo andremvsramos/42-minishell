@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:14 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/29 11:25:38 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:17:14 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,10 @@ int	main(int ac, char **av, char **env)
 			break ;
 		execute(&ms);
 	}
-	ft_free_lst(ms.env);
-	ft_free_lst(ms.xprt);
+	if (ms.env)
+		ft_free_lst(ms.env);
+	if (ms.xprt)
+		ft_free_lst(ms.xprt);
 	if (ms.input)
 		free(ms.input);
 	if (ms.prompt)

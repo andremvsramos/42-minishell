@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   signals.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:35:44 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/25 15:26:50 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/05/31 15:59:52 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,16 @@ void	handler(int signal)
 		rl_replace_line("", 0);
 		rl_redisplay();
 		g_exit = 130;
+	}
+}
+
+void	handler_sigint(int sig)
+{
+	if (sig == SIGINT)
+	{
+		ft_putchar_fd('\n', STDOUT_FILENO);
+		rl_on_new_line();
+		rl_replace_line("", 0);
 	}
 }
 

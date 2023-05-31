@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 15:09:54 by marvin           ###   ########.fr       */
+/*   Updated: 2023/05/31 16:20:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,10 +83,12 @@ char	*get_prompt(void);
 //SIGNALS
 void	signal_handling(void);
 void	handler(int signal);
+void	handler_sigint(int sig);
 
 //CLEANUP
 void	ft_free_lst(t_list *lst);
 void	free_child(t_minishell *ms, char **cmd_query, int i);
+void	free_program(t_minishell *ms, int i);
 
 //PARSING
 void	parse_query(t_minishell *ms, char **cmd_query);
@@ -105,7 +107,7 @@ int		check_if_builtin(t_minishell *ms, char **input);
 void	env_print(t_list *lst);
 void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
-void	do_echo(char **input);
+void	do_echo(t_minishell *ms, char **input);
 void	pwd_print(t_minishell *ms, char **input);
 
 //ECHO FUNCTIONS
@@ -125,6 +127,7 @@ char	*get_env_info(t_list **env, char *name);
 char	*add_whitespaces(char *str);
 size_t	ft_cmdlen(char *str);
 int		check_strcmp(char *s1, char *s2);
+void	get_exit_status(t_minishell *ms);
 
 //SPLITTER
 int		ft_wordcounter(char *str, char c);

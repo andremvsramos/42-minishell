@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/05/31 15:10:37 by marvin           ###   ########.fr        #
+#    Updated: 2023/05/31 16:18:34 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -23,6 +23,7 @@ SRC =	src/main.c \
 		src/get_env.c \
 		src/prompt.c \
 		src/cleanup_lists.c \
+		src/cleanup.c \
 		src/parsing.c \
 		src/executer.c \
 		src/expander.c \

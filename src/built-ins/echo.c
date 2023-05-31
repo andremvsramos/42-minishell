@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:15:06 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/31 12:02:04 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:20:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ Echo prints text:
 -n flag doesn't output a newline on prompt
 or on the file to be outputten
 */
-void	do_echo(char **input)
+void	do_echo(t_minishell *ms, char **input)
 {
 	int		i;
 	bool	n;
@@ -72,4 +72,7 @@ void	do_echo(char **input)
 		i++;
 	}
 	echo_print(input, n, i);
+	free_child(ms, input, 0);
+	g_exit = 0;
+	exit (0);
 }
