@@ -102,7 +102,7 @@ void	exec_single_cmd(t_minishell *ms, char *cmd);
 char	**handle_redirects(t_minishell *ms, char *input);
 
 //BUILT-INS
-int		check_unset_query(t_minishell *ms);
+int		check_unset_query(t_minishell *ms, char *input);
 int		check_if_builtin(t_minishell *ms, char **input);
 void	env_print(t_list *lst);
 void	exp_print(t_list *lst);

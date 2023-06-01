@@ -22,7 +22,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("pwd", input[0]))
 		pwd_print(ms, input);
 	else if (check_strcmp("unset", input[0]))
-		check_unset_query(ms);
+		check_unset_query(ms, input[1]);
 	else if (check_strcmp("env", input[0]))
 		env_print(ms->env);
 	else if (check_strcmp("export", input[0]))
@@ -32,17 +32,18 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	return (0);
 }
 
-int	check_unset_query(t_minishell *ms)
+int	check_unset_query(t_minishell *ms, char *input)
 {
-	char	**split;
+	/*char	**split;
 
+	//printf("%s", ms->input);
 	split = ft_split(ms->input, 32);
-	if (!split[1])
+	printf("%s", split[1]);*/
+	if (!input)
 		return (0);
-	do_unset(ms->env, split[1]);
-	printf("%s", split[1]);
-	do_unset(ms->xprt, split[1]);
-	free(split);
+	do_unset(ms->env, input);
+	do_unset(ms->xprt, input);
+	//free(split);
 	return (1);
 }
 
