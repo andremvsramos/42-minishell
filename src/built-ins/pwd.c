@@ -14,7 +14,6 @@
 
 void	pwd_print(t_minishell *ms, char **input)
 {
-	//nao suporta '-' >> g_exit = 2
 	char	*path;
 	int		count_args;
 

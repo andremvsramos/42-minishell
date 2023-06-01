@@ -74,7 +74,7 @@ size_t	ft_cmdlen(char *str)
 	int	i;
 
 	i = 0;
-	len  = 0;
+	len = 0;
 	if (!str)
 		return (0);
 	while (str[i])

@@ -40,6 +40,7 @@ int	check_unset_query(t_minishell *ms)
 	if (!split[1])
 		return (0);
 	do_unset(ms->env, split[1]);
+	printf("%s", split[1]);
 	do_unset(ms->xprt, split[1]);
 	free(split);
 	return (1);

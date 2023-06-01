@@ -12,7 +12,6 @@
 
 #include "../headers/minishell.h"
 
-
 //int	check_support_op(char *input)
 
 //int	check_invalid_syntax(char *input)

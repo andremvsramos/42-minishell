@@ -118,7 +118,7 @@ int		check_expandable(t_minishell *ms);
 char	*expander(char *name, t_minishell *ms);
 
 //HEREDOC
-void	do_heredoc(t_minishell *ms, char *lim);
+void	do_heredoc(t_minishell *ms, char **input, char *lim);
 void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *n_args);
 
 //UTILS

@@ -26,7 +26,7 @@ static void	ms_init(t_minishell *ms, char *input)
 
 int	check_quotes(char *input)
 {
-	char quote;
+	char	quote;
 
 	quote = 0;
 	while (*input && !quote)

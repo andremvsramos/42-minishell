@@ -17,7 +17,7 @@ void	exec_single_cmd(t_minishell *ms, char *cmd)
 	char	**cmd_query;
 
 	ms->pid[0] = fork();
-	if(!ms->pid[0])
+	if (!ms->pid[0])
 	{
 		cmd_query = handle_redirects(ms, cmd);
 		parse_query(ms, cmd_query);
@@ -30,7 +30,9 @@ void	execute(t_minishell *ms)
 
 	cmd = 0;
 	if (ms->n_pipe > 0)
-		{}
+	{
+		//do something
+	}
 	else
 	{
 		cmd = add_whitespaces(ms->args[0]);

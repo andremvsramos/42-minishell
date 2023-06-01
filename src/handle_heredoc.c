@@ -24,10 +24,11 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 	char	*buffer;
 
 	(void)ms;
-	temp_file = open(".heredoc", O_CREAT | O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
+	temp_file = open(".heredoc", O_CREAT
+			| O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
 	if (!temp_file)
 		hd_create_error(ms, input);
-	while(1)
+	while (1)
 	{
 		buffer = readline(">");
 		/* if (!buffer)

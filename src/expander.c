@@ -27,7 +27,7 @@ char	*expander(char	*name, t_minishell *ms)
 		{
 			free(name);
 			name = ft_strdup(((t_env *)(temp->content))->info
-				+ ft_strlen(((t_env *)(temp->content))->name) + 1);
+					+ ft_strlen(((t_env *)(temp->content))->name) + 1);
 			break ;
 		}
 		temp = temp->next;
