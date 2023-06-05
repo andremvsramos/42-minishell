@@ -31,3 +31,12 @@ int	check_valid_input(char *input)
 		return (0); */
 	return (1);
 }
+
+void	cmd_err(char *cmd, char **cmd_args, t_minishell *ms)
+{
+	ft_putstr_fd(cmd, STDERR_FILENO);
+	ft_putstr_fd(": command not found\n", STDERR_FILENO);
+	free_child(ms, cmd_args, 0);
+	g_exit = 127;
+	exit (g_exit);
+}

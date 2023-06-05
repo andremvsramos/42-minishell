@@ -20,7 +20,7 @@ void	exec_single_cmd(t_minishell *ms, char *cmd)
 	if (!ms->pid[0])
 	{
 		cmd_query = handle_redirects(ms, cmd);
-		parse_query(ms, cmd_query);
+		parse_query(ms, cmd_query, cmd);
 	}
 }
 
@@ -38,6 +38,7 @@ void	execute(t_minishell *ms)
 		cmd = add_whitespaces(ms->args[0]);
 		exec_single_cmd(ms, cmd);
 		free(ms->input);
+		check_builtins(ms, cmd);
 	}
 	get_exit_status(ms);
 	free_program(ms, 0);

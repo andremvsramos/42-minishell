@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 16:20:42 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/05 12:18:05 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,6 +91,7 @@ void	free_child(t_minishell *ms, char **cmd_query, int i);
 void	free_program(t_minishell *ms, int i);
 
 //PARSING
+char	*get_command(char *cmd, t_minishell *ms);
 void	parse_query(t_minishell *ms, char **cmd_query);
 int		count_quotes(char *input, char quote);
 
@@ -102,6 +103,7 @@ void	exec_single_cmd(t_minishell *ms, char *cmd);
 char	**handle_redirects(t_minishell *ms, char *input);
 
 //BUILT-INS
+void	check_builtins(t_minishell *ms, char *cmd);
 int		check_unset_query(t_minishell *ms, char *input);
 int		check_if_builtin(t_minishell *ms, char **input);
 void	env_print(t_list *lst);
@@ -110,7 +112,10 @@ void	do_unset(t_list *lst, char *name);
 void	do_echo(t_minishell *ms, char **input);
 void	pwd_print(t_minishell *ms, char **input);
 
-//ECHO FUNCTIONS
+//EXIT
+void	check_exit(t_minishell *ms, char *cmd);
+
+//ECHO
 int		handle_quotes(char *input);
 
 //EXPANDER
@@ -137,5 +142,6 @@ char	**splitter(char *s, char c);
 //ERROR HANDLING
 int		check_valid_input(char *input);
 int		check_quotes(char *input);
+void	cmd_err(char *cmd, char **cmd_args, t_minishell *ms);
 
 #endif

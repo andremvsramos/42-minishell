@@ -6,11 +6,39 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/05 10:12:37 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/05 12:23:59 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
+
+char	*get_command(char *cmd, t_minishell *ms)
+{
+	char	*temp;
+	char	*command;
+	int		i;
+
+	i = 0;
+	if (!cmd)
+		return (0);
+	if (!access(cmd, X_OK))
+		return (cmd);
+	while (ms->paths[i])
+	{
+		temp = ft_strdup(ms->paths[i]);
+		command = ft_strjoin(temp, "/");
+		free(temp);
+		temp = ft_strdup(command);
+		free(command);
+		command = ft_strjoin(temp, cmd);
+		if (!access(command, F_OK))
+			return (command);
+		free(temp);
+		free(command);
+		i++;
+	}
+	return (0);
+}
 
 int	check_if_builtin(t_minishell *ms, char **input)
 {
@@ -30,7 +58,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("exit", input[0]))
 	{
 		free_child(ms, input, 0);
-		return (1);
+		exit (g_exit);
 	}
 	return (0);
 }
@@ -52,8 +80,8 @@ int	check_unset_query(t_minishell *ms, char *input)
 
 void	parse_query(t_minishell *ms, char **cmd_query)
 {
-	char		**clear_temp;
-	int			i;
+	char	*command;
+	int		i;
 
 	//ms->query = ft_split(ms->input, ' ');
 	i = 1;
@@ -67,11 +95,8 @@ void	parse_query(t_minishell *ms, char **cmd_query)
 		return ;
 	if (check_if_builtin(ms, cmd_query))
 		return ;
-	if (check_strcmp("clear", cmd_query[0]))
-	{
-		clear_temp = ft_calloc(2, sizeof(char *));
-		clear_temp[0] = ft_strdup(cmd_query[0]);
-		clear_temp[1] = NULL;
-		execve("/usr/bin/clear", clear_temp, ft_envcpy(ms->env));
-	}
+	command = get_command(cmd_query[0], ms);
+	if (!command)
+		cmd_err(cmd_query[0], cmd_query, ms);
+	execve(command, cmd_query, ft_envcpy(ms->env));
 }
