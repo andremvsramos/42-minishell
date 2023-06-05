@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 16:35:29 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/05 10:12:37 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,10 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("export", input[0]))
 		exp_print(ms->xprt);
 	else if (check_strcmp("exit", input[0]))
+	{
+		free_child(ms, input, 0);
 		return (1);
+	}
 	return (0);
 }
 
