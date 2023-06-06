@@ -12,15 +12,16 @@
 
 #include "../headers/minishell.h"
 
-void	shift_redirect(char **cmd_query, int *i, int *count)
+/*void	shift_redirect(char **cmd_query, int *i, int *count)
 {
 
-}
+}*/
 
 static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
+	(void)count;
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT | O_APPEND,
-				S_IRUSR | S_IWUSR);
+			S_IRUSR | S_IWUSR);
 	if (!ms->out_fd)
 	{
 		ft_putstr_fd("Error creating file\n", STDERR_FILENO);
@@ -30,6 +31,7 @@ static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 
 static void	handle_out(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
+	(void)count;
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT
 			| O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
 	if (!ms->out_fd)
@@ -41,6 +43,7 @@ static void	handle_out(char **cmd_query, t_minishell *ms, int *i, int *count)
 
 static void	handle_in(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
+	(void)count;
 	ms->in_fd = open(cmd_query[*i + 1], O_RDONLY);
 	if (!ms->in_fd)
 	{

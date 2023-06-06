@@ -6,7 +6,7 @@
 #    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/06/05 10:32:35 by tsodre-p         ###   ########.fr        #
+#    Updated: 2023/06/06 11:23:43 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -54,7 +54,9 @@ OBJ = ${SRC:.c=.o}
 
 #----------RULES----------#
 .c.o:
-			@$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o ${<:.c=.o}
+#@$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o ${<:.c=.o}
+			@mkdir -p bin/$(dir $<)
+			@$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o bin/$*.o
 
 all:		$(NAME)
 
@@ -62,16 +64,17 @@ $(LIBFT):
 			cd $(LIBFTDIR) && $(MAKE)
 
 $(NAME):	$(OBJ) $(LIBFT)
-			@$(CC) $(CFLAGS) $(OBJ) -lreadline $(LIBFTDIR)$(LIBFT) -o $(NAME)
+			@$(CC) $(CFLAGS) $(OBJ:%=bin/%) -lreadline $(LIBFTDIR)$(LIBFT) -o $(NAME)
 
 clean:
-			$(RM) $(OBJ) $(OBJ_CHECKER)
+			$(RM) $(OBJ:%=bin/%) $(OBJ_CHECKER)
+			rm -r bin/src
 			cd $(LIBFTDIR) && $(MAKE) clean
 
 fclean:		clean
 			$(RM) $(NAME) $(BONUS) $(LIBFT)
 			cd $(LIBFTDIR) && $(MAKE) fclean
 
-aclean:		all clean
+#aclean:		all clean
 
 re:			fclean all
