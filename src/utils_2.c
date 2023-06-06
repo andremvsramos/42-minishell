@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:03:19 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/05 11:16:51 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/05 14:40:21 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,6 @@ void	check_builtins(t_minishell *ms, char *cmd)
 		return ;
 	if (check_strcmp("exit", cmd))
 		check_exit(ms, cmd);
-
 }
 
 /*

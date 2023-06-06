@@ -20,7 +20,7 @@ void	exec_single_cmd(t_minishell *ms, char *cmd)
 	if (!ms->pid[0])
 	{
 		cmd_query = handle_redirects(ms, cmd);
-		parse_query(ms, cmd_query, cmd);
+		parse_query(ms, cmd_query);
 	}
 }
 
