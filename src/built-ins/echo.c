@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:15:06 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/06 09:43:12 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/06 15:54:00 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,15 @@ static int	check_end(char *input, bool n)
 
 static void	echo_print(char **input, bool n, int i)
 {
+	/*verificar que tipo de quotes existem
+	depois ver se o numero de quotes e par ou impar:
+	- se for impar da erro
+	- se nao for impar e nao tiver quotes a volta da string
+	simplesmente tira tudo e deixa o texto
+
+	se tiver quotes a volta, 1 inicio e 1 fim:
+	imprime tudo, a nao ser que as quotes do meio sejam iguias
+	as quotes que estao nas pontas. ai apaga-as*/
 	while (input[i])
 	{
 		input[i] = ft_strtrim(input[i], "\'\"");
