@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/05 15:14:40 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:55:31 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("export", input[0]))
 		exp_print(ms->xprt);
 	else if (check_strcmp("exit", input[0]))
-	{
-		free_child(ms, input, 0);
-		exit (g_exit);
-	}
+		do_exit(ms, input, 1);
 	return (0);
 }
 
@@ -83,7 +80,6 @@ void	parse_query(t_minishell *ms, char **cmd_query)
 	char	*command;
 	int		i;
 
-	//ms->query = ft_split(ms->input, ' ');
 	i = 1;
 	while (cmd_query[i])
 	{

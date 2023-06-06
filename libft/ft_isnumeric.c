@@ -5,43 +5,27 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/29 11:12:20 by marvin            #+#    #+#             */
-/*   Updated: 2023/05/29 11:12:20 by marvin           ###   ########.fr       */
+/*   Created: 2023/06/06 15:43:41 by marvin            #+#    #+#             */
+/*   Updated: 2023/06/06 15:43:41 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../headers/libft.h"
 
-void	exec_single_cmd(t_minishell *ms, char *cmd)
+int	ft_isnumeric(char *str)
 {
-	char	**cmd_query;
+	int	i;
 
-	ms->pid[0] = fork();
-	if (!ms->pid[0])
+	i = 0;
+	if (*str == '-')
+		str++;
+	if (!ft_isdigit(*str))
+		return (0);
+	while (*str)
 	{
-		cmd_query = handle_redirects(ms, cmd);
-		parse_query(ms, cmd_query);
+		if (!ft_isdigit(*str))
+			return (0);
+		i++;
 	}
-}
-
-void	execute(t_minishell *ms)
-{
-	char	*cmd;
-
-	cmd = 0;
-	if (ms->n_pipe > 0)
-	{
-		//do something
-	}
-	else
-	{
-		cmd = add_whitespaces(ms->args[0]);
-		ms->query = remove_redirects(cmd);
-		exec_single_cmd(ms, cmd);
-		free(cmd);
-		check_builtins(ms, ms->query);
-		ft_free_split(ms->query);
-	}
-	get_exit_status(ms);
-	free_program(ms, 0);
+	return (1);
 }

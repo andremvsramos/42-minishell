@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:03:19 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/05 14:40:21 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:19:01 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,27 +33,36 @@ void	get_exit_status(t_minishell *ms)
 	}
 }
 
-void	check_builtins(t_minishell *ms, char *cmd)
+void	check_builtins(t_minishell *ms, char **cmd_query)
 {
-	if (!cmd)
+	if (!cmd_query[0])
 		return ;
-	if (check_strcmp("exit", cmd))
-		check_exit(ms, cmd);
+	if (check_strcmp("exit", cmd_query[0]))
+		check_exit(ms, ms->query);
 }
 
-/*
-char	**remove_redir(char *input)
+
+char	**remove_redirects(char *input)
 {
-	char	**cmd_args;
+	char	**cmd_query;
 	int		i;
 	int		count;
 
 	i = 0;
 	count = ft_wordcounter(input, ' ');
-	cmd_args = splitter(input, ' ');
-	while (cmd_args[i])
+	cmd_query = splitter(input, ' ');
+	while (cmd_query[i])
 	{
-
+		if (!ft_strncmp(cmd_query[i], "<", ft_strlen(cmd_query[i])))
+			shift_redirect(cmd_query, &i, &count);
+		else if (!ft_strncmp(cmd_query[i], ">", ft_strlen(cmd_query[i])))
+			shift_redirect(cmd_query, &i, &count);
+		else if (!ft_strncmp(cmd_query[i], "<<", ft_strlen(cmd_query[i])))
+			shift_redirect(cmd_query, &i, &count);
+		else if (!ft_strncmp(cmd_query[i], ">>", ft_strlen(cmd_query[i])))
+			shift_redirect(cmd_query, &i, &count);
+		i++;
 	}
+	return (cmd_query);
 }
- */
+

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/05 12:18:05 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/06 16:21:55 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,10 +100,11 @@ void	execute(t_minishell *ms);
 void	exec_single_cmd(t_minishell *ms, char *cmd);
 
 //REDIRECTS
+void	shift_redirect(char **cmd_query, int *i, int *count);
 char	**handle_redirects(t_minishell *ms, char *input);
 
 //BUILT-INS
-void	check_builtins(t_minishell *ms, char *cmd);
+void	check_builtins(t_minishell *ms, char **cmd_query);
 int		check_unset_query(t_minishell *ms, char *input);
 int		check_if_builtin(t_minishell *ms, char **input);
 void	env_print(t_list *lst);
@@ -111,9 +112,10 @@ void	exp_print(t_list *lst);
 void	do_unset(t_list *lst, char *name);
 void	do_echo(t_minishell *ms, char **input);
 void	pwd_print(t_minishell *ms, char **input);
+void	do_exit(t_minishell *ms, char **cmd_query, int x);
 
 //EXIT
-void	check_exit(t_minishell *ms, char *cmd);
+void	check_exit(t_minishell *ms, char **cmd_query);
 
 //ECHO
 int		handle_quotes(char *input);
@@ -130,6 +132,7 @@ void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *n_args);
 char	get_quote(char c, char quote);
 char	*get_env_info(t_list **env, char *name);
 char	*add_whitespaces(char *str);
+char	**remove_redirects(char *input);
 size_t	ft_cmdlen(char *str);
 int		check_strcmp(char *s1, char *s2);
 void	get_exit_status(t_minishell *ms);

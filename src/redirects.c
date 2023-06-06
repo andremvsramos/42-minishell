@@ -12,10 +12,31 @@
 
 #include "../headers/minishell.h"
 
-/*void	shift_redirect(char **cmd_query, int *i, int *count)
+void	shift_redirect(char **cmd_query, int *i, int *count)
 {
+	int	index;
 
-}*/
+	index = *i;
+	while (index < *count - 2)
+	{
+		free(cmd_query[index]);
+		cmd_query[index] = ft_strdup(cmd_query[index + 2]);
+		index++;
+	}
+	if (*count - 2 < 0)
+	{
+		free(cmd_query[0]);
+		free(cmd_query[1]);
+	}
+	else
+	{
+		free(cmd_query[index]);
+		free(cmd_query[index + 1]);
+	}
+	*count = *count - 2;
+	cmd_query[index] = 0;
+	*i = -1;
+}
 
 static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 {

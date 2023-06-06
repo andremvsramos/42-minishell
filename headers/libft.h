@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:06:17 by pealexan          #+#    #+#             */
-/*   Updated: 2023/05/31 12:12:02 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/06 15:47:28 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ int		ft_isascii(int c);
 int		ft_isdigit(int c);
 int		ft_isprint(int c);
 int		ft_isspace(int c);
+int		ft_isnumeric(char *str);
 int		ft_getlength(unsigned long long n, int base);
 
 /*-------------------------STRINGS-------------------------*/

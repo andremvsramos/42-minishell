@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 08:46:18 by pealexan          #+#    #+#              #
-#    Updated: 2023/05/31 12:12:34 by marvin           ###   ########.fr        #
+#    Updated: 2023/06/06 15:47:50 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,6 +27,7 @@ SRC =	ft_abs.c \
 	ft_isdigit.c \
 	ft_isspace.c \
 	ft_isquote.c \
+	ft_isnumeric.c \
 	ft_itoa.c \
 	ft_utoa.c \
 	ft_lstadd_back.c \

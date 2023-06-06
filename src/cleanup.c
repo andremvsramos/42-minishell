@@ -31,6 +31,8 @@ void	free_child(t_minishell *ms, char **cmd_query, int i)
 	unlink(".heredoc");
 	if (ms->paths)
 		ft_free_split(ms->paths);
+	if (ms->query)
+		ft_free_split(ms->query);
 	if (ms->args)
 		ft_free_split(ms->args);
 	ft_free_lst(ms->env);

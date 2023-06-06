@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:52:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/30 12:05:46 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/06 16:01:53 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ static void	ms_init(t_minishell *ms, char *input)
 	ms->out_fd = STDOUT_FILENO;
 	ms->pid = ft_calloc(ms->n_cmd, sizeof(pid_t));
 	ms->paths = ft_split(get_env_info(&ms->env, "PATH"), ':');
+	ms->query = 0;
 }
 
 int	check_quotes(char *input)
