@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:15:06 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/06 15:54:00 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:03:46 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,35 @@ static int	check_end(char *input, bool n)
 	return (1);
 }
 
+char	*clean_quotes(char *input)
+{
+	int	i;
+	int	j;
+	char	*string;
+
+	i = 0;
+	j = 0;
+	string = ma;
+	/*if (input[0] == '\'')
+		input = ft_strtrim(input, "\'");
+	else if (input[0] ==  '"')
+		input = ft_strtrim(input, "\"");
+	return (input);*/
+	while (input[i])
+	{
+		if (input[0] == '\'' || input[0] ==  '"')
+		{
+			if (input[i] != '\'' || input[i] !=  '"')
+			{
+				string[j] = input[i];
+				j++;
+			}
+		}
+		i++;
+	}
+	return (string);
+}
+
 static void	echo_print(char **input, bool n, int i)
 {
 	/*verificar que tipo de quotes existem
@@ -38,7 +67,7 @@ static void	echo_print(char **input, bool n, int i)
 	as quotes que estao nas pontas. ai apaga-as*/
 	while (input[i])
 	{
-		input[i] = ft_strtrim(input[i], "\'\"");
+		//input[i] = ft_strtrim(input[i], "\'\"");
 		if (check_strcmp("$?", input[i]))
 		{
 			printf("%d", g_exit);
@@ -47,6 +76,7 @@ static void	echo_print(char **input, bool n, int i)
 		}
 		else
 		{
+			input[i] = clean_quotes(input[i]);
 			printf("%s", input[i]);
 			if (!check_end(input[i + 1], n))
 				break ;
@@ -74,7 +104,6 @@ void	do_echo(t_minishell *ms, char **input)
 	else if (input[1][0] == '-' && input[1][1] == 'n' && !input[2])
 		return ;
 	i = 1;
-	input[i] = ft_strtrim(input[i], "\'\"");
 	if (check_strcmp("-n", input[i]))
 	{
 		n = true;
