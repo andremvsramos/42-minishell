@@ -36,7 +36,8 @@ void	free_child(t_minishell *ms, char **cmd_query, int i)
 	if (ms->args)
 		ft_free_split(ms->args);
 	ft_free_lst(ms->env);
-	free(ms->pid);
+	if (ms->pid)
+		free(ms->pid);
 	ft_free_lst(ms->xprt);
 	if (i == 1)
 	{

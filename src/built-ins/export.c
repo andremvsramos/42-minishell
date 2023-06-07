@@ -3,79 +3,102 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:33 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/18 17:41:58 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/07 11:44:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
-t_list	*get_export(char **env)
+int	check_val(char *str)
 {
-	int		i;
-	t_list	*head;
-	t_list	*temp;
+	int	i;
+	int	size;
 
+	size = 0;
 	i = 0;
-	head = NULL;
-	ft_lstadd_back(&head, ft_lstnew(ft_create_export(env[i])));
-	temp = head;
-	i++;
-	while (env[i])
+	if (!ft_isalpha(str[0]) && str[0] != '_')
+		return (0);
+	while (str[size] && str[i] != '-')
+		size++;
+	while (i < size)
 	{
-		temp->next = ft_lstnew(ft_create_export(env[i]));
-		temp = temp->next;
+		if (!ft_isalnum_extra(str[i]))
+			return (0);
 		i++;
 	}
-	return (head);
+	return (1);
 }
 
-t_env	*ft_create_export(char *info)
+void	export_error(t_minishell *ms, char **cmd_query)
 {
-	t_env	*data;
+	int	i;
 
-	data = ft_calloc(1, sizeof(t_env));
-	data->name = get_name(info);
-	data->info = get_export_info(info);
-	return (data);
+	i = 1;
+	g_exit = 0;
+	while (cmd_query[i])
+	{
+		if (!check_val(cmd_query[i]))
+		{
+			ft_putstr_fd("minishell: export: '", STDERR_FILENO);
+			ft_putstr_fd(cmd_query[i], STDERR_FILENO);
+			ft_putstr_fd("': not a valid identifier\n", STDERR_FILENO);
+			exit (1);
+		}
+		i++;
+	}
+	free_child(ms, cmd_query, 0);
+	exit (0);
 }
 
-char	*get_export_info(char *info)
+void	exp_print(t_list *lst)
 {
-	char	*exp_info;
-	char	*temp;
-	char	*name;
-
-	exp_info = ft_strdup("declare -x ");
-	name = get_name(info);
-	temp = ft_strjoin(exp_info, name);
-	free(name);
-	free(exp_info);
-	exp_info = ft_strjoin(temp, "=\"");
-	free(temp);
-	name = get_info(info);
-	temp = ft_strjoin(exp_info, name);
-	free(name);
-	free(exp_info);
-	exp_info = ft_strjoin(temp, "\"");
-	free(temp);
-	return (exp_info);
-}
-
-char	*get_info(char *info)
-{
-	char	*content;
 	int		i;
-	int		j;
+	char	*cpy_i;
+	char	*cpy_j;
+	char	**copy;
 
 	i = 0;
-	j = 0;
-	while (info[i] != '=')
+	copy = ft_envcpy(lst);
+	while (i < ft_lstsize(lst) - 1)
+	{
+		if (ft_strncmp(copy[i], copy[i + 1],
+				ft_maxlen(copy[i], copy[i + 1])) > 0)
+		{
+			cpy_i = ft_strdup(copy[i]);
+			cpy_j = ft_strdup(copy[i + 1]);
+			free_cpy(copy[i], copy[i + 1]);
+			copy[i] = ft_strdup(cpy_j);
+			copy[i + 1] = ft_strdup(cpy_i);
+			free_cpy(cpy_i, cpy_j);
+			i = 0;
+		}
+		else
+			i++;
+	}
+	print(ft_lstsize(lst), copy);
+}
+
+void	do_export(t_minishell *ms, char **cmd_query)
+{
+	int	i;
+
+	i = 0;
+	while (cmd_query[i])
 		i++;
-	while (info[++i])
-		j++;
-	content = ft_substr(info, i - j, j);
-	return (content);
+	if (i == 1)
+		exp_print(ms->xprt);
+	else if (i > 1)
+	{
+		if (cmd_query[1][0] == '-')
+		{
+			ft_putstr_fd("minishell: export: no options supported\n", STDERR_FILENO);
+			free_child(ms, cmd_query, 0);
+			exit (2);
+		}
+		else
+			export_error(ms, cmd_query);
+	}
 }

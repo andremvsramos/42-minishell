@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:52:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/06 16:01:53 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 17:02:15 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,23 +52,24 @@ int	check_quotes(char *input)
 
 int	read_input(t_minishell *ms)
 {
+	char	*trimmed;
+
 	ms->prompt = get_prompt();
 	ms->input = readline(ms->prompt);
 	free(ms->prompt);
 	if (!ms->input)
-	{
-		printf("exit\n");
 		return (-1);
-	}
 	if (ft_strlen(ms->input))
 		add_history(ms->input);
-	ms->input = ft_strtrim(ms->input, " ");
-	if (!check_valid_input(ms->input))
+	trimmed = ft_strtrim(ms->input, " ");
+	free(ms->input);
+	if (!check_valid_input(trimmed))
 	{
-		free(ms->input);
+		free(trimmed);
 		g_exit = 2;
 		return (0);
 	}
-	ms_init(ms, ms->input);
+	ms_init(ms, trimmed);
+	free(trimmed);
 	return (1);
 }

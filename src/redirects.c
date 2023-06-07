@@ -23,7 +23,7 @@ void	shift_redirect(char **cmd_query, int *i, int *count)
 		cmd_query[index] = ft_strdup(cmd_query[index + 2]);
 		index++;
 	}
-	if (*count - 2 < 0)
+	if (*count - 2 <= 0)
 	{
 		free(cmd_query[0]);
 		free(cmd_query[1]);
@@ -40,7 +40,6 @@ void	shift_redirect(char **cmd_query, int *i, int *count)
 
 static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
-	(void)count;
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT | O_APPEND,
 			S_IRUSR | S_IWUSR);
 	if (!ms->out_fd)
@@ -48,23 +47,23 @@ static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 		ft_putstr_fd("Error creating file\n", STDERR_FILENO);
 		free_child(ms, cmd_query, 1);
 	}
+	shift_redirect(cmd_query, i, count);
 }
 
 static void	handle_out(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
-	(void)count;
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT
-			| O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
+			| O_TRUNC, S_IRUSR | S_IWUSR);
 	if (!ms->out_fd)
 	{
 		ft_putstr_fd("Error creating file\n", STDERR_FILENO);
 		free_child(ms, cmd_query, 1);
 	}
+	shift_redirect(cmd_query, i, count);
 }
 
 static void	handle_in(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
-	(void)count;
 	ms->in_fd = open(cmd_query[*i + 1], O_RDONLY);
 	if (!ms->in_fd)
 	{
@@ -73,32 +72,31 @@ static void	handle_in(char **cmd_query, t_minishell *ms, int *i, int *count)
 		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
 		free_child(ms, cmd_query, 1);
 	}
+	shift_redirect(cmd_query, i, count);
 }
 
 char	**handle_redirects(t_minishell *ms, char *input)
 {
 	char	**cmd_query;
 	int		i;
-	int		n_args;
 	int		count;
 
 	i = 0;
 	ms->in_fd = STDIN_FILENO;
 	ms->out_fd = STDOUT_FILENO;
-	n_args = ft_wordcounter(input, ' ');
+	count = ft_wordcounter(input, ' ');
 	cmd_query = splitter(input, ' ');
-	free(input);
+	//free(input);
 	while (cmd_query[i])
 	{
-		// <<, >>, <, >
 		if (!ft_strncmp(cmd_query[i], "<", ft_strlen(cmd_query[i])))
 			handle_in(cmd_query, ms, &i, &count);
-		if (!ft_strncmp(cmd_query[i], ">", ft_strlen(cmd_query[i])))
+		else if (!ft_strncmp(cmd_query[i], ">", ft_strlen(cmd_query[i])))
 			handle_out(cmd_query, ms, &i, &count);
-		if (!ft_strncmp(cmd_query[i], ">>", ft_strlen(cmd_query[i])))
+		else if (!ft_strncmp(cmd_query[i], ">>", ft_strlen(cmd_query[i])))
 			handle_append(cmd_query, ms, &i, &count);
-		if (!ft_strncmp(cmd_query[i], "<<", ft_strlen(cmd_query[i])))
-			heredoc(cmd_query, ms, &i, &n_args);
+		else if (!ft_strncmp(cmd_query[i], "<<", ft_strlen(cmd_query[i])))
+			heredoc(cmd_query, ms, &i, &count);
 		i++;
 	}
 	return (cmd_query);

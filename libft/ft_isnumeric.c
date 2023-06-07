@@ -12,11 +12,8 @@
 
 #include "../headers/libft.h"
 
-int	ft_isnumeric(char *str)
+int	ft_isnumeric(const char *str)
 {
-	int	i;
-
-	i = 0;
 	if (*str == '-')
 		str++;
 	if (!ft_isdigit(*str))
@@ -25,7 +22,7 @@ int	ft_isnumeric(char *str)
 	{
 		if (!ft_isdigit(*str))
 			return (0);
-		i++;
+		str++;
 	}
 	return (1);
 }

@@ -12,30 +12,115 @@
 
 #include "../headers/minishell.h"
 
-char	*expander(char	*name, t_minishell *ms)
+static void	expand_exit(char *res, t_minishell *ms, int *i)
 {
-	t_list	*temp;
+	int		j;
+	char	*value;
 
-	name = ft_strtrim(name, "\"\'");
-	if ((name[0] == '$' && ft_strlen(name) == 1) || check_strcmp("$?", name))
-		return (name);
-	name = ft_strtrim(name, "$");
-	temp = ms->env;
-	while (temp)
+	value = ft_itoa(g_exit);
+	j = -1;
+	while (value[++j])
+		res[ms->counter++] = value[j];
+	free (value);
+	*i += 1;
+}
+
+static void	expand(char *arg, char *res, int *i, t_minishell *ms)
+{
+	char	*temp;
+	char	*value;
+	int		len;
+	int		j;
+
+	if (arg[*i + 1] != '?')
 	{
-		if (check_strcmp(name, ((t_env *)(temp->content))->name))
+		len = 0;
+		while (ft_isalnum_extra(arg[*i + 1 + len]))
+			len++;
+		temp = ft_substr(arg, *i + 1, len);
+		value = get_env_info(&ms->env, temp);
+		if (!len)
+			value = "$";
+		free (temp);
+		*i += len;
+		if (value)
 		{
-			free(name);
-			name = ft_strdup(((t_env *)(temp->content))->info
-					+ ft_strlen(((t_env *)(temp->content))->name) + 1);
-			break ;
+			j = -1;
+			while (value[++j])
+				res[ms->counter++] = value[j];
 		}
-		temp = temp->next;
 	}
-	if (!temp)
+	else
+		expand_exit(res, ms, i);
+}
+
+static void	t_length2(char *arg, int *i, int *len, t_minishell *ms)
+{
+	int		j;
+	char	*temp;
+	char	*value;
+
+	j = 0;
+	if (arg[*i + 1] != '?')
 	{
-		free(name);
-		name = ft_strdup("");
+		while (ft_isalnum_extra(arg[*i + 1 + j]))
+			j++;
+		temp = ft_substr(arg, *i + 1, j);
+		value = get_env_info(&ms->env, temp);
+		if (!j)
+			value = "$";
+		if (value)
+			*len += ft_strlen(value);
+		free(temp);
+		*i += j;
 	}
-	return (name);
+	else
+	{
+		temp = ft_itoa(g_exit);
+		*len += ft_strlen(temp);
+		free(temp);
+		*i += 1;
+	}
+}
+
+static int	t_length(char *arg, t_minishell *ms)
+{
+	int		i;
+	int		len;
+	char	quote;
+
+	i = -1;
+	len = 0;
+	quote = 0;
+	while (arg[++i])
+	{
+		quote = get_quote(arg[i], quote);
+		if (arg[i] == '$' && quote != '\'')
+			t_length2(arg, &i, &len, ms);
+		else
+			len++;
+	}
+	return (len);
+}
+
+char	*expander(char	*arg, t_minishell *ms)
+{
+	char	quote;
+	char	*res;
+	int		i;
+
+	i = -1;
+	ms->counter = 0;
+	res = ft_calloc(t_length(arg, ms) + 1, sizeof(char));
+	while (arg[++i])
+	{
+		quote = get_quote(arg[i], quote);
+		if (arg[i] == '$' && quote != '\'')
+			expand(arg, res, &i, ms);
+		else
+			res[ms->counter++] = arg[i];
+	}
+	res[ms->counter] = 0;
+	free(arg);
+	return (res);
 }

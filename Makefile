@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/06/06 11:23:43 by tsodre-p         ###   ########.fr        #
+#    Updated: 2023/06/07 16:48:36 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,11 +21,13 @@ HEADERDIR = ./headers/
 
 SRC =	src/main.c \
 		src/get_env.c \
+		src/get_exp.c \
 		src/prompt.c \
 		src/cleanup_lists.c \
 		src/cleanup.c \
 		src/parsing.c \
 		src/executer.c \
+		src/exe_utils.c \
 		src/expander.c \
 		src/input_handling.c \
 		src/signals.c \

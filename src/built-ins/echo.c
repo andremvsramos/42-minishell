@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   echo.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:15:06 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/07 15:39:17 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/07 16:59:16 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,40 +23,6 @@ static int	check_end(char *input, bool n)
 	else
 		printf(" ");
 	return (1);
-}
-
-char	*clean_quotes(char *input)
-{
-	int	i;
-	int	j;
-	char	*string;
-
-	i = 0;
-	j = 0;
-	string = malloc(sizeof(char) * ft_strlen(input));
-	/*if (input[0] == '\'')
-		input = ft_strtrim(input, "\'");
-	else if (input[0] ==  '"')
-		input = ft_strtrim(input, "\"");
-	return (input);*/
-	while (input[i])
-	{
-		if (input[0] == '\'' || input[0] ==  '"')
-		{
-			if (!(input[i] == '\'') || !(input[i] == '"'))
-			{
-				string[j] = input[i];
-				j++;
-			}
-		}
-		else
-		{
-			string[j] = input[i];
-			j++;
-		}
-		i++;
-	}
-	return (string);
 }
 
 static void	echo_print(char **input, bool n, int i)
@@ -81,7 +47,6 @@ static void	echo_print(char **input, bool n, int i)
 		}
 		else
 		{
-			input[i] = clean_quotes(input[i]);
 			printf("%s", input[i]);
 			if (!check_end(input[i + 1], n))
 				break ;

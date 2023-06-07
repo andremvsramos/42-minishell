@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:10:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/06 16:35:44 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 11:18:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@ void	check_exit(t_minishell *ms, char **cmd_query)
 	while (cmd_query[i])
 		i++;
 	wait(&status);
-	puts("checker");
 	if (WIFEXITED(status))
 		g_exit = WEXITSTATUS(status);
 	if (g_exit != 1 || (g_exit == 1 && i == 2))

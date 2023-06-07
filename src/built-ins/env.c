@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env_print.c                                        :+:      :+:    :+:   */
+/*   env.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:52:04 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/26 14:06:07 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 12:05:24 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	env_print(t_list *lst)
 	}
 }
 
-static void	print(int size, char **list)
+void	print(int size, char **list)
 {
 	int	i;
 
@@ -50,36 +50,8 @@ static void	print(int size, char **list)
 	free(list);
 }
 
-static void	free_cpy(char *cpy1, char *cpy2)
+void	free_cpy(char *cpy1, char *cpy2)
 {
 	free(cpy1);
 	free(cpy2);
-}
-
-void	exp_print(t_list *lst)
-{
-	int		i;
-	char	*cpy_i;
-	char	*cpy_j;
-	char	**copy;
-
-	i = 0;
-	copy = ft_envcpy(lst);
-	while (i < ft_lstsize(lst) - 1)
-	{
-		if (ft_strncmp(copy[i], copy[i + 1],
-				ft_maxlen(copy[i], copy[i + 1])) > 0)
-		{
-			cpy_i = ft_strdup(copy[i]);
-			cpy_j = ft_strdup(copy[i + 1]);
-			free_cpy(copy[i], copy[i + 1]);
-			copy[i] = ft_strdup(cpy_j);
-			copy[i + 1] = ft_strdup(cpy_i);
-			free_cpy(cpy_i, cpy_j);
-			i = 0;
-		}
-		else
-			i++;
-	}
-	print(ft_lstsize(lst), copy);
 }

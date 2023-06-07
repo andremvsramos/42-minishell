@@ -12,6 +12,25 @@
 
 #include "../headers/minishell.h"
 
+void	check_heredoc(t_minishell *ms, int i)
+{
+	int		j;
+	char	*temp;
+	char	**cmd_query;
+
+	j = -1;
+	ms->heredoc = false;
+	if (!i)
+		return ;
+	temp = add_whitespaces(ms->args[i - 1]);
+	cmd_query = splitter(temp, ' ');
+	while (ms->args[++j])
+		if (!ft_strncmp(cmd_query[j], "<<", ft_strlen(cmd_query[j])))
+			ms->heredoc = true;
+	free(temp);
+	ft_free_split(cmd_query);
+}
+
 static void	hd_create_error(t_minishell *ms, char **input)
 {
 	ft_putstr_fd("minishell: Error creating .heredoc", STDERR_FILENO);

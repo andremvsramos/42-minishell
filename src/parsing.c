@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/06 16:55:31 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/07 15:32:13 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("env", input[0]))
 		env_print(ms->env);
 	else if (check_strcmp("export", input[0]))
-		exp_print(ms->xprt);
+		do_export(ms, input);
 	else if (check_strcmp("exit", input[0]))
 		do_exit(ms, input, 1);
 	return (0);
@@ -78,18 +78,10 @@ int	check_unset_query(t_minishell *ms, char *input)
 void	parse_query(t_minishell *ms, char **cmd_query)
 {
 	char	*command;
-	int		i;
 
-	i = 1;
-	while (cmd_query[i])
-	{
-		if (ft_strchr(cmd_query[i], '$'))
-			cmd_query[i] = expander(cmd_query[i], ms);
-		i++;
-	}
-	if (!cmd_query)
-		return ;
-	if (check_if_builtin(ms, cmd_query))
+	if (!cmd_query[0])
+		free_child(ms, cmd_query, 1);
+	if (!check_if_builtin(ms, cmd_query))
 		return ;
 	command = get_command(cmd_query[0], ms);
 	if (!command)

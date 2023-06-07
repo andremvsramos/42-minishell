@@ -12,6 +12,46 @@
 
 #include "../headers/minishell.h"
 
+void	exec_cmd(t_minishell *ms, char *cmd, int i)
+{
+	char	**cmd_query;
+
+	if (ms->heredoc)
+		wait (0);
+	ms->pid[i] = fork();
+	if (!ms->pid[i])
+	{
+		cmd_query = handle_redirects(ms, cmd);
+		pipe_redirects(ms, i);
+		redirect(ms->in_fd, ms->out_fd);
+		expand_args(cmd_query, ms);
+		parse_query(ms, cmd_query);
+	}
+}
+
+void	exec_multi_cmd(t_minishell *ms)
+{
+	char	*cmd;
+	int		i;
+
+	i = -1;
+	ms->pipe_fd = ft_calloc(ms->n_pipe * 2, sizeof(int));
+	if (!ms->pipe_fd)
+	{
+		ft_putstr_fd("minishell: failed allocating memory to ms->pipe_fd\n", STDERR_FILENO);
+		free_child(ms, NULL, 1);
+	}
+	pipex(ms);
+	while (ms->args[++i])
+	{
+		cmd = add_whitespaces(ms->args[i]);
+		check_heredoc(ms, i);
+		exec_cmd(ms, cmd, i);
+		free(cmd);
+	}
+	close_pipex(ms);
+}
+
 void	exec_single_cmd(t_minishell *ms, char *cmd)
 {
 	char	**cmd_query;
@@ -20,6 +60,8 @@ void	exec_single_cmd(t_minishell *ms, char *cmd)
 	if (!ms->pid[0])
 	{
 		cmd_query = handle_redirects(ms, cmd);
+		redirect(ms->in_fd, ms->out_fd);
+		expand_args(cmd_query, ms);
 		parse_query(ms, cmd_query);
 	}
 }
@@ -30,9 +72,7 @@ void	execute(t_minishell *ms)
 
 	cmd = 0;
 	if (ms->n_pipe > 0)
-	{
-		//do something
-	}
+		exec_multi_cmd(ms);
 	else
 	{
 		cmd = add_whitespaces(ms->args[0]);
