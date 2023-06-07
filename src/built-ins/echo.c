@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 10:15:06 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/07 15:03:46 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:31:26 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ char	*clean_quotes(char *input)
 
 	i = 0;
 	j = 0;
-	string = ma;
+	string = malloc(sizeof(char) * ft_strlen(input));
 	/*if (input[0] == '\'')
 		input = ft_strtrim(input, "\'");
 	else if (input[0] ==  '"')
@@ -43,11 +43,16 @@ char	*clean_quotes(char *input)
 	{
 		if (input[0] == '\'' || input[0] ==  '"')
 		{
-			if (input[i] != '\'' || input[i] !=  '"')
+			if (input[i] != '\'' || input[i] != '"')
 			{
 				string[j] = input[i];
 				j++;
 			}
+		}
+		else
+		{
+			string[j] = input[i];
+			j++;
 		}
 		i++;
 	}
