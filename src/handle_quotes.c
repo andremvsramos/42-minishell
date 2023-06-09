@@ -39,7 +39,7 @@ static int	len_quoteless(char *arg)
 
 static void	quote_checker(char *arg, int *i, char *quote)
 {
-	if (ft_strchr("\"\'", arg[*i]) && !quote)
+	if (ft_strchr("\"\'", arg[*i]) && !*quote)
 		*quote = arg[*i];
 	else if (ft_strchr("\"\'", arg[*i]) && *quote == arg[*i])
 		*quote = 0;

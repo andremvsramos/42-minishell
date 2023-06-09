@@ -50,7 +50,7 @@ void	print(int size, char **list)
 	i = 0;
 	while (i < size)
 		printf("%s\n", list[i++]);
-	free(list);
+	ft_free_split(list);
 }
 
 void	free_cpy(char *cpy1, char *cpy2)

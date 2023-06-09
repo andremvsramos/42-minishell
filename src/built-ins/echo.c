@@ -66,10 +66,15 @@ void	do_echo(t_minishell *ms, char **input)
 	bool	n;
 
 	n = false;
-	if (!input)
+	i = 0;
+	while (input[i])
+		i++;
+	if (i <= 1)
 	{
 		printf("\n");
-		return ;
+		free_child(ms, input, 0);
+		g_exit = 0;
+		exit (0);
 	}
 	else if (input[1][0] == '-' && input[1][1] == 'n' && !input[2])
 		return ;

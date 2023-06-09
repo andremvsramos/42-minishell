@@ -86,7 +86,7 @@ char	**handle_redirects(t_minishell *ms, char *input)
 	ms->out_fd = STDOUT_FILENO;
 	count = ft_wordcounter(input, ' ');
 	cmd_query = splitter(input, ' ');
-	//free(input);
+	free(input);
 	while (cmd_query[i])
 	{
 		if (!ft_strncmp(cmd_query[i], "<", ft_strlen(cmd_query[i])))

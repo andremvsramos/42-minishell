@@ -20,6 +20,7 @@ static void	ms_init(t_minishell *ms, char *input)
 	ms->args = splitter(input, '|');
 	ms->in_fd = STDIN_FILENO;
 	ms->out_fd = STDOUT_FILENO;
+	ms->pipe_fd = 0;
 	ms->pid = ft_calloc(ms->n_cmd, sizeof(pid_t));
 	ms->paths = ft_split(get_env_info(&ms->env, "PATH"), ':');
 	ms->query = 0;
@@ -55,6 +56,8 @@ int	read_input(t_minishell *ms)
 	char	*trimmed;
 
 	ms->prompt = get_prompt();
+	if (!ms->prompt)
+		ms->prompt = ft_strdup("user> ");
 	ms->input = readline(ms->prompt);
 	free(ms->prompt);
 	if (!ms->input)

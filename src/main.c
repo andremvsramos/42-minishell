@@ -22,8 +22,6 @@ void	free_all(t_minishell ms)
 		ft_free_lst(ms.xprt);
 	if (ms.input)
 		free(ms.input);
-	if (ms.prompt)
-		free(ms.prompt);
 }
 
 int	main(int ac, char **av, char **env)
