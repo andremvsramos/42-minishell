@@ -12,6 +12,14 @@
 
 #include "../headers/minishell.h"
 
+static void	EOF_error(char *limiter)
+{
+	ft_putstr_fd("minishell: warning: here-document", STDERR_FILENO);
+	ft_putstr_fd(" delimited by end-of-file (wanted `", STDERR_FILENO);
+	ft_putstr_fd(limiter, STDERR_FILENO);
+	ft_putstr_fd("')\n", STDERR_FILENO);
+}
+
 void	check_heredoc(t_minishell *ms, int i)
 {
 	int		j;
@@ -50,10 +58,11 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 	while (1)
 	{
 		buffer = readline(">");
-		/* if (!buffer)
-		{ */
-			/*DO ERROR*/
-		/* } */
+		if (!buffer)
+		{
+			EOF_error(lim);
+			break ;
+		}
 		if (!ft_strncmp(lim, buffer, ft_strlen(lim)))
 			break ;
 		if (ft_strrchr(buffer, '$'))
@@ -65,14 +74,17 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 	close(temp_file);
 }
 
-void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *n_args)
+void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
-	(void)*n_args;
 	do_heredoc(ms, cmd_query, cmd_query[*i + 1]);
 	ms->in_fd = open(".heredoc", O_RDONLY);
 	if (ms->in_fd < 0)
 	{
-		printf("ERRO");
-		exit (1);
+		ft_putstr_fd("minishell: ", STDERR_FILENO);
+		ft_putstr_fd(".heredoc", STDERR_FILENO);
+		ft_putstr_fd(": No such file or directory\n", STDERR_FILENO);
+		free_child(ms, cmd_query, 1);
+		exit(1);
 	}
+	shift_redirect(cmd_query, i, count);
 }

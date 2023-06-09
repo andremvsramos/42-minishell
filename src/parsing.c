@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/07 15:32:13 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:33:56 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ void	parse_query(t_minishell *ms, char **cmd_query)
 
 	if (!cmd_query[0])
 		free_child(ms, cmd_query, 1);
-	if (!check_if_builtin(ms, cmd_query))
+	if (check_if_builtin(ms, cmd_query))
 		return ;
 	command = get_command(cmd_query[0], ms);
 	if (!command)

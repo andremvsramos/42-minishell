@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:14 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/31 16:17:14 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/09 14:46:11 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,21 +32,25 @@ int	main(int ac, char **av, char **env)
 	t_minishell	ms;
 
 	(void)av;
-	if (ac != 1)
-		return (0);
-	ms.env = init_env(env);
-	ms.xprt = get_export(env);
-	while (1)
+	if (ac > 1)
+		printf("minishell: wrong number of arguments\n");
+	else
 	{
-		i = 0;
-		signal_handling();
-		i = read_input(&ms);
-		if (!i)
-			continue ;
-		else if (i == -1)
-			break ;
-		execute(&ms);
+		ms.env = init_env(env);
+		ms.xprt = get_export(env);
+		while (1)
+		{
+			i = 0;
+			signal_handling();
+			i = read_input(&ms);
+			if (!i)
+				continue ;
+			else if (i == -1)
+				break ;
+			execute(&ms);
+		}
+		return (rl_clear_history(), free_all(ms),
+				ft_putstr("exit\n"), 0);
 	}
-	free_all(ms);
 	return (0);
 }
