@@ -50,10 +50,9 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 	int		temp_file;
 	char	*buffer;
 
-	(void)ms;
 	temp_file = open(".heredoc", O_CREAT
 			| O_WRONLY | O_TRUNC, S_IWUSR | S_IRUSR);
-	if (!temp_file)
+	if (temp_file < 0)
 		hd_create_error(ms, input);
 	while (1)
 	{
@@ -63,7 +62,7 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 			EOF_error(lim);
 			break ;
 		}
-		if (!ft_strncmp(lim, buffer, ft_strlen(lim)))
+		if (!ft_strncmp(lim, buffer, ft_strlen(lim) + 1))
 			break ;
 		if (ft_strrchr(buffer, '$'))
 			buffer = expander(buffer, ms);
@@ -76,6 +75,7 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 
 void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
+	signal(SIGQUIT, SIG_IGN);
 	do_heredoc(ms, cmd_query, cmd_query[*i + 1]);
 	ms->in_fd = open(".heredoc", O_RDONLY);
 	if (ms->in_fd < 0)
