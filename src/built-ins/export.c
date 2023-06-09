@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:33 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/07 11:44:56 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:17:10 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,4 +101,7 @@ void	do_export(t_minishell *ms, char **cmd_query)
 		else
 			export_error(ms, cmd_query);
 	}
+	free_child(ms, cmd_query, 0);
+	g_exit = 0;
+	exit(g_exit);
 }

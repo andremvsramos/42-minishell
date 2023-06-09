@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/07 17:06:18 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:14:33 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -117,7 +117,7 @@ void	check_builtins(t_minishell *ms, char **cmd_query);
 int		check_unset_query(t_minishell *ms, char *input);
 int		check_if_builtin(t_minishell *ms, char **input);
 void	do_export(t_minishell *ms, char **cmd_query);
-void	env_print(t_list *lst);
+void	env_print(t_minishell *ms, t_list *lst, char **cmd_query);
 void	exp_print(t_list *lst);
 void	print(int size, char **list);
 void	free_cpy(char *cpy1, char *cpy2);

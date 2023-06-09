@@ -15,6 +15,8 @@
 void	free_program(t_minishell *ms, int i)
 {
 	free(ms->pid);
+	if (ms->pipe_fd)
+		free(ms->pipe_fd);
 	unlink(".heredoc");
 	if (ms->paths)
 		ft_free_split(ms->paths);
@@ -28,6 +30,8 @@ void	free_child(t_minishell *ms, char **cmd_query, int i)
 {
 	if (cmd_query)
 		ft_free_split(cmd_query);
+	if (ms->pipe_fd)
+		free(ms->pipe_fd);
 	unlink(".heredoc");
 	if (ms->paths)
 		ft_free_split(ms->paths);

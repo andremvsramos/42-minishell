@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:52:04 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/07 12:05:24 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:14:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_maxlen(char *s1, char *s2)
 	return (j);
 }
 
-void	env_print(t_list *lst)
+void	env_print(t_minishell *ms, t_list *lst, char **cmd_query)
 {
 	t_list	*temp;
 
@@ -38,6 +38,9 @@ void	env_print(t_list *lst)
 		printf("%s\n", ((t_env *)(temp->content))->info);
 		temp = temp->next;
 	}
+	free_child(ms, cmd_query, 0);
+	g_exit = 0;
+	exit(g_exit);
 }
 
 void	print(int size, char **list)

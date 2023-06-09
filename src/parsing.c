@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/09 14:33:56 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/09 15:16:09 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("unset", input[0]))
 		check_unset_query(ms, input[1]);
 	else if (check_strcmp("env", input[0]))
-		env_print(ms->env);
+		env_print(ms, ms->env, input);
 	else if (check_strcmp("export", input[0]))
 		do_export(ms, input);
 	else if (check_strcmp("exit", input[0]))
