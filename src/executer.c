@@ -21,6 +21,7 @@ void	exec_cmd(t_minishell *ms, char *cmd, int i)
 	ms->pid[i] = fork();
 	if (!ms->pid[i])
 	{
+		signal_default();
 		cmd_query = handle_redirects(ms, cmd);
 		pipe_redirects(ms, i);
 		redirect(ms->in_fd, ms->out_fd);
@@ -59,6 +60,7 @@ void	exec_single_cmd(t_minishell *ms, char *cmd)
 	ms->pid[0] = fork();
 	if (!ms->pid[0])
 	{
+		signal_default();
 		cmd_query = handle_redirects(ms, cmd);
 		redirect(ms->in_fd, ms->out_fd);
 		expand_args(cmd_query, ms);

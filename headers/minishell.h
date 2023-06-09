@@ -89,6 +89,7 @@ char	*get_prompt(void);
 void	signal_handling(void);
 void	handler(int signal);
 void	handler_sigint(int sig);
+void	signal_default(void);
 
 //CLEANUP
 void	ft_free_lst(t_list *lst);
