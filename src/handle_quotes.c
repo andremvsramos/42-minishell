@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:16:40 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/07 17:05:25 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:50:01 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@ static int	len_quoteless(char *arg)
 
 	i = -1;
 	quote = 0;
+	len = 0;
 	while (arg[++i])
 	{
 		if (ft_strchr("\"\'", arg[i]) && !quote)
