@@ -38,30 +38,8 @@ t_env	*ft_create_export(char *info)
 
 	data = ft_calloc(1, sizeof(t_env));
 	data->name = get_name(info);
-	data->info = get_export_info(info);
+	data->info = declare(info);
 	return (data);
-}
-
-char	*get_export_info(char *info)
-{
-	char	*exp_info;
-	char	*temp;
-	char	*name;
-
-	exp_info = ft_strdup("declare -x ");
-	name = get_name(info);
-	temp = ft_strjoin(exp_info, name);
-	free(name);
-	free(exp_info);
-	exp_info = ft_strjoin(temp, "=\"");
-	free(temp);
-	name = get_info(info);
-	temp = ft_strjoin(exp_info, name);
-	free(name);
-	free(exp_info);
-	exp_info = ft_strjoin(temp, "\"");
-	free(temp);
-	return (exp_info);
 }
 
 char	*get_info(char *info)

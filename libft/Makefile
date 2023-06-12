@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 08:46:18 by pealexan          #+#    #+#              #
-#    Updated: 2023/06/06 15:47:50 by marvin           ###   ########.fr        #
+#    Updated: 2023/06/12 14:35:46 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -99,17 +99,17 @@ OBJ = ${SRC:.c=.o}
 
 #---------RULES---------#
 .c.o:
-		$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o ${<:.c=.o}
+		@$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o ${<:.c=.o}
 
 all: 		$(NAME)
 
 $(NAME): 	$(OBJ)
-		$(AR) $(NAME) $(OBJ)
+		@$(AR) $(NAME) $(OBJ)
 
 clean:
-		$(RM) $(OBJ)
+		@$(RM) $(OBJ)
 
 fclean: 	clean
-		$(RM) $(NAME)
+		@$(RM) $(NAME)
 
 re: 		fclean all

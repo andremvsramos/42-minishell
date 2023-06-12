@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   env.c                                              :+:      :+:    :+:   */
+/*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:12:08 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/17 15:49:50 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/12 13:31:35 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ char	*get_name(char *info)
 	int		i;
 
 	i = 0;
-	while (info[i] != '=')
+	while (info[i] && info[i] != '=')
 		i++;
 	name = ft_calloc(i + 1, sizeof(char));
 	ft_strlcpy(name, info, i + 1);

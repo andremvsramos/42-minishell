@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:03:19 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/09 15:34:10 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:08:39 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,18 @@ void	check_builtins(t_minishell *ms, char **cmd_query)
 {
 	if (!cmd_query[0])
 		return ;
-	//if (check_strcmp())
+	expand_args(cmd_query, ms);
 	if (check_strcmp("exit", cmd_query[0]))
 		check_exit(ms, ms->query);
+	else if (check_strcmp("export", cmd_query[0]))
+		check_export(ms, ms->query);
+	else if (check_strcmp("unset", cmd_query[0]))
+		check_unset(ms, ms->query);
 }
 
 int	ft_isalnum_extra(char c)
 {
-	if (ft_isalpha(c) == 1 || ft_isdigit(c) == 1 || c == '_')
+	if (ft_isalpha(c) || ft_isdigit(c) || c == '_')
 		return (1);
 	return (0);
 }

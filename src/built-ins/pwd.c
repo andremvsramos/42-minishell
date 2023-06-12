@@ -6,11 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:19:10 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/05/31 15:12:43 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 12:46:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../../headers/minishell.h"
 
 void	pwd_print(t_minishell *ms, char **input)
 {

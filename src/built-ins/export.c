@@ -6,11 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:33 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/09 15:17:10 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 13:40:40 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../../headers/minishell.h"
 
 int	check_val(char *str)
 {
@@ -21,7 +21,7 @@ int	check_val(char *str)
 	i = 0;
 	if (!ft_isalpha(str[0]) && str[0] != '_')
 		return (0);
-	while (str[size] && str[i] != '-')
+	while (str[size] && str[size] != '=')
 		size++;
 	while (i < size)
 	{

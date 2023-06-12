@@ -6,11 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:10:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/07 11:18:49 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 12:46:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../../headers/minishell.h"
 
 void	check_exit(t_minishell *ms, char **cmd_query)
 {

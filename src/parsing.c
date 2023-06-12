@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/09 15:16:09 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:07:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("pwd", input[0]))
 		pwd_print(ms, input);
 	else if (check_strcmp("unset", input[0]))
-		check_unset_query(ms, input[1]);
+		do_unset(ms, input);
 	else if (check_strcmp("env", input[0]))
 		env_print(ms, ms->env, input);
 	else if (check_strcmp("export", input[0]))
@@ -58,21 +58,6 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	else if (check_strcmp("exit", input[0]))
 		do_exit(ms, input, 1);
 	return (0);
-}
-
-int	check_unset_query(t_minishell *ms, char *input)
-{
-	/*char	**split;
-
-	//printf("%s", ms->input);
-	split = ft_split(ms->input, 32);
-	printf("%s", split[1]);*/
-	if (!input)
-		return (0);
-	do_unset(ms->env, input);
-	do_unset(ms->xprt, input);
-	//free(split);
-	return (1);
 }
 
 void	parse_query(t_minishell *ms, char **cmd_query)

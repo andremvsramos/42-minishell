@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/09 15:14:33 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 14:11:12 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,9 +66,13 @@ int		read_input(t_minishell *ms);
 //EXPORT
 t_list	*get_export(char **env);
 t_env	*ft_create_export(char *info);
-char	*get_export_info(char *info);
 char	*get_info(char *info);
 int		ft_maxlen(char *s1, char *s2);
+char	*declare(char *str);
+void	export_error(t_minishell *ms, char **cmd_query);
+int		check_val(char *str);
+void	update_env(t_minishell *ms, char *info);
+void	check_export(t_minishell *ms, char **cmd_query);
 
 //ENV VARIABLES
 t_list	*init_env(char **env);
@@ -115,20 +119,22 @@ char	**handle_redirects(t_minishell *ms, char *input);
 
 //BUILT-INS
 void	check_builtins(t_minishell *ms, char **cmd_query);
-int		check_unset_query(t_minishell *ms, char *input);
 int		check_if_builtin(t_minishell *ms, char **input);
 void	do_export(t_minishell *ms, char **cmd_query);
 void	env_print(t_minishell *ms, t_list *lst, char **cmd_query);
 void	exp_print(t_list *lst);
 void	print(int size, char **list);
 void	free_cpy(char *cpy1, char *cpy2);
-void	do_unset(t_list *lst, char *name);
 void	do_echo(t_minishell *ms, char **input);
 void	pwd_print(t_minishell *ms, char **input);
 void	do_exit(t_minishell *ms, char **cmd_query, int x);
+void	do_unset(t_minishell *ms, char **cmd_query);
 
 //EXIT
 void	check_exit(t_minishell *ms, char **cmd_query);
+
+//UNSET
+void	check_unset(t_minishell *ms, char **cmd_query);
 
 //QUOTES
 char	*quote_remover(char *arg);
@@ -152,6 +158,8 @@ size_t	ft_cmdlen(char *str);
 int		check_strcmp(char *s1, char *s2);
 void	get_exit_status(t_minishell *ms);
 int		ft_isalnum_extra(char c);
+int		update_info(t_list *lst, char *name, char *new_info);
+int		update_export(t_list *lst, char *name, char *new_info);
 
 //SPLITTER
 int		ft_wordcounter(char *str, char c);

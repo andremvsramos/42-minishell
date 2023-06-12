@@ -6,11 +6,11 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 15:52:04 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/09 15:14:21 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/12 13:56:43 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../headers/minishell.h"
+#include "../../headers/minishell.h"
 
 int	ft_maxlen(char *s1, char *s2)
 {
@@ -19,9 +19,9 @@ int	ft_maxlen(char *s1, char *s2)
 
 	i = 0;
 	j = 0;
-	while (s1[i] != '=')
+	while (s1[i] && s1[i] != '=')
 		i++;
-	while (s2[j] != '=')
+	while (s2[j] && s2[j] != '=')
 		j++;
 	if (i > j)
 		return (i);
