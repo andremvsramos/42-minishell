@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:42:56 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/13 12:29:30 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/13 12:43:32 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,6 @@ void	cd(t_minishell *ms, char **cmd_args)
 		g_exit = 1;
 		exit (1);
 	}
-	else
-		check_errors()
+	//else
+		//check_errors();
 }
