@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/12 14:47:51 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/13 10:28:18 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void	pwd_print(t_minishell *ms, char **input);
 void	do_exit(t_minishell *ms, char **cmd_query, int x);
 void	do_unset(t_minishell *ms, char **cmd_query);
 void	cd(t_minishell *ms, char **cmd_args);
+void	check_cd(t_minishell *ms, char **cmd_args);
 
 //EXIT
 void	check_exit(t_minishell *ms, char **cmd_query);

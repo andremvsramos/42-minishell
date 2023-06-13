@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
+#    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/06/12 14:37:43 by marvin           ###   ########.fr        #
+#    Updated: 2023/06/13 10:28:51 by tsodre-p         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,6 +46,7 @@ SRC =	src/main.c \
 		src/built-ins/echo.c \
 		src/built-ins/pwd.c \
 		src/built-ins/exit.c \
+		src/built-ins/cd.c \
 
 #----------COMMANDS----------#
 

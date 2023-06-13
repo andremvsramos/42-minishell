@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 14:11:28 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/12 14:07:42 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 10:30:41 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,8 +45,7 @@ int	check_if_builtin(t_minishell *ms, char **input)
 	if (!ft_strncmp(input[0], "echo", ft_strlen("echo")))
 		do_echo(ms, input);
 	else if (check_strcmp("cd", input[0]))
-	{
-	}
+		cd(ms, input);
 	else if (check_strcmp("pwd", input[0]))
 		pwd_print(ms, input);
 	else if (check_strcmp("unset", input[0]))
