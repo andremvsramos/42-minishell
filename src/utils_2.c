@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   utils_2.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:03:19 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/12 14:08:39 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/13 15:36:16 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,8 @@ void	check_builtins(t_minishell *ms, char **cmd_query)
 		check_export(ms, ms->query);
 	else if (check_strcmp("unset", cmd_query[0]))
 		check_unset(ms, ms->query);
+	else if (check_strcmp("cd", cmd_query[0]))
+		check_cd(ms, ms->query);
 }
 
 int	ft_isalnum_extra(char c)

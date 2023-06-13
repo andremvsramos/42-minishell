@@ -6,11 +6,21 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:42:56 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/13 12:43:32 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/13 16:03:07 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+static char	*get_home(t_minishell *ms, char *arg)
+{
+	char	*new;
+	char	*temp;
+
+	temp = get_env_info(&ms->env, "HOME");
+	new = ft_strjoin(temp, arg + 1);
+	return (new);
+}
 
 static void	execute_cd(t_minishell *ms, char *path)
 {
@@ -19,16 +29,21 @@ static void	execute_cd(t_minishell *ms, char *path)
 	char	*temp;
 	char	*new_pwd;
 
+	/* if (path[0] == '~')
+		new_path = get_home(ms, path);
+	else if (path[0] == '-')
+		new_path = ft_strdup(get_env_info(&ms->env, "OLDPWD"));
+	else */
 	new_path = ft_strdup(path);
 	temp = getcwd(0, 0);
-	old_pwd = ft_strdup(temp);
+	old_pwd = ft_strjoin("OLDPWD=", temp);
 	free(temp);
 	update_info(ms->env, "OLDPWD", old_pwd);
 	update_export(ms->xprt, "OLDPWD", old_pwd);
 	chdir(new_path);
 	free(new_path);
 	temp = getcwd(0, 0);
-	new_pwd = ft_strdup(temp);
+	new_pwd = ft_strjoin("PWD=", temp);
 	free(temp);
 	update_info(ms->env, "PWD", new_pwd);
 	update_export(ms->xprt, "PWD", new_pwd);
@@ -36,13 +51,36 @@ static void	execute_cd(t_minishell *ms, char *path)
 	free(new_pwd);
 }
 
-/*static void	check_errors(t_minishell *ms, char **cmd_args)
+static void	check_errors(t_minishell *ms, char **cmd_args)
 {
 	struct stat		statbuf;
 
 	if (cmd_args[1][0] == '~')
-		cmd_args[1] =
-}*/
+		cmd_args[1] = get_home(ms, cmd_args[1]);
+	else if (ft_strlen(cmd_args[1]) == 1 && !ft_strncmp(cmd_args[1], "-", 1))
+		cmd_args[1] = ft_strdup(get_env_info(&ms->env, "OLDPWD"));
+	if (stat(cmd_args[1], &statbuf) == 0)
+	{
+		free_child(ms, cmd_args, 0);
+		exit(0);
+	}
+	else if (cmd_args[1][0] == '-' && cmd_args[1][1])
+	{
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(cmd_args[1], 2);
+		ft_putstr_fd(": Invalid option\n", 2);
+		free_child(ms, cmd_args, 0);
+		exit (2);
+	}
+	else
+	{
+		ft_putstr_fd("minishell: cd: ", 2);
+		ft_putstr_fd(cmd_args[1], 2);
+		ft_putstr_fd(": No such file or directory\n", 2);
+		free_child(ms, cmd_args, 0);
+		exit (1);
+	}
+}
 
 void	check_cd(t_minishell *ms, char **cmd_args)
 {
@@ -63,12 +101,16 @@ void	check_cd(t_minishell *ms, char **cmd_args)
 			//i == 2 -> cd PATH
 			/*if i is one change to home directory
 			else change to the path on cmd_args[1]*/
-		else if (cmd_args[1][0] == '~' && i == 1)
-			execute_cd(ms, ft_strjoin("HOME=", get_env_info(&ms->env , "HOME")));
-		else if (cmd_args[1][0] == '-' && i == 1)
-			execute_cd(ms, ft_strjoin("HOME=", get_env_info(&ms->env , "OLDPWD")));
+		else if (cmd_args[1][0] == '~' && i == 2)
+			execute_cd(ms, get_env_info(&ms->env , "HOME"));
+		else if (cmd_args[1][0] == '-' && i == 2)
+			execute_cd(ms, get_env_info(&ms->env , "OLDPWD"));
 		else
 			execute_cd(ms, cmd_args[1]);
+		/* if (i == 1)
+			execute_cd(ms, get_env_info(&ms->env, "HOME"));
+		else
+			execute_cd(ms, cmd_args[1]); */
 	}
 }
 
@@ -92,6 +134,6 @@ void	cd(t_minishell *ms, char **cmd_args)
 		g_exit = 1;
 		exit (1);
 	}
-	//else
-		//check_errors();
+	else
+		check_errors(ms, cmd_args);
 }
