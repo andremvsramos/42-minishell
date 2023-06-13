@@ -3,10 +3,17 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
+<<<<<<< HEAD
+#    By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
+#    Updated: 2023/06/13 12:17:24 by andvieir         ###   ########.fr        #
+=======
 #    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
 #    Updated: 2023/06/13 10:28:51 by tsodre-p         ###   ########.fr        #
+>>>>>>> a80e0d3286a065da2ba701a02a1e31b052d21b74
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +44,7 @@ SRC =	src/main.c \
 		src/splitter.c \
 		src/redirects.c \
 		src/handle_errors.c \
+		src/handle_errors_2.c \
 		src/handle_quotes.c \
 		src/handle_heredoc.c \
 		src/built-ins/env.c \

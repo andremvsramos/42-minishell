@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
+<<<<<<< HEAD
+/*   Updated: 2023/06/13 12:21:41 by andvieir         ###   ########.fr       */
+=======
 /*   Updated: 2023/06/13 10:28:18 by tsodre-p         ###   ########.fr       */
+>>>>>>> a80e0d3286a065da2ba701a02a1e31b052d21b74
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +27,10 @@
 # include <signal.h>
 
 # define REDIRECT "><"
+# define NOHANDLE "&;(){}*\\"
+
+# define UNTOKEN "minishell: syntax error near unexpected token '"
+# define NOSUPPORT "minishell: no support for operator '"
 
 extern int	g_exit;
 
@@ -172,5 +180,11 @@ char	**splitter(char *s, char c);
 int		check_valid_input(char *input);
 int		check_quotes(char *input);
 void	cmd_err(char *cmd, char **cmd_args, t_minishell *ms);
+int		check_invalid_syntax(char *input);
+int		check_supported_op(char *input);
+int		unexpected_tokens(char *input);
+int		error_operator(char *error, char *operator);
+int		error_token(char *error, char metachar, int dup);
+int		unexpected_redirect(char *input, int *i);
 
 #endif
