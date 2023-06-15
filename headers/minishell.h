@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/15 09:47:49 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:05:34 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,8 @@ void	execute(t_minishell *ms);
 void	redirect(int fd_in, int fd_out);
 
 //PROMPT
-char	*get_prompt(void);
+//char	*get_prompt(void);
+char	*get_prompt(t_minishell *ms, int i, int j);
 
 //SIGNALS
 void	signal_handling(void);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   input_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:52:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/07 17:02:15 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/15 12:05:17 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ int	read_input(t_minishell *ms)
 {
 	char	*trimmed;
 
-	ms->prompt = get_prompt();
+	ms->prompt = get_prompt(ms, 0, 0);
 	if (!ms->prompt)
 		ms->prompt = ft_strdup("user> ");
 	ms->input = readline(ms->prompt);

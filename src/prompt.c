@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:19:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/24 15:56:20 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/15 12:06:17 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,16 +18,56 @@ static void	get_env(char **user, char **temp)
 	*temp = getenv("SESSION_MANAGER");
 }
 
-char	*get_prompt(void)
+static char	*gd_utils(bool check, char *cwd, char *prompt, int length)
+{
+	char	*temp;
+
+	if (check == false)
+	{
+		temp = ft_strdup(cwd);
+		free(cwd);
+		cwd = ft_strjoin(temp, "$ ");
+		free(temp);
+		temp = ft_strjoin(prompt, cwd);
+		free(cwd);
+		return (temp);
+	}
+	else
+	{
+		temp = ft_strdup(cwd + length);
+		free(cwd);
+		cwd = ft_strjoin("~", temp);
+		free(temp);
+		temp = ft_strjoin(cwd, "$ ");
+		free(cwd);
+		cwd = ft_strjoin(prompt, temp);
+		free(temp);
+		return (cwd);
+	}
+}
+
+static char	*get_directory(t_minishell *ms, char *prompt)
+{
+	char	*cwd;
+	char	*user;
+	size_t	length;
+
+	cwd = getcwd(0, 0);
+	user = get_env_info(&ms->env, "HOME");
+	length = ft_strlen(get_env_info(&ms->env, "HOME"));
+	if (length > ft_strlen(cwd))
+		cwd = gd_utils(false, cwd, prompt, length);
+	else
+		cwd = gd_utils(true, cwd, prompt, length);
+	return (cwd);
+}
+
+char	*get_prompt(t_minishell *ms, int i, int j)
 {
 	char	*prompt;
 	char	*user;
 	char	*temp;
-	int		i;
-	int		j;
 
-	i = 0;
-	j = 0;
 	get_env(&user, &temp);
 	if (!user || !temp)
 		return (NULL);
@@ -42,7 +82,9 @@ char	*get_prompt(void)
 	temp = ft_strjoin(user, prompt);
 	free(prompt);
 	free(user);
-	prompt = ft_strjoin(temp, "> ");
+	prompt = ft_strjoin(temp, ":");
 	free(temp);
-	return (prompt);
+	temp = get_directory(ms, prompt);
+	free(prompt);
+	return (temp);
 }
