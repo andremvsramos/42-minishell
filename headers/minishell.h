@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/13 15:06:05 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/15 09:47:49 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -183,5 +183,6 @@ int		unexpected_tokens(char *input);
 int		error_operator(char *error, char *operator);
 int		error_token(char *error, char metachar, int dup);
 int		unexpected_redirect(char *input, int *i);
+void	handle_error_cd(t_minishell *ms, char **cmd_args);
 
 #endif

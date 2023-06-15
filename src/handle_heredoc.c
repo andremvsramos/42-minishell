@@ -12,7 +12,7 @@
 
 #include "../headers/minishell.h"
 
-static void	EOF_error(char *limiter)
+static void	eof_error(char *limiter)
 {
 	ft_putstr_fd("minishell: warning: here-document", STDERR_FILENO);
 	ft_putstr_fd(" delimited by end-of-file (wanted `", STDERR_FILENO);
@@ -59,7 +59,7 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 		buffer = readline(">");
 		if (!buffer)
 		{
-			EOF_error(lim);
+			eof_error(lim);
 			break ;
 		}
 		if (!ft_strncmp(lim, buffer, ft_strlen(lim) + 1))

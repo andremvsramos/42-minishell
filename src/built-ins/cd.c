@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:42:56 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/13 16:03:07 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/15 09:48:02 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,13 +73,7 @@ static void	check_errors(t_minishell *ms, char **cmd_args)
 		exit (2);
 	}
 	else
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		ft_putstr_fd(cmd_args[1], 2);
-		ft_putstr_fd(": No such file or directory\n", 2);
-		free_child(ms, cmd_args, 0);
-		exit (1);
-	}
+		handle_error_cd(ms, cmd_args);
 }
 
 void	check_cd(t_minishell *ms, char **cmd_args)
@@ -96,15 +90,11 @@ void	check_cd(t_minishell *ms, char **cmd_args)
 	if (g_exit == 0)
 	{
 		if (i == 1)
-			execute_cd(ms, get_env_info(&ms->env , "HOME"));
-			//i == 1 -> cd
-			//i == 2 -> cd PATH
-			/*if i is one change to home directory
-			else change to the path on cmd_args[1]*/
+			execute_cd(ms, get_env_info(&ms->env, "HOME"));
 		else if (cmd_args[1][0] == '~' && i == 2)
-			execute_cd(ms, get_env_info(&ms->env , "HOME"));
+			execute_cd(ms, get_env_info(&ms->env, "HOME"));
 		else if (cmd_args[1][0] == '-' && i == 2)
-			execute_cd(ms, get_env_info(&ms->env , "OLDPWD"));
+			execute_cd(ms, get_env_info(&ms->env, "OLDPWD"));
 		else
 			execute_cd(ms, cmd_args[1]);
 		/* if (i == 1)

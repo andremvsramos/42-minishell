@@ -14,7 +14,7 @@
 
 int	update_export(t_list *lst, char *name, char *new_info)
 {
-	t_list *temp;
+	t_list	*temp;
 
 	if (!lst)
 		return (1);

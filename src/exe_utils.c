@@ -47,7 +47,8 @@ void	pipex(t_minishell *ms)
 	{
 		if (pipe(ms->pipe_fd + (i * 2)) < 0)
 		{
-			ft_putstr_fd("minishell: pipe: error creating pipe\n", STDERR_FILENO);
+			ft_putstr_fd("minishell: pipe: error creating pipe\n",
+				STDERR_FILENO);
 			free_child(ms, NULL, 1);
 		}
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   export.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:33 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/12 13:40:40 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/15 09:52:04 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,7 +94,8 @@ void	do_export(t_minishell *ms, char **cmd_query)
 	{
 		if (cmd_query[1][0] == '-')
 		{
-			ft_putstr_fd("minishell: export: no options supported\n", STDERR_FILENO);
+			ft_putstr_fd("minishell: export: no options supported\n",
+				STDERR_FILENO);
 			free_child(ms, cmd_query, 0);
 			exit (2);
 		}

@@ -39,7 +39,8 @@ void	exec_multi_cmd(t_minishell *ms)
 	ms->pipe_fd = ft_calloc(ms->n_pipe * 2, sizeof(int));
 	if (!ms->pipe_fd)
 	{
-		ft_putstr_fd("minishell: failed allocating memory to ms->pipe_fd\n", STDERR_FILENO);
+		ft_putstr_fd("minishell: failed allocating memory to ms->pipe_fd\n",
+			STDERR_FILENO);
 		free_child(ms, NULL, 1);
 	}
 	pipex(ms);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_errors_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:00:08 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/13 11:16:42 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/15 09:49:53 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,13 @@ int	unexpected_redirect(char *input, int *i)
 	else if (ft_strrchr(REDIRECT, input[*i]) && input[*i] == input[*i + 1])
 		return (error_token(UNTOKEN, input[*i + 1], 1));
 	return (0);
+}
+
+void	handle_error_cd(t_minishell *ms, char **cmd_args)
+{
+	ft_putstr_fd("minishell: cd: ", 2);
+	ft_putstr_fd(cmd_args[1], 2);
+	ft_putstr_fd(": No such file or directory\n", 2);
+	free_child(ms, cmd_args, 0);
+	exit (1);
 }
