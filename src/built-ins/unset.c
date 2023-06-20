@@ -3,14 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 16:36:55 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/15 09:51:21 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/20 11:43:47 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
+
+static void	unset_free(t_list *temp)
+{
+	free(((t_env *)(temp->content))->name);
+	free(((t_env *)(temp->content))->info);
+	free((t_env *)temp->content);
+}
 
 static void	unset_error(t_minishell *ms, char **cmd_query)
 {
@@ -37,9 +44,7 @@ void	unset(t_list *lst, char *name)
 				prev->next = temp->next;
 			else
 				lst = temp->next;
-			free(((t_env *)(temp->content))->name);
-			free(((t_env *)(temp->content))->info);
-			free((t_env *)temp->content);
+			unset_free(temp);
 			free(temp);
 			free(temp_name);
 			return ;
