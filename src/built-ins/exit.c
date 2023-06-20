@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:10:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/12 12:46:49 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/20 11:11:42 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,8 +43,16 @@ static void	exit_error2(t_minishell *ms, char **cmd_query)
 
 static void	exit_error1(t_minishell *ms, char **cmd_query, int i)
 {
+	int	nbrlen;
+
+	nbrlen = 0;
 	if (i == 2)
 	{
+		nbrlen = ft_nbrlen(ft_atoll(cmd_query[1]));
+		if (cmd_query[1][0] == '+')
+			nbrlen++;
+		if ((int)ft_strlen(cmd_query[1]) != nbrlen)
+			exit_error2(ms, cmd_query);
 		g_exit = (ft_atoi(cmd_query[1]) % 256);
 		free_child(ms, cmd_query, 0);
 		exit (g_exit);

@@ -5,24 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 15:43:41 by marvin            #+#    #+#             */
-/*   Updated: 2023/06/06 15:43:41 by marvin           ###   ########.fr       */
+/*   Created: 2023/06/20 10:43:22 by marvin            #+#    #+#             */
+/*   Updated: 2023/06/20 10:43:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
-int	ft_isnumeric(const char *str)
+long long	ft_atoll(const char *str)
 {
-	if (*str == '-' || *str == '+')
+	long long	result;
+	int			sign;
+
+	result = 0;
+	sign = 1;
+	while (ft_isspace(*str))
 		str++;
-	if (!ft_isdigit(*str))
-		return (0);
-	while (*str)
+	if (*str == '+' || *str == '-')
 	{
-		if (!ft_isdigit(*str))
-			return (0);
+		if (*str == '-')
+			sign *= -1;
 		str++;
 	}
-	return (1);
+	while (ft_isdigit(((int)*str)))
+	{
+		result = result * 10 + (*str - '0');
+		str++;
+	}
+	return (result * sign);
 }

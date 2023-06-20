@@ -5,24 +5,24 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/06/06 15:43:41 by marvin            #+#    #+#             */
-/*   Updated: 2023/06/06 15:43:41 by marvin           ###   ########.fr       */
+/*   Created: 2023/06/20 10:45:03 by marvin            #+#    #+#             */
+/*   Updated: 2023/06/20 10:45:03 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
-int	ft_isnumeric(const char *str)
+int	ft_nbrlen(long long nbr)
 {
-	if (*str == '-' || *str == '+')
-		str++;
-	if (!ft_isdigit(*str))
-		return (0);
-	while (*str)
+	int	len;
+
+	len = 0;
+	if (nbr < 0)
+		len++;
+	while (nbr)
 	{
-		if (!ft_isdigit(*str))
-			return (0);
-		str++;
+		nbr /= 10;
+		len++;
 	}
-	return (1);
+	return (len);
 }

@@ -6,7 +6,7 @@
 #    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/11/14 08:46:18 by pealexan          #+#    #+#              #
-#    Updated: 2023/06/12 14:35:46 by marvin           ###   ########.fr        #
+#    Updated: 2023/06/20 10:53:38 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,6 +18,7 @@ HEADERDIR = ../headers/
 SRC =	ft_abs.c \
 	ft_atoi.c \
 	ft_atol.c \
+	ft_atoll.c \
 	ft_bzero.c \
 	ft_calloc.c \
 	ft_getlength.c \
@@ -30,6 +31,7 @@ SRC =	ft_abs.c \
 	ft_isnumeric.c \
 	ft_itoa.c \
 	ft_utoa.c \
+	ft_nbrlen.c \
 	ft_lstadd_back.c \
 	ft_lstadd_front.c \
 	ft_lstclear.c \

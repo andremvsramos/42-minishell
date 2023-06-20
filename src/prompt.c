@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:19:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/15 12:06:17 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/20 10:19:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,11 @@ static char	*gd_utils(bool check, char *cwd, char *prompt, int length)
 static char	*get_directory(t_minishell *ms, char *prompt)
 {
 	char	*cwd;
-	char	*user;
+	//char	*user;
 	size_t	length;
 
 	cwd = getcwd(0, 0);
-	user = get_env_info(&ms->env, "HOME");
+	//user = get_env_info(&ms->env, "HOME");
 	length = ft_strlen(get_env_info(&ms->env, "HOME"));
 	if (length > ft_strlen(cwd))
 		cwd = gd_utils(false, cwd, prompt, length);
