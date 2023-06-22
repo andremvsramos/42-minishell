@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/15 12:05:34 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/19 09:36:14 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@
 # include <sys/wait.h>
 # include <signal.h>
 # include <sys/stat.h>
+# include <limits.h>
 
 # define REDIRECT "><"
 # define NOHANDLE "&;(){}*\\"

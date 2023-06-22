@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:00:08 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/15 11:10:05 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/22 09:55:26 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,13 @@ int	error_token(char *error, char metachar, int dup)
 
 int	unexpected_redirect(char *input, int *i)
 {
+	printf("%s\n", input);
 	if (input[*i] == input[*i + 1])
 		(*i)++;
 	(*i)++;
+	if (input[*i] == ' ')
+		while (input[*i] && input[*i] == ' ')
+			(*i)++;
 	if (input[*i] == '|')
 		return (error_token(UNTOKEN, '|', 0));
 	else if (input[*i - 1] == '>' && input[*i] == '|')
