@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   handle_errors_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:00:08 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/26 10:48:43 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/26 11:42:21 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ int	error_token(char *error, char metachar, int dup)
 
 int	unexpected_redirect(char *input, int *i)
 {
-	printf("%s\n", input);
 	if (input[*i] == input[*i + 1])
 		(*i)++;
 	(*i)++;

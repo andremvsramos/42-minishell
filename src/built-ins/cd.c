@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:42:56 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/15 10:04:14 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/26 13:45:49 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,12 +29,12 @@ static void	execute_cd(t_minishell *ms, char *path)
 	char	*temp;
 	char	*new_pwd;
 
-	/* if (path[0] == '~')
+	if (path[0] == '~')
 		new_path = get_home(ms, path);
 	else if (path[0] == '-')
 		new_path = ft_strdup(get_env_info(&ms->env, "OLDPWD"));
-	else */
-	new_path = ft_strdup(path);
+	else
+		new_path = ft_strdup(path);
 	temp = getcwd(0, 0);
 	old_pwd = ft_strjoin("OLDPWD=", temp);
 	free(temp);
@@ -51,38 +51,38 @@ static void	execute_cd(t_minishell *ms, char *path)
 	free(new_pwd);
 }
 
-static void	check_errors(t_minishell *ms, char **cmd_args)
+static void	check_errors(t_minishell *ms, char **cmd_query)
 {
 	struct stat		statbuf;
 
-	if (cmd_args[1][0] == '~')
-		cmd_args[1] = get_home(ms, cmd_args[1]);
-	else if (ft_strlen(cmd_args[1]) == 1 && !ft_strncmp(cmd_args[1], "-", 1))
-		cmd_args[1] = ft_strdup(get_env_info(&ms->env, "OLDPWD"));
-	if (stat(cmd_args[1], &statbuf) == 0)
+	if (cmd_query[1][0] == '~')
+		cmd_query[1] = get_home(ms, cmd_query[1]);
+	else if (ft_strlen(cmd_query[1]) == 1 && !ft_strncmp(cmd_query[1], "-", 1))
+		cmd_query[1] = ft_strdup(get_env_info(&ms->env, "OLDPWD"));
+	if (stat(cmd_query[1], &statbuf) == 0)
 	{
-		free_child(ms, cmd_args, 0);
+		free_child(ms, cmd_query, 0);
 		exit(0);
 	}
-	else if (cmd_args[1][0] == '-' && cmd_args[1][1])
-	{
-		ft_putstr_fd("minishell: cd: ", 2);
-		ft_putstr_fd(cmd_args[1], 2);
-		ft_putstr_fd(": Invalid option\n", 2);
-		free_child(ms, cmd_args, 0);
-		exit (2);
-	}
+	else if (cmd_query[1][0] == '-' && cmd_query[1][1])
+		handle_error_cd(ms, cmd_query);
 	else
-		handle_error_cd(ms, cmd_args);
+	{
+		ft_putstr_fd("minishell: cd: ", STDERR_FILENO);
+		ft_putstr_fd(cmd_query[1], STDERR_FILENO);
+		ft_putstr_fd(": Invalid option\n", STDERR_FILENO);
+		free_child(ms, cmd_query, 0);
+		exit (1);
+	}
 }
 
-void	check_cd(t_minishell *ms, char **cmd_args)
+void	check_cd(t_minishell *ms, char **cmd_query)
 {
-	int	status;
-	int	i;
+	int		status;
+	int		i;
 
 	i = 0;
-	while (cmd_args[i])
+	while (cmd_query[i])
 		i++;
 	wait(&status);
 	if (WIFEXITED(status))
@@ -91,39 +91,31 @@ void	check_cd(t_minishell *ms, char **cmd_args)
 	{
 		if (i == 1)
 			execute_cd(ms, get_env_info(&ms->env, "HOME"));
-		else if (cmd_args[1][0] == '~' && i == 2)
-			execute_cd(ms, get_env_info(&ms->env, "HOME"));
-		else if (cmd_args[1][0] == '-' && i == 2)
-			execute_cd(ms, get_env_info(&ms->env, "OLDPWD"));
 		else
-			execute_cd(ms, cmd_args[1]);
-		/* if (i == 1)
-			execute_cd(ms, get_env_info(&ms->env, "HOME"));
-		else
-			execute_cd(ms, cmd_args[1]); */
+			execute_cd(ms, cmd_query[1]);
 	}
 }
 
-void	cd(t_minishell *ms, char **cmd_args)
+void	cd(t_minishell *ms, char **cmd_query)
 {
 	int	i;
 
 	i = 0;
-	while (cmd_args[i])
+	while (cmd_query[i])
 		i++;
 	if (i == 1)
 	{
-		free_child(ms, cmd_args, 0);
+		free_child(ms, cmd_query, 0);
 		g_exit = 0;
-		exit (0);
+		exit (g_exit);
 	}
 	if (i > 2)
 	{
 		ft_putstr_fd("minishell: too many arguments\n", STDERR_FILENO);
-		free_child(ms, cmd_args, 0);
+		free_child(ms, cmd_query, 0);
 		g_exit = 1;
-		exit (1);
+		exit (g_exit);
 	}
 	else
-		check_errors(ms, cmd_args);
+		check_errors(ms, cmd_query);
 }

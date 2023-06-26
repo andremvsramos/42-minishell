@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
+/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/19 09:36:14 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/26 11:15:22 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,12 @@ void	exec_cmd(t_minishell *ms, char *cmd, int i);
 void	pipex(t_minishell *ms);
 void	pipe_redirects(t_minishell *ms, int i);
 void	close_pipex(t_minishell *ms);
+
+//FILES & DIRECTORIES
+int		check_files(char **cmd_query, t_minishell *ms);
+void	is_a_directory(char **cmd_query, t_minishell *ms);
+void	permission_error(char **cmd_query, t_minishell *ms);
+void	file_error(char **cmd_query, t_minishell *ms);
 
 //REDIRECTS
 void	shift_redirect(char **cmd_query, int *i, int *count);

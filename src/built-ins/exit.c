@@ -6,7 +6,7 @@
 /*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:10:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/20 11:11:42 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/26 14:13:20 by marvin           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,8 @@ void	do_exit(t_minishell *ms, char **cmd_query, int x)
 	int	i;
 
 	i = 0;
+	if (ms->n_pipe > 0)
+		x = 0;
 	while (cmd_query[i])
 		i++;
 	if (x == 1)

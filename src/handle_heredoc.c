@@ -27,12 +27,14 @@ void	check_heredoc(t_minishell *ms, int i)
 	char	**cmd_query;
 
 	j = -1;
+	temp = 0;
+	cmd_query = 0;
 	ms->heredoc = false;
 	if (!i)
 		return ;
 	temp = add_whitespaces(ms->args[i - 1]);
 	cmd_query = splitter(temp, ' ');
-	while (ms->args[++j])
+	while (cmd_query[++j])
 		if (!ft_strncmp(cmd_query[j], "<<", ft_strlen(cmd_query[j])))
 			ms->heredoc = true;
 	free(temp);

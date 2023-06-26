@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+         #
+#    By: marvin <marvin@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/04 16:16:51 by andvieir          #+#    #+#              #
-#    Updated: 2023/06/19 09:32:27 by tsodre-p         ###   ########.fr        #
+#    Updated: 2023/06/26 13:38:22 by marvin           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,6 +38,7 @@ SRC =	src/main.c \
 		src/redirects.c \
 		src/handle_errors.c \
 		src/handle_errors_2.c \
+		src/dir_file_errors.c \
 		src/handle_quotes.c \
 		src/handle_heredoc.c \
 		src/built-ins/env.c \
@@ -60,17 +61,12 @@ OBJ = ${SRC:.c=.o}
 
 #----------COLORS----------#
 GREEN = \033[0;32m
+YELLOW = \033[0;33m
+CYAN = \033[1;36m
 
-#----------ART----------#
-ART = " \n \
-██████       ████████     ██████████    ██████████    █████████  \n \
-███   ███    ███   ███   ███      ███  ███           ███      ███ \n \
-███    ███   ███    ███  ███      ███  ███           ███      ███ \n \
-███     ███  ███   ███   ███      ███  ███   █████   ███      ███ \n \
-███     ███  ███████     ███      ███  ███      ███  ████████████ \n \
-███    ███   █████       ███      ███  ███      ███  ███      ███ \n \
-███   ███    ███  ███    ███      ███  ███      ███  ███      ███ \n \
-██████       ███    ███   ██████████    ██████████   ███      ███ \n "
+#--------ART & TEXT--------#
+MS = " [ Compiled Minishell ] "
+LFT = " [ Compiled Libft ] "
 
 #----------RULES----------#
 .c.o:
@@ -79,10 +75,12 @@ ART = " \n \
 			@$(CC) $(CFLAGS) -c -I$(HEADERDIR) $< -o bin/$*.o
 
 all:		$(NAME)
-			@echo $(ART)
+			@echo "$(GREEN)$(MS)"
+			@echo "$(CYAN) [ Generated: $(NAME) ] "
 
 $(LIBFT):
 			@cd $(LIBFTDIR) && $(MAKE) -s
+			@echo "$(YELLOW)$(LFT)"
 
 $(NAME):	$(OBJ) $(LIBFT)
 			@$(CC) $(CFLAGS) $(OBJ:%=bin/%) -lreadline $(LIBFTDIR)$(LIBFT) -o $(NAME)

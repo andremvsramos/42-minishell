@@ -35,7 +35,7 @@ void	exec_multi_cmd(t_minishell *ms)
 	char	*cmd;
 	int		i;
 
-	i = -1;
+	i = 0;
 	ms->pipe_fd = ft_calloc(ms->n_pipe * 2, sizeof(int));
 	if (!ms->pipe_fd)
 	{
@@ -44,12 +44,14 @@ void	exec_multi_cmd(t_minishell *ms)
 		free_child(ms, NULL, 1);
 	}
 	pipex(ms);
-	while (ms->args[++i])
+	while (ms->args[i])
 	{
 		cmd = add_whitespaces(ms->args[i]);
+		ms->query = 0;
 		check_heredoc(ms, i);
 		exec_cmd(ms, cmd, i);
 		free(cmd);
+		i++;
 	}
 	close_pipex(ms);
 }

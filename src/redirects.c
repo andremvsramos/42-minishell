@@ -42,7 +42,7 @@ static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT | O_APPEND,
 			S_IRUSR | S_IWUSR);
-	if (!ms->out_fd)
+	if (ms->out_fd < 0)
 	{
 		ft_putstr_fd("Error creating file\n", STDERR_FILENO);
 		free_child(ms, cmd_query, 1);
@@ -54,7 +54,7 @@ static void	handle_out(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT
 			| O_TRUNC, S_IRUSR | S_IWUSR);
-	if (!ms->out_fd)
+	if (ms->out_fd < 0)
 	{
 		ft_putstr_fd("Error creating file\n", STDERR_FILENO);
 		free_child(ms, cmd_query, 1);
@@ -65,7 +65,7 @@ static void	handle_out(char **cmd_query, t_minishell *ms, int *i, int *count)
 static void	handle_in(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
 	ms->in_fd = open(cmd_query[*i + 1], O_RDONLY);
-	if (!ms->in_fd)
+	if (ms->in_fd < 0)
 	{
 		ft_putstr_fd("minishell: ", 2);
 		ft_putstr_fd(cmd_query[*i + 1], 2);
