@@ -49,7 +49,8 @@ void	permission_error(char **cmd_query, t_minishell *ms)
  * Handles the case when the file or directory specified in the command
  * does not exist.
  *
- * @param cmd_query  The command query that resulted in a file or directory error.
+ * @param cmd_query  The command query that resulted in a file or directory
+ *                   error.
  * @param ms         The minishell structure.
  */
 void	file_error(char **cmd_query, t_minishell *ms)

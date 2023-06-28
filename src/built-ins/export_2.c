@@ -75,7 +75,8 @@ void	update_env(t_minishell *ms, char *info)
 /**
  * Function used to process the export command in the minishell.
  * It waits for the child process to complete and checks the exit status.
- * This function executes only when running a single command and there are no errors.
+ * This function executes only when running a single command and there are
+ * no errors.
  *
  * @param ms         The minishell structure.
  * @param cmd_query  The command query.

@@ -6,7 +6,7 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/28 14:43:23 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:22:53 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@
  *
  * @param c The character to be written.
  *
- * @return On success, the number of bytes written is returned. On error, -1 is returned.
+ * @return On success, the number of bytes written is returned.
+ *         On error, -1 is returned.
  */
 int	ft_putchar(char c)
 {

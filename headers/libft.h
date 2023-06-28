@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/02 15:06:17 by pealexan          #+#    #+#             */
-/*   Updated: 2023/06/20 10:52:58 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 15:23:53 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,8 +103,8 @@ int			ft_lstsize(t_list *lst);
 #  define BUFFER_SIZE 42
 # endif
 
-char	*get_next_line_multifd(int fd);
-char	*get_next_line(int fd);
+char		*get_next_line_multifd(int fd);
+char		*get_next_line(int fd);
 
 /*------------------------FT_PRINTF------------------------*/
 
