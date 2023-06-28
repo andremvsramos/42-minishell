@@ -12,6 +12,14 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Counts the number of words in a string based on a given delimiter character.
+ *
+ * @param str The input string.
+ * @param c   The delimiter character.
+ *
+ * @return Returns the number of words in the string.
+ */
 int	ft_wordcounter(char *str, char c)
 {
 	int		i;
@@ -36,6 +44,15 @@ int	ft_wordcounter(char *str, char c)
 	return (wc);
 }
 
+/**
+ * Computes the length of a word in a string based on a given delimiter
+ * character.
+ *
+ * @param str The input string.
+ * @param c   The delimiter character.
+ *
+ * @return Returns the length of the word.
+ */
 int	ft_wordlen(char *str, char c)
 {
 	int		i;
@@ -51,6 +68,18 @@ int	ft_wordlen(char *str, char c)
 	return (i);
 }
 
+/**
+ * Extracts a word from a string based on a given delimiter character and stores
+ * it in the words array.
+ * The function also considers if there are quotes on the string.
+ *
+ * @param s     The input string.
+ * @param c     The delimiter character.
+ * @param words Pointer to the words array.
+ *
+ * @return Returns a pointer to the remaining portion of the string after
+ * the extracted word.
+ */
 static char	*get_word(char *s, char c, char **words)
 {
 	char	quote;
@@ -65,6 +94,17 @@ static char	*get_word(char *s, char c, char **words)
 	return (s);
 }
 
+/**
+ * Splits a string into an array of strings based on a given
+ * delimiter character.
+ * This function is used instead of ft_split as the latter does not take
+ * into account double or single quotes.
+ *
+ * @param s The input string to be split.
+ * @param c The delimiter character.
+ *
+ * @return Returns an array of strings resulting from the split operation.
+ */
 char	**splitter(char *s, char c)
 {
 	char	**split;

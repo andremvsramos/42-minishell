@@ -3,21 +3,40 @@
 /*                                                        :::      ::::::::   */
 /*   prompt.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 10:19:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/26 08:46:36 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:11:21 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
+/**
+ * Retrieves environment variables and assigns their values to the
+ * provided pointers.
+ *
+ * @param user  Pointer to store the value of the "USER"
+ * environment variable.
+ * @param temp  Pointer to store the value of the "SESSION_MANAGER"
+ * environment variable.
+ */
 static void	get_env(char **user, char **temp)
 {
 	*user = getenv("USER");
 	*temp = getenv("SESSION_MANAGER");
 }
 
+/**
+ * Generates the prompt string based on the provided parameters.
+ *
+ * @param check   Boolean value indicating whether to use the full current
+ * working directory or shorten it.
+ * @param cwd     Current working directory string.
+ * @param prompt  Prompt string prefix.
+ * @param length  Length of the shortened current working directory.
+ * @return        The generated prompt string.
+ */
 static char	*gd_utils(bool check, char *cwd, char *prompt, int length)
 {
 	char	*temp;
@@ -46,6 +65,14 @@ static char	*gd_utils(bool check, char *cwd, char *prompt, int length)
 	}
 }
 
+/**
+ * Retrieves the current directory and generates the prompt string
+ * based on the directory and prompt prefix.
+ *
+ * @param ms      Pointer to the minishell structure.
+ * @param prompt  Prompt string prefix.
+ * @return        The generated prompt string.
+ */
 static char	*get_directory(t_minishell *ms, char *prompt)
 {
 	char	*cwd;
@@ -60,6 +87,14 @@ static char	*get_directory(t_minishell *ms, char *prompt)
 	return (cwd);
 }
 
+/**
+ * Generates the prompt string based on the user and current directory.
+ *
+ * @param ms  Pointer to the minishell structure.
+ * @param i   Index variable for string traversal.
+ * @param j   Index variable for string traversal.
+ * @return    The generated prompt string.
+ */
 char	*get_prompt(t_minishell *ms, int i, int j)
 {
 	char	*prompt;

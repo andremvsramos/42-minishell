@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:43 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/26 11:15:22 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 10:38:05 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,11 @@ typedef struct s_expander
 }				t_expander;
 
 //INPUTS
+
 int		read_input(t_minishell *ms);
 
 //EXPORT
+
 t_list	*get_export(char **env);
 t_env	*ft_create_export(char *info);
 char	*get_info(char *info);
@@ -81,37 +83,44 @@ void	update_env(t_minishell *ms, char *info);
 void	check_export(t_minishell *ms, char **cmd_query);
 
 //ENV VARIABLES
+
 t_list	*init_env(char **env);
 t_env	*ft_create_data(char *info);
 char	*get_name(char *info);
 char	**ft_envcpy(t_list *env);
 
 //EXECUTER
+
 void	execute(t_minishell *ms);
 
 //EXECUTER UTILS
+
 void	redirect(int fd_in, int fd_out);
 
 //PROMPT
-//char	*get_prompt(void);
+
 char	*get_prompt(t_minishell *ms, int i, int j);
 
 //SIGNALS
+
 void	signal_handling(void);
 void	handler(int signal);
 void	handler_sigint(int sig);
 void	signal_default(void);
 
 //CLEANUP
+
 void	ft_free_lst(t_list *lst);
 void	free_child(t_minishell *ms, char **cmd_query, int i);
 void	free_program(t_minishell *ms, int i);
 
 //PARSING
-char	*get_command(char *cmd, t_minishell *ms);
+
+char	*get_command(char *cmd, t_minishell *ms, int i);
 void	parse_query(t_minishell *ms, char **cmd_query);
 
 //EXECUTER
+
 void	execute(t_minishell *ms);
 void	exec_single_cmd(t_minishell *ms, char *cmd);
 void	exec_multi_cmd(t_minishell *ms);
@@ -121,16 +130,19 @@ void	pipe_redirects(t_minishell *ms, int i);
 void	close_pipex(t_minishell *ms);
 
 //FILES & DIRECTORIES
+
 int		check_files(char **cmd_query, t_minishell *ms);
 void	is_a_directory(char **cmd_query, t_minishell *ms);
 void	permission_error(char **cmd_query, t_minishell *ms);
 void	file_error(char **cmd_query, t_minishell *ms);
 
 //REDIRECTS
+
 void	shift_redirect(char **cmd_query, int *i, int *count);
 char	**handle_redirects(t_minishell *ms, char *input);
 
 //BUILT-INS
+
 void	check_builtins(t_minishell *ms, char **cmd_query);
 int		check_if_builtin(t_minishell *ms, char **input);
 void	do_export(t_minishell *ms, char **cmd_query);
@@ -146,25 +158,31 @@ void	cd(t_minishell *ms, char **cmd_args);
 void	check_cd(t_minishell *ms, char **cmd_args);
 
 //EXIT
+
 void	check_exit(t_minishell *ms, char **cmd_query);
 
 //UNSET
+
 void	check_unset(t_minishell *ms, char **cmd_query);
 
 //QUOTES
+
 char	*quote_remover(char *arg);
 
 //EXPANDER
+
 void	expand_args(char **cmd_query, t_minishell *ms);
 int		check_expandable(t_minishell *ms);
 char	*expander(char *name, t_minishell *ms);
 
 //HEREDOC
+
 void	do_heredoc(t_minishell *ms, char **input, char *lim);
 void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *n_args);
 void	check_heredoc(t_minishell *ms, int i);
 
 //UTILS
+
 char	get_quote(char c, char quote);
 char	*get_env_info(t_list **env, char *name);
 char	*add_whitespaces(char *str);
@@ -177,11 +195,13 @@ int		update_info(t_list *lst, char *name, char *new_info);
 int		update_export(t_list *lst, char *name, char *new_info);
 
 //SPLITTER
+
 int		ft_wordcounter(char *str, char c);
 int		ft_wordlen(char *str, char c);
 char	**splitter(char *s, char c);
 
 //ERROR HANDLING
+
 int		check_valid_input(char *input);
 int		check_quotes(char *input);
 void	cmd_err(char *cmd, char **cmd_args, t_minishell *ms);

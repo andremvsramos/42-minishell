@@ -6,14 +6,26 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 16:03:14 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/15 12:12:18 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:31:44 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
+/**
+ * The use of a global variable like g_exit allows the exit status to be
+ * accessed
+ * and modified from different parts of the program, including signal handlers
+ * or functions that handle command execution. It provides a way to communicate
+ * the exit status between different components of the minishell program.
+ */
 int	g_exit = 0;
 
+/**
+ * Frees the memory allocated for the minishell structure.
+ *
+ * @param ms The minishell structure to free.
+ */
 void	free_all(t_minishell ms)
 {
 	if (ms.env)
@@ -24,6 +36,13 @@ void	free_all(t_minishell ms)
 		free(ms.input);
 }
 
+/**
+ * Execution of the minishell program.
+ *
+ * @param ac  Number of arguments passed to the program.
+ * @param av  Arguments passed to the program.
+ * @param env The environment variables imported from the system environment.
+ */
 int	main(int ac, char **av, char **env)
 {
 	int			i;

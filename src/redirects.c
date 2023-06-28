@@ -12,6 +12,14 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Shifts the elements in the cmd_query array to remove redirection symbols
+ * and their corresponding arguments.
+ *
+ * @param cmd_query The command query array.
+ * @param i         A pointer to the current index in the cmd_query array.
+ * @param count     A pointer to the count of elements in the cmd_query array.
+ */
 void	shift_redirect(char **cmd_query, int *i, int *count)
 {
 	int	index;
@@ -38,6 +46,15 @@ void	shift_redirect(char **cmd_query, int *i, int *count)
 	*i = -1;
 }
 
+/**
+ * Handles the append redirection by opening the file in append mode
+ * and shifting the cmd_query array.
+ *
+ * @param cmd_query The command query array.
+ * @param ms        The minishell structure.
+ * @param i         A pointer to the current index in the cmd_query array.
+ * @param count     A pointer to the count of elements in the cmd_query array.
+ */
 static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT | O_APPEND,
@@ -50,6 +67,15 @@ static void	handle_append(char **cmd_query, t_minishell *ms, int *i, int *count)
 	shift_redirect(cmd_query, i, count);
 }
 
+/**
+ * Handles the output redirection by opening the file in write mode and
+ * shifting the cmd_query array.
+ *
+ * @param cmd_query The command query array.
+ * @param ms        The minishell structure.
+ * @param i         A pointer to the current index in the cmd_query array.
+ * @param count     A pointer to the count of elements in the cmd_query array.
+ */
 static void	handle_out(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
 	ms->out_fd = open(cmd_query[*i + 1], O_RDWR | O_CREAT
@@ -62,6 +88,15 @@ static void	handle_out(char **cmd_query, t_minishell *ms, int *i, int *count)
 	shift_redirect(cmd_query, i, count);
 }
 
+/**
+ * Handles the input redirection by opening the file in read mode and
+ * shifting the cmd_query array.
+ *
+ * @param cmd_query The command query array.
+ * @param ms        The minishell structure.
+ * @param i         A pointer to the current index in the cmd_query array.
+ * @param count     A pointer to the count of elements in the cmd_query array.
+ */
 static void	handle_in(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
 	ms->in_fd = open(cmd_query[*i + 1], O_RDONLY);
@@ -75,6 +110,15 @@ static void	handle_in(char **cmd_query, t_minishell *ms, int *i, int *count)
 	shift_redirect(cmd_query, i, count);
 }
 
+/**
+ * Handles the input/output redirections in the command query by
+ * calling the corresponding functions.
+ *
+ * @param ms     The minishell structure.
+ * @param input  The input string containing the command query.
+ *
+ * @return The updated command query array after handling the redirections.
+ */
 char	**handle_redirects(t_minishell *ms, char *input)
 {
 	char	**cmd_query;

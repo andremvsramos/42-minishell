@@ -22,7 +22,7 @@ int	check_files(char **cmd_query, t_minishell *ms)
 		{
 			if (S_ISDIR(statbuf.st_mode))
 				is_a_directory(cmd_query, ms);
-			else if (!(statbuf.st_mode && S_IXUSR))
+			else if (!(statbuf.st_mode & S_IXUSR))
 				permission_error(cmd_query, ms);
 			return (1);
 		}
