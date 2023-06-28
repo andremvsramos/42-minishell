@@ -12,6 +12,11 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Displays a warning message for an end-of-file error in a here-document.
+ *
+ * @param limiter The delimiter of the here-document.
+ */
 static void	eof_error(char *limiter)
 {
 	ft_putstr_fd("minishell: warning: here-document", STDERR_FILENO);
@@ -20,6 +25,13 @@ static void	eof_error(char *limiter)
 	ft_putstr_fd("')\n", STDERR_FILENO);
 }
 
+/**
+ * Checks if a here-document is present in the command arguments and updates
+ * the heredoc flag.
+ *
+ * @param ms The minishell structure.
+ * @param i The index of the current command in the arguments array.
+ */
 void	check_heredoc(t_minishell *ms, int i)
 {
 	int		j;
@@ -41,12 +53,25 @@ void	check_heredoc(t_minishell *ms, int i)
 	ft_free_split(cmd_query);
 }
 
+/**
+ * Displays an error message for an error in creating a .heredoc file.
+ *
+ * @param ms The minishell structure.
+ * @param input The command input as an array of strings.
+ */
 static void	hd_create_error(t_minishell *ms, char **input)
 {
 	ft_putstr_fd("minishell: Error creating .heredoc", STDERR_FILENO);
 	free_child(ms, input, 1);
 }
 
+/**
+ * Performs the handling of a here-document.
+ *
+ * @param ms The minishell structure.
+ * @param input The command input as an array of strings.
+ * @param lim The delimiter of the here-document.
+ */
 void	do_heredoc(t_minishell *ms, char **input, char *lim)
 {
 	int		temp_file;
@@ -75,6 +100,16 @@ void	do_heredoc(t_minishell *ms, char **input, char *lim)
 	close(temp_file);
 }
 
+/**
+ * Handles the here-document functionality for a command.
+ *
+ * @param cmd_query An array of strings representing the command and
+ * its arguments.
+ * @param ms The minishell structure.
+ * @param i A pointer to the index of the current command in the
+ * cmd_query array.
+ * @param count A pointer to the number of commands in the cmd_query array.
+ */
 void	heredoc(char **cmd_query, t_minishell *ms, int *i, int *count)
 {
 	signal(SIGQUIT, SIG_IGN);

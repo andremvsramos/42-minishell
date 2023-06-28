@@ -6,12 +6,17 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/25 15:16:40 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/12 14:50:01 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/28 11:41:50 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
+/**
+ * Calculates the length of a string excluding characters within quotes.
+ *
+ * @param arg The input string to calculate the length of.
+ */
 static int	len_quoteless(char *arg)
 {
 	int		i;
@@ -38,6 +43,13 @@ static int	len_quoteless(char *arg)
 	return (len);
 }
 
+/**
+ * Checks and updates the state of quotes in a string.
+ *
+ * @param arg The input string.
+ * @param i A pointer to the current index in the string.
+ * @param quote A pointer to the current quote character.
+ */
 static void	quote_checker(char *arg, int *i, char *quote)
 {
 	if (ft_strchr("\"\'", arg[*i]) && !*quote)
@@ -46,6 +58,12 @@ static void	quote_checker(char *arg, int *i, char *quote)
 		*quote = 0;
 }
 
+/**
+ * Removes quotes from a string and returns the modified string.
+ *
+ * @param arg The input string.
+ * @return Returns a new string with quotes removed.
+ */
 char	*quote_remover(char *arg)
 {
 	char	*res;

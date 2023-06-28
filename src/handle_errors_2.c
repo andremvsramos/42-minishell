@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   handle_errors_2.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/13 11:00:08 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/26 11:42:21 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:00:34 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
+/**
+ * Prints an error message indicating an invalid operator.
+ *
+ * @param error The error message to be displayed.
+ * @param operator The invalid operator causing the error.
+ * @return Returns 1.
+ */
 int	error_operator(char *error, char *operator)
 {
 	ft_putstr_fd(error, STDERR_FILENO);
@@ -20,6 +27,15 @@ int	error_operator(char *error, char *operator)
 	return (1);
 }
 
+/**
+ * Prints an error message indicating an unexpected token.
+ *
+ * @param error The error message to be displayed.
+ * @param metachar The unexpected token causing the error.
+ * @param dup Flag indicating whether the token should be duplicated in the
+ * error message.
+ * @return Returns 1.
+ */
 int	error_token(char *error, char metachar, int dup)
 {
 	ft_putstr_fd(error, STDERR_FILENO);
@@ -30,6 +46,13 @@ int	error_token(char *error, char metachar, int dup)
 	return (1);
 }
 
+/**
+ * Checks for unexpected redirect tokens and raises corresponding errors.
+ *
+ * @param input The input string.
+ * @param i Pointer to the current position in the input string.
+ * @return Returns 1 if an error occurs, 0 otherwise.
+ */
 int	unexpected_redirect(char *input, int *i)
 {
 	if (input[*i] == input[*i + 1])
@@ -51,6 +74,12 @@ int	unexpected_redirect(char *input, int *i)
 	return (0);
 }
 
+/**
+ * Handles the error case for the `cd` command.
+ *
+ * @param ms Pointer to the `t_minishell` struct.
+ * @param cmd_args The command arguments.
+ */
 void	handle_error_cd(t_minishell *ms, char **cmd_args)
 {
 	ft_putstr_fd("minishell: cd: ", 2);

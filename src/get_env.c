@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   get_env.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/04 17:12:08 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/12 13:31:35 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:06:32 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
+/**
+ * Initializes the environment by creating a linked list of
+ * environment variables.
+ *
+ * @param env An array of strings containing the environment variables.
+ * @return A pointer to the head of the linked list representing the
+ * environment.
+ */
 t_list	*init_env(char **env)
 {
 	int		i;
@@ -32,6 +40,12 @@ t_list	*init_env(char **env)
 	return (head);
 }
 
+/**
+ * Creates a t_env structure and fills it with data.
+ *
+ * @param info The string containing the environment variable information.
+ * @return A pointer to the created t_env structure.
+ */
 t_env	*ft_create_data(char *info)
 {
 	t_env	*data;
@@ -42,6 +56,12 @@ t_env	*ft_create_data(char *info)
 	return (data);
 }
 
+/**
+ * Extracts the name portion of an environment variable from the info string.
+ *
+ * @param info The string containing the environment variable information.
+ * @return A pointer to the extracted name string.
+ */
 char	*get_name(char *info)
 {
 	char	*name;
@@ -55,6 +75,15 @@ char	*get_name(char *info)
 	return (name);
 }
 
+/**
+ * Creates a copy of the environment variables stored in a linked list.
+ * This is done in order to generate the program's own variables instead of
+ * using the system variables.
+ *
+ * @param env The linked list containing the environment variables.
+ * @return A double-pointer array of strings containing the copied
+ * environment variables.
+ */
 char	**ft_envcpy(t_list *env)
 {
 	t_list	*temp;

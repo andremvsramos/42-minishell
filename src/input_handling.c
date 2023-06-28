@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   input_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/18 14:52:22 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/26 11:28:24 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 11:39:35 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
+/**
+ * The function initializes the t_minishell structure with the provided input.
+ *
+ * @param ms    A pointer to the minishell structure.
+ * @param input The input string containing the oommand query line.
+ */
 static void	ms_init(t_minishell *ms, char *input)
 {
 	ms->heredoc = false;
@@ -26,6 +32,13 @@ static void	ms_init(t_minishell *ms, char *input)
 	ms->query = 0;
 }
 
+/**
+ * Checks if quotes in the given input string are properly balanced.
+ *
+ * @param input A pointer to the input string to be checked.
+ * @return Returns 0 if quotes are balanced or absent, 1 if there is
+ * an unclosed quote.
+ */
 int	check_quotes(char *input)
 {
 	char	quote;
@@ -51,6 +64,14 @@ int	check_quotes(char *input)
 		return (1);
 }
 
+/**
+ * Reads input from the user, trims and validates it, and initializes
+ * the t_minishell structure accordingly.
+ *
+ * @param ms A pointer to the t_minishell structure.
+ * @return Returns 1 if the input is valid and initialized successfully,
+ * 0 if the input is invalid, and -1 if there was an error reading input.
+ */
 int	read_input(t_minishell *ms)
 {
 	char	*trimmed;

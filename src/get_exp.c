@@ -12,6 +12,14 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Retrieves the environment variables and stores them in a
+ * export type table.
+ *
+ * @param env The environment variables as an array of strings.
+ * @return A pointer to the head of the linked list containing the exported
+ * variables.
+ */
 t_list	*get_export(char **env)
 {
 	int		i;
@@ -32,6 +40,14 @@ t_list	*get_export(char **env)
 	return (head);
 }
 
+/**
+ * Creates a new t_env structure and initializes it with the provided
+ * information.
+ *
+ * @param info The information string containing the name and value of an
+ * environment variable.
+ * @return A pointer to the created t_env structure.
+ */
 t_env	*ft_create_export(char *info)
 {
 	t_env	*data;
@@ -42,6 +58,14 @@ t_env	*ft_create_export(char *info)
 	return (data);
 }
 
+/**
+ * Extracts the value portion from the information string of an
+ * environment variable.
+ *
+ * @param info The information string containing the name and value
+ * of an environment variable.
+ * @return The extracted value portion of the environment variable.
+ */
 char	*get_info(char *info)
 {
 	char	*content;

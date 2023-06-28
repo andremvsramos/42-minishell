@@ -12,6 +12,12 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Checks for unexpected tokens and redirects in the input string.
+ *
+ * @param input The input string to check.
+ * @return 0 if no unexpected tokens or redirects are found, 1 otherwise.
+ */
 int	unexpected_tokens(char *input)
 {
 	int		i;
@@ -37,6 +43,12 @@ int	unexpected_tokens(char *input)
 	return (0);
 }
 
+/**
+ * Checks for unsupported operators and tokens in the input string.
+ *
+ * @param input The input string to check.
+ * @return 0 if all operators and tokens are supported, 1 otherwise.
+ */
 int	check_supported_op(char *input)
 {
 	int		i;
@@ -62,6 +74,12 @@ int	check_supported_op(char *input)
 	return (unexpected_tokens(input));
 }
 
+/**
+ * Checks for invalid syntax in the input string.
+ *
+ * @param input The input string to check.
+ * @return 0 if the syntax is valid, 1 otherwise.
+ */
 int	check_invalid_syntax(char *input)
 {
 	if (input[1] && input[0] == '|' && input[1] != '|')
@@ -78,6 +96,12 @@ int	check_invalid_syntax(char *input)
 	return (0);
 }
 
+/**
+ * Checks if the input string is a valid command input.
+ *
+ * @param input The input string to check.
+ * @return 1 if the input is valid, 0 otherwise.
+ */
 int	check_valid_input(char *input)
 {
 	if (!input || input[0] == '\0')
@@ -94,6 +118,13 @@ int	check_valid_input(char *input)
 	return (1);
 }
 
+/**
+ * Prints an error message indicating that a command is not found.
+ *
+ * @param cmd The command that was not found.
+ * @param cmd_args The arguments associated with the command.
+ * @param ms The pointer to the minishell structure.
+ */
 void	cmd_err(char *cmd, char **cmd_args, t_minishell *ms)
 {
 	ft_putstr_fd(cmd, STDERR_FILENO);
