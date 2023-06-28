@@ -12,6 +12,13 @@
 
 #include "../headers/libft.h"
 
+/**
+ * Converts a string representation of a long long integer to its corresponding
+ * long long integer value.
+ *
+ * @param str The string to convert to a long long integer.
+ * @return The converted long long integer value.
+ */
 long long	ft_atoll(const char *str)
 {
 	long long	result;

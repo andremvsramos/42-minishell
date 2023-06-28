@@ -6,12 +6,23 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:05 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:07:00 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Prints a hexadecimal number with leading zeroes and a specified
+ * width and precision, considering the alignment strategy of the
+ * buffer structure.
+ *
+ * @param hexastr    The hexadecimal string representation to be printed.
+ * @param values     Pointer to the buffer structure.
+ * @param precision  The precision value.
+ * @param base       The base character for hexadecimal conversion.
+ * @return           The number of characters printed.
+ */
 static int	ft_p0(char *hexastr, t_buffer *values, int precision, char base)
 {
 	int	count;
@@ -39,6 +50,16 @@ static int	ft_p0(char *hexastr, t_buffer *values, int precision, char base)
 	return (count);
 }
 
+/**
+ * Prints a hexadecimal number with a specified width and precision,
+ * considering the alignment strategy of the buffer structure.
+ *
+ * @param hexastr    The hexadecimal string representation to be printed.
+ * @param values     Pointer to the buffer structure.
+ * @param precision  The precision value.
+ * @param base       The base character for hexadecimal conversion.
+ * @return           The number of characters printed.
+ */
 static int	ft_pw(char *hexastr, t_buffer *values, int precision, char base)
 {
 	int	count;
@@ -66,6 +87,16 @@ static int	ft_pw(char *hexastr, t_buffer *values, int precision, char base)
 	return (count);
 }
 
+/**
+ * Prints a hexadecimal number with a specified width and precision,
+ * considering the alignment strategy of the buffer structure.
+ *
+ * @param hexastr    The hexadecimal string representation to be printed.
+ * @param values     Pointer to the buffer structure.
+ * @param precision  The precision value.
+ * @param base       The base character for hexadecimal conversion.
+ * @return           The number of characters printed.
+ */
 static int	ft_pmw(char *hexastr, t_buffer *values, int precision, char base)
 {
 	int	count;
@@ -93,6 +124,13 @@ static int	ft_pmw(char *hexastr, t_buffer *values, int precision, char base)
 	return (count);
 }
 
+/**
+ * Formats and prints an unsigned long long integer as a hexadecimal value.
+ *
+ * @param values    Pointer to the buffer structure.
+ * @param nb        The unsigned long long integer to be printed.
+ * @return          The number of characters printed.
+ */
 int	ft_format_puthexa(t_buffer *values, unsigned long long nb)
 {
 	int		count;

@@ -6,12 +6,22 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:08 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:06:38 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Handles the padding of leading zeroes, the hexadecimal string, and trailing
+ * spaces for a hexadecimal number, considering the alignment strategy
+ * of the buffer structure.
+ *
+ * @param hexastr   The hexadecimal string representation.
+ * @param values    Pointer to the buffer structure.
+ * @param len       The length of the hexadecimal string.
+ * @return          The number of characters printed.
+ */
 int	ft_phexamw1(char *hexastr, t_buffer *values, int len)
 {
 	int	count;
@@ -25,6 +35,17 @@ int	ft_phexamw1(char *hexastr, t_buffer *values, int len)
 	return (count);
 }
 
+/**
+ * Handles the padding of leading spaces, hash character, and leading zeroes
+ * for a hexadecimal number, considering the alignment strategy of
+ * the buffer structure.
+ *
+ * @param hexastr   The hexadecimal string representation.
+ * @param values    Pointer to the buffer structure.
+ * @param len       The length of the hexadecimal string.
+ * @param base      The base character for hexadecimal conversion.
+ * @return          The number of characters printed.
+ */
 int	ft_phexaw1(char *hexastr, t_buffer *values, int len, char base)
 {
 	int	count;
@@ -42,6 +63,16 @@ int	ft_phexaw1(char *hexastr, t_buffer *values, int len, char base)
 	return (count);
 }
 
+/**
+ * Handles the padding of leading zeroes for a hexadecimal number,
+ * considering the alignment strategy of the buffer structure.
+ *
+ * @param hexastr   The hexadecimal string representation.
+ * @param values    Pointer to the buffer structure.
+ * @param len       The length of the hexadecimal string.
+ * @param base      The base character for hexadecimal conversion.
+ * @return          The number of characters printed.
+ */
 int	ft_phexa01(char *hexastr, t_buffer *values, int len, char base)
 {
 	int	count;

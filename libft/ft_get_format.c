@@ -6,12 +6,20 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:25 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:20:15 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Extracts the width or precision values from the format buffer and stores
+ * them in the corresponding fields of the t_buffer struct.
+ *
+ * @param values  A pointer to the t_buffer struct to store the extracted values.
+ * @param buffer  The format buffer containing the width or precision specifier.
+ * @return        The number of characters consumed from the buffer.
+ */
 static int	ft_get_values(t_buffer *values, char *buffer)
 {
 	if (!values->point)
@@ -26,6 +34,14 @@ static int	ft_get_values(t_buffer *values, char *buffer)
 	}
 }
 
+/**
+ * Reads the format buffer and populates the corresponding fields in the
+ * t_buffer struct.
+ *
+ * @param buffer  The format buffer to be parsed.
+ * @param values  A pointer to the t_buffer struct to
+ * store the parsed values.
+ */
 static void	ft_read_buffer(char *buffer, t_buffer *values)
 {
 	while (*buffer)
@@ -48,6 +64,11 @@ static void	ft_read_buffer(char *buffer, t_buffer *values)
 	}
 }
 
+/**
+ * Initializes the fields of a t_buffer struct with default values.
+ *
+ * @param values  A pointer to the t_buffer struct to be initialized.
+ */
 static void	ft_init_format_buffer(t_buffer *values)
 {
 	values->conversion_type = 0;
@@ -61,6 +82,15 @@ static void	ft_init_format_buffer(t_buffer *values)
 	values->precision = 0;
 }
 
+/**
+ * Parses the format specifier and extracts the relevant information into a
+ * t_buffer struct.
+ *
+ * @param str   The pointer to the format string.
+ * @param args  The va_list containing the arguments.
+ * @return      The result of calling ft_check_type_format with the
+ * extracted information.
+ */
 int	ft_get_format_buffer(const char **str, va_list args)
 {
 	t_buffer	values;

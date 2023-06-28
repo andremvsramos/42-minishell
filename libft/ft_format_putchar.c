@@ -6,12 +6,19 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:02 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:59:31 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Formats and prints a single character with padding.
+ *
+ * @param values    Pointer to the buffer structure.
+ * @param c         The character to be printed.
+ * @return          The number of characters printed.
+ */
 int	ft_format_putchar(t_buffer *values, char c)
 {
 	int	count;

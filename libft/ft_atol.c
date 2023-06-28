@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_atol.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/20 15:25:32 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/20 10:37:19 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 13:51:29 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Converts a string representation of a long integer to its corresponding
+ * long integer value.
+ *
+ * @param str The string to convert to a long integer.
+ * @return The converted long integer value.
+ */
 long	ft_atol(const char *str)
 {
 	long	result;

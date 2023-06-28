@@ -6,12 +6,20 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:22 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:18:02 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Prints a formatted unsigned number with leading zeroes.
+ *
+ * @param number     The string representation of the unsigned number.
+ * @param values     The buffer structure containing formatting information.
+ * @param precision  The precision value specified for the formatting.
+ * @return The total number of characters printed.
+ */
 static int	ft_print_zeroes(char *number, t_buffer *values, int precision)
 {
 	int	count;
@@ -35,6 +43,14 @@ static int	ft_print_zeroes(char *number, t_buffer *values, int precision)
 	return (count);
 }
 
+/**
+ * Prints a formatted unsigned number with a specified width.
+ *
+ * @param number     The string representation of the unsigned number.
+ * @param values     The buffer structure containing formatting information.
+ * @param precision  The precision value specified for the formatting.
+ * @return The total number of characters printed.
+ */
 static int	ft_print_width(char *number, t_buffer *values, int precision)
 {
 	int	count;
@@ -58,6 +74,14 @@ static int	ft_print_width(char *number, t_buffer *values, int precision)
 	return (count);
 }
 
+/**
+ * Prints a formatted unsigned number with a minus sign and left-aligned width.
+ *
+ * @param number     The string representation of the unsigned number.
+ * @param values     The buffer structure containing formatting information.
+ * @param precision  The precision value specified for the formatting.
+ * @return The total number of characters printed.
+ */
 static int	ft_print_minus_width(char *number, t_buffer *values, int precision)
 {
 	int	count;
@@ -82,6 +106,13 @@ static int	ft_print_minus_width(char *number, t_buffer *values, int precision)
 	return (count);
 }
 
+/**
+ * Formats and prints an unsigned integer number.
+ *
+ * @param values     The buffer structure containing formatting information.
+ * @param nb         The unsigned number to be formatted and printed.
+ * @return The total number of characters printed.
+ */
 int	ft_format_putunsignnbr(t_buffer *values, unsigned long long nb)
 {
 	int		count;

@@ -6,12 +6,18 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:59 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:24:59 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Calculates the length of an integer.
+ *
+ * @param n The integer for which to calculate the length.
+ * @return The length of the integer.
+ */
 static int	ft_length(int n)
 {
 	int	length;
@@ -27,6 +33,13 @@ static int	ft_length(int n)
 	return (length);
 }
 
+/**
+ * Converts an integer to a string representation.
+ *
+ * @param n The integer to convert.
+ * @return A string representation of the integer.
+ *         The returned string must be freed by the caller.
+ */
 char	*ft_itoa(int n)
 {
 	char	*result;

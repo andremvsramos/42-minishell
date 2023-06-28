@@ -6,12 +6,21 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:25:59 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:58:22 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Performs padding and printing for the minus alignment strategy (part 1).
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param precision The precision value for formatting.
+ * @param len       Length of the hexadecimal string.
+ * @return          The number of characters printed.
+ */
 int	ft_paddmw1(char *hexastr, t_buffer *values, int precision, int len)
 {
 	int	count;
@@ -34,6 +43,14 @@ int	ft_paddmw1(char *hexastr, t_buffer *values, int precision, int len)
 	return (count);
 }
 
+/**
+ * Performs padding and printing for the zero alignment strategy (part 2).
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param len       Length of the hexadecimal string.
+ * @return          The number of characters printed.
+ */
 int	ft_paddz2(char *hexastr, t_buffer *values, int len)
 {
 	int	count;
@@ -55,6 +72,15 @@ int	ft_paddz2(char *hexastr, t_buffer *values, int len)
 	return (count);
 }
 
+/**
+ * Performs padding and printing for the zero alignment strategy (part 1).
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param precision The precision value for formatting.
+ * @param len       Length of the hexadecimal string.
+ * @return          The number of characters printed.
+ */
 int	ft_paddz1(char *hexastr, t_buffer *values, int precision, int len)
 {
 	int	count;
@@ -76,6 +102,14 @@ int	ft_paddz1(char *hexastr, t_buffer *values, int precision, int len)
 	return (count);
 }
 
+/**
+ * Performs padding and printing for the width alignment strategy (part 2).
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param len       Length of the hexadecimal string.
+ * @return          The number of characters printed.
+ */
 int	ft_paddw2(char *hexastr, t_buffer *values, int len)
 {
 	int	count;
@@ -94,6 +128,15 @@ int	ft_paddw2(char *hexastr, t_buffer *values, int len)
 	return (count);
 }
 
+/**
+ * Performs padding and printing for the width alignment strategy.
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param precision The precision value for formatting.
+ * @param len       Length of the hexadecimal string.
+ * @return          The number of characters printed.
+ */
 int	ft_paddw1(char *hexastr, t_buffer *values, int precision, int len)
 {
 	int	count;

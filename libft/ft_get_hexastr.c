@@ -6,12 +6,22 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:26:28 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:21:03 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Converts an unsigned long long integer to a hexadecimal string representation
+ * using the specified base.
+ *
+ * @param nb    The unsigned long long integer to convert.
+ * @param base  The base to use for the conversion (e.g., "0123456789abcdef").
+ * @return      A dynamically allocated string representing
+ * the hexadecimal value. The caller is responsible for freeing
+ * the allocated memory.
+ */
 char	*ft_get_hexastr(unsigned long long nb, char *base)
 {
 	int		nb_length;

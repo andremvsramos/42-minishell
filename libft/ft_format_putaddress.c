@@ -6,12 +6,20 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:25:56 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:55:34 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Prints the formatted output with a zeroes flag for width alignment.
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param precision The precision value for formatting.
+ * @return          The number of characters printed.
+ */
 static int	ft_print_zeroes(char *hexastr, t_buffer *values, int precision)
 {
 	int	count;
@@ -29,6 +37,14 @@ static int	ft_print_zeroes(char *hexastr, t_buffer *values, int precision)
 	return (count);
 }
 
+/**
+ * Prints the formatted output with a width flag for alignment.
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param precision The precision value for formatting.
+ * @return          The number of characters printed.
+ */
 static int	ft_print_width(char *hexastr, t_buffer *values, int precision)
 {
 	int	count;
@@ -48,6 +64,15 @@ static int	ft_print_width(char *hexastr, t_buffer *values, int precision)
 	return (count);
 }
 
+/**
+ * Prints the formatted output with a minus flag for width
+ * alignment (part 2).
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param len       Length of the hexadecimal string.
+ * @return          The number of characters printed.
+ */
 static int	ft_print_minus_width2(char *hexastr, t_buffer *values, int len)
 {
 	int	count;
@@ -70,6 +95,14 @@ static int	ft_print_minus_width2(char *hexastr, t_buffer *values, int len)
 	return (count);
 }
 
+/**
+ * Prints the formatted output with a minus flag for width alignment.
+ *
+ * @param hexastr   The hexadecimal string representation to be printed.
+ * @param values    Pointer to the buffer structure.
+ * @param precision The precision value for formatting.
+ * @return          The number of characters printed.
+ */
 static int	ft_print_minus_width(char *hexastr, t_buffer *values, int precision)
 {
 	int	count;
@@ -86,6 +119,13 @@ static int	ft_print_minus_width(char *hexastr, t_buffer *values, int precision)
 	return (count);
 }
 
+/**
+ * Formats and prints an address value to a buffer structure.
+ *
+ * @param values  Pointer to the buffer structure.
+ * @param nb      The address value to be formatted and printed.
+ * @return        The number of characters printed.
+ */
 int	ft_format_putaddress(t_buffer *values, unsigned long nb)
 {
 	int		count;

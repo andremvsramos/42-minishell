@@ -6,12 +6,19 @@
 /*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:25:46 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 13:50:48 by andvieir         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Converts a string representation of an integer to its corresponding
+ * integer value.
+ *
+ * @param str The string to convert to an integer.
+ * @return The converted integer value.
+ */
 int	ft_atoi(const char *str)
 {
 	int	result;
