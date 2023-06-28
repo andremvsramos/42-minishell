@@ -12,6 +12,15 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Expands the special variable `$?` to its value (the exit status) and adds
+ * it to the result string.
+ *
+ * @param res  The result string to which the expanded value is added.
+ * @param ms   The `t_minishell` structure containing relevant data.
+ * @param i    The index of the current character being processed in the
+ * input string.
+ */
 static void	expand_exit(char *res, t_minishell *ms, int *i)
 {
 	int		j;
@@ -25,6 +34,16 @@ static void	expand_exit(char *res, t_minishell *ms, int *i)
 	*i += 1;
 }
 
+/**
+ * Expands variables in the `arg` string and adds the expanded values
+ * to the `res` string.
+ *
+ * @param arg  The input string containing variables to be expanded.
+ * @param res  The result string to which the expanded values are added.
+ * @param i    The index of the current character being processed in the
+ * `arg` string.
+ * @param ms   The `t_minishell` structure containing relevant data.
+ */
 static void	expand(char *arg, char *res, int *i, t_minishell *ms)
 {
 	char	*temp;
@@ -54,6 +73,15 @@ static void	expand(char *arg, char *res, int *i, t_minishell *ms)
 		expand_exit(res, ms, i);
 }
 
+/**
+ * Support function for the function t_length.
+ *
+ * @param arg  The input string containing variables to be expanded.
+ * @param i    The index of the current character being processed in the
+ * `arg` string.
+ * @param len  A pointer to the length variable that will be updated.
+ * @param ms   The `t_minishell` structure containing relevant data.
+ */
 static void	t_length2(char *arg, int *i, int *len, t_minishell *ms)
 {
 	int		j;
@@ -83,6 +111,14 @@ static void	t_length2(char *arg, int *i, int *len, t_minishell *ms)
 	}
 }
 
+/**
+ * Calculates the length of the expanded string without performing
+ * the expansion.
+ *
+ * @param arg  The input string containing variables to be expanded.
+ * @param ms   The `t_minishell` structure containing relevant data.
+ * @return     The length of the expanded string.
+ */
 static int	t_length(char *arg, t_minishell *ms)
 {
 	int		i;
@@ -103,6 +139,13 @@ static int	t_length(char *arg, t_minishell *ms)
 	return (len);
 }
 
+/**
+ * Expands variables in the input string and returns the expanded string.
+ *
+ * @param arg  The input string containing variables to be expanded.
+ * @param ms   The `t_minishell` structure containing relevant data.
+ * @return     The expanded string.
+ */
 char	*expander(char	*arg, t_minishell *ms)
 {
 	char	quote;

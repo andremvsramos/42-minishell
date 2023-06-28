@@ -12,6 +12,13 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Executes a command in the minishell.
+ *
+ * @param ms   The `t_minishell` structure containing relevant data.
+ * @param cmd  The command to be executed.
+ * @param i    The index of the command in the command array.
+ */
 void	exec_cmd(t_minishell *ms, char *cmd, int i)
 {
 	char	**cmd_query;
@@ -30,6 +37,11 @@ void	exec_cmd(t_minishell *ms, char *cmd, int i)
 	}
 }
 
+/**
+ * Executes multiple commands in the minishell.
+ *
+ * @param ms The `t_minishell` structure containing relevant data.
+ */
 void	exec_multi_cmd(t_minishell *ms)
 {
 	char	*cmd;
@@ -56,6 +68,12 @@ void	exec_multi_cmd(t_minishell *ms)
 	close_pipex(ms);
 }
 
+/**
+ * Executes a single command in the minishell.
+ *
+ * @param ms  The `t_minishell` structure containing relevant data.
+ * @param cmd The command to execute.
+ */
 void	exec_single_cmd(t_minishell *ms, char *cmd)
 {
 	char	**cmd_query;
@@ -71,6 +89,12 @@ void	exec_single_cmd(t_minishell *ms, char *cmd)
 	}
 }
 
+/**
+ * Function with instructions to execute single or multiple commands
+ * in the minishell.
+ *
+ * @param ms The `t_minishell` structure containing relevant data.
+ */
 void	execute(t_minishell *ms)
 {
 	char	*cmd;

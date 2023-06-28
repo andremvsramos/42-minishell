@@ -3,15 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   pwd.c                                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/31 12:19:10 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/12 12:46:40 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:28:32 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * Execute the pwd command and print the current working directory.
+ *
+ * @param ms     The minishell structure.
+ * @param input  The input arguments for the pwd command.
+ */
 void	pwd_print(t_minishell *ms, char **input)
 {
 	char	*path;

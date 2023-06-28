@@ -12,6 +12,12 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Frees the memory allocated for the program.
+ *
+ * @param ms The minishell structure.
+ * @param i  Flag indicating whether to free the environment list.
+ */
 void	free_program(t_minishell *ms, int i)
 {
 	free(ms->pid);
@@ -26,6 +32,13 @@ void	free_program(t_minishell *ms, int i)
 		ft_free_lst(ms->env);
 }
 
+/**
+ * Frees the memory allocated for a child process in the program.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command query array.
+ * @param i          Flag indicating whether to exit the child process.
+ */
 void	free_child(t_minishell *ms, char **cmd_query, int i)
 {
 	if (cmd_query)

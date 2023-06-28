@@ -12,6 +12,15 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Updates env linked list with the information associated with a specific
+ * environment variable.
+ *
+ * @param lst       The linked list of environment variables.
+ * @param name      The name of the environment variable to update.
+ * @param new_info  The new information to assign to the environment variable.
+ * @return          0 if the update is successful, 1 otherwise.
+ */
 int	update_info(t_list *lst, char *name, char *new_info)
 {
 	t_list	*temp;
@@ -33,6 +42,15 @@ int	update_info(t_list *lst, char *name, char *new_info)
 	return (0);
 }
 
+/**
+ * Updates export linked list with the information associated with a specific
+ * environment variable.
+ *
+ * @param lst       The linked list of exported environment variables.
+ * @param name      The name of the environment variable to update.
+ * @param new_info  The new information to assign to the environment variable.
+ * @return          0 if the update is successful, 1 otherwise.
+ */
 int	update_export(t_list *lst, char *name, char *new_info)
 {
 	t_list	*temp;

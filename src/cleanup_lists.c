@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   cleanup_lists.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 12:44:05 by andvieir          #+#    #+#             */
-/*   Updated: 2023/05/17 12:46:45 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:24:21 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/minishell.h"
 
+/**
+ * Frees the memory allocated for a linked list.
+ *
+ * @param lst  The linked list to free.
+ */
 void	ft_free_lst(t_list *lst)
 {
 	t_list	*temp;

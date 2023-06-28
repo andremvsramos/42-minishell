@@ -12,6 +12,13 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Handles the case when the command being executed is a directory instead
+ * of an executable file.
+ *
+ * @param cmd_query  The command query that resulted in a directory.
+ * @param ms         The minishell structure.
+ */
 void	is_a_directory(char **cmd_query, t_minishell *ms)
 {
 	ft_putstr_fd(cmd_query[0], STDERR_FILENO);
@@ -21,6 +28,13 @@ void	is_a_directory(char **cmd_query, t_minishell *ms)
 	exit(g_exit);
 }
 
+/**
+ * Handles the case when the command being executed does not have the necessary
+ * permissions to be executed.
+ *
+ * @param cmd_query  The command query that resulted in a permission error.
+ * @param ms         The minishell structure.
+ */
 void	permission_error(char **cmd_query, t_minishell *ms)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);
@@ -31,6 +45,13 @@ void	permission_error(char **cmd_query, t_minishell *ms)
 	exit(g_exit);
 }
 
+/**
+ * Handles the case when the file or directory specified in the command
+ * does not exist.
+ *
+ * @param cmd_query  The command query that resulted in a file or directory error.
+ * @param ms         The minishell structure.
+ */
 void	file_error(char **cmd_query, t_minishell *ms)
 {
 	ft_putstr_fd("minishell: ", STDERR_FILENO);

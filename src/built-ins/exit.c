@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   exit.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/05 10:10:05 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/26 14:13:20 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:41:13 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * Check and process the exit command.
+ * This function is called only when running a single command,
+ * in this case, 'exit'.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command query.
+ */
 void	check_exit(t_minishell *ms, char **cmd_query)
 {
 	int	i;
@@ -31,6 +39,13 @@ void	check_exit(t_minishell *ms, char **cmd_query)
 	}
 }
 
+/**
+ * Handle the error condition for the exit command where
+ * a numeric argument is required.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command query.
+ */
 static void	exit_error2(t_minishell *ms, char **cmd_query)
 {
 	ft_putstr_fd("minishell: exit: ", STDERR_FILENO);
@@ -41,6 +56,18 @@ static void	exit_error2(t_minishell *ms, char **cmd_query)
 	exit (g_exit);
 }
 
+/**
+ * Handle the error conditions for the exit command.
+ * If i is 2, it checks if the argument cmd_query[1] is a
+ * valid numeric argument. If it is, it calculates the exit status
+ * by taking the modulus of the numeric value with 256, sets the
+ * global g_exit variable to the calculated exit status.
+ * The argument cmd_query[1] needs to be within LONG LONG value range.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command query.
+ * @param i          The number of arguments.
+ */
 static void	exit_error1(t_minishell *ms, char **cmd_query, int i)
 {
 	int	nbrlen;
@@ -66,6 +93,13 @@ static void	exit_error1(t_minishell *ms, char **cmd_query, int i)
 	}
 }
 
+/**
+ * Handle the "exit" command in the minishell.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command query.
+ * @param x          Indicator whether to display the "exit" message.
+ */
 void	do_exit(t_minishell *ms, char **cmd_query, int x)
 {
 	int	i;

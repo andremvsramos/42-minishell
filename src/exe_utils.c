@@ -12,6 +12,15 @@
 
 #include "../headers/minishell.h"
 
+/**
+ * Checks if the command in cmd_query corresponds to a valid executable file.
+ *
+ * @param cmd_query The command to be checked, represented as an array
+ * of strings.
+ * @param ms The t_minishell structure containing relevant data.
+ * @return 1 if the command corresponds to a valid executable file,
+ * 0 otherwise.
+ */
 int	check_files(char **cmd_query, t_minishell *ms)
 {
 	struct stat	statbuf;
@@ -32,6 +41,12 @@ int	check_files(char **cmd_query, t_minishell *ms)
 	return (1);
 }
 
+/**
+ * Closes the file descriptors associated with the pipes used in
+ * piped commands.
+ *
+ * @param ms The t_minishell structure containing relevant data.
+ */
 void	close_pipex(t_minishell *ms)
 {
 	int	i;
@@ -41,6 +56,12 @@ void	close_pipex(t_minishell *ms)
 		close(ms->pipe_fd[i++]);
 }
 
+/**
+ * Redirects input and output for commands involved in piping.
+ *
+ * @param ms The t_minishell structure containing relevant data.
+ * @param i The index of the current command in the pipeline.
+ */
 void	pipe_redirects(t_minishell *ms, int i)
 {
 	if (i == 0)
@@ -52,12 +73,23 @@ void	pipe_redirects(t_minishell *ms, int i)
 	close_pipex(ms);
 }
 
+/**
+ * Redirects file descriptors to standard input and standard output.
+ *
+ * @param fd_in The file descriptor to redirect to standard input.
+ * @param fd_out The file descriptor to redirect to standard output.
+ */
 void	redirect(int fd_in, int fd_out)
 {
 	dup2(fd_in, STDIN_FILENO);
 	dup2(fd_out, STDOUT_FILENO);
 }
 
+/**
+ * Creates multiple pipes for inter-process communication.
+ *
+ * @param ms The minishell structure.
+ */
 void	pipex(t_minishell *ms)
 {
 	int	i;

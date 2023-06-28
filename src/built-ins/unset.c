@@ -3,15 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   unset.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 16:36:55 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/20 11:43:47 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:28:04 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * Helper function to free memory for a single node in the 'unset' operation.
+ *
+ * @param temp  The node to free.
+ */
 static void	unset_free(t_list *temp)
 {
 	free(((t_env *)(temp->content))->name);
@@ -19,6 +24,12 @@ static void	unset_free(t_list *temp)
 	free((t_env *)temp->content);
 }
 
+/**
+ * Helper function to handle unset error.
+ *
+ * @param ms         The minishell struct.
+ * @param cmd_query  The command query.
+ */
 static void	unset_error(t_minishell *ms, char **cmd_query)
 {
 	ft_putstr_fd("minishell: unset: no options supported\n", STDERR_FILENO);
@@ -27,6 +38,12 @@ static void	unset_error(t_minishell *ms, char **cmd_query)
 	exit (g_exit);
 }
 
+/**
+ * Remove an environment variable from the list.
+ *
+ * @param lst  The list of environment variables.
+ * @param name The name of the variable to unset.
+ */
 void	unset(t_list *lst, char *name)
 {
 	t_list	*temp;
@@ -55,6 +72,13 @@ void	unset(t_list *lst, char *name)
 	}
 }
 
+/**
+ * Function that unsets variables in the environment when only
+ * performing a single command.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command line arguments.
+ */
 void	check_unset(t_minishell *ms, char **cmd_query)
 {
 	int	status;
@@ -80,6 +104,12 @@ void	check_unset(t_minishell *ms, char **cmd_query)
 	}
 }
 
+/**
+ * Execute the unset command and perform the necessary actions.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command line arguments.
+ */
 void	do_unset(t_minishell *ms, char **cmd_query)
 {
 	int	i;

@@ -12,6 +12,12 @@
 
 #include "../../headers/minishell.h"
 
+/**
+ * Format the environment variable declaration for export.
+ *
+ * @param str  The environment variable declaration.
+ * @return     The formatted string for export.
+ */
 char	*declare(char *str)
 {
 	int		i;
@@ -39,6 +45,12 @@ char	*declare(char *str)
 	return (name);
 }
 
+/**
+ * Update the environment variables in the minishell structure.
+ *
+ * @param ms    The minishell structure.
+ * @param info  The string containing the environment variable information.
+ */
 void	update_env(t_minishell *ms, char *info)
 {
 	int		i;
@@ -60,6 +72,14 @@ void	update_env(t_minishell *ms, char *info)
 	free(name);
 }
 
+/**
+ * Function used to process the export command in the minishell.
+ * It waits for the child process to complete and checks the exit status.
+ * This function executes only when running a single command and there are no errors.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command query.
+ */
 void	check_export(t_minishell *ms, char **cmd_query)
 {
 	int	status;

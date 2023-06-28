@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   cd.c                                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: marvin <marvin@student.42.fr>              +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/12 09:42:56 by tsodre-p          #+#    #+#             */
-/*   Updated: 2023/06/26 13:45:49 by marvin           ###   ########.fr       */
+/*   Updated: 2023/06/28 12:50:19 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * Get the home directory path.
+ *
+ * @param ms   A pointer to the t_minishell struct.
+ * @param arg  The argument string.
+ * @return     The combined path string.
+ */
 static char	*get_home(t_minishell *ms, char *arg)
 {
 	char	*new;
@@ -22,6 +29,12 @@ static char	*get_home(t_minishell *ms, char *arg)
 	return (new);
 }
 
+/**
+ * Execute the cd command.
+ *
+ * @param ms    A pointer to the t_minishell struct.
+ * @param path  The path to change the directory to.
+ */
 static void	execute_cd(t_minishell *ms, char *path)
 {
 	char	*old_pwd;
@@ -51,6 +64,12 @@ static void	execute_cd(t_minishell *ms, char *path)
 	free(new_pwd);
 }
 
+/**
+ * Check and handle errors in the cd command.
+ *
+ * @param ms         A pointer to the t_minishell struct.
+ * @param cmd_query  The command query string array.
+ */
 static void	check_errors(t_minishell *ms, char **cmd_query)
 {
 	struct stat		statbuf;
@@ -76,6 +95,14 @@ static void	check_errors(t_minishell *ms, char **cmd_query)
 	}
 }
 
+/**
+ * Check the cd command and perform the appropriate actions.
+ * This function is executed only when running a single command,
+ * in this case, 'cd'.
+ *
+ * @param ms         A pointer to the t_minishell struct.
+ * @param cmd_query  The command query string array.
+ */
 void	check_cd(t_minishell *ms, char **cmd_query)
 {
 	int		status;
@@ -96,6 +123,12 @@ void	check_cd(t_minishell *ms, char **cmd_query)
 	}
 }
 
+/**
+ * Validate command query and execute appropriate actions.
+ *
+ * @param ms         A pointer to the t_minishell struct.
+ * @param cmd_query  The command query string array.
+ */
 void	cd(t_minishell *ms, char **cmd_query)
 {
 	int	i;

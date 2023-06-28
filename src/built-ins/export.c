@@ -6,12 +6,20 @@
 /*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/17 11:10:33 by andvieir          #+#    #+#             */
-/*   Updated: 2023/06/15 09:52:04 by tsodre-p         ###   ########.fr       */
+/*   Updated: 2023/06/28 12:31:29 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../headers/minishell.h"
 
+/**
+ * Check if a string is a valid environment variable assignment.
+ * The string should be in the format "name=value".
+ *
+ * @param str The string to check.
+ * @return 1 if the string is a valid environment variable assignment,
+ * 0 otherwise.
+ */
 int	check_val(char *str)
 {
 	int	i;
@@ -32,6 +40,14 @@ int	check_val(char *str)
 	return (1);
 }
 
+/**
+ * Handle export command errors.
+ * Prints an error message for each invalid identifier in the
+ * command arguments.
+ *
+ * @param ms The minishell structure.
+ * @param cmd_query The command arguments.
+ */
 void	export_error(t_minishell *ms, char **cmd_query)
 {
 	int	i;
@@ -53,6 +69,11 @@ void	export_error(t_minishell *ms, char **cmd_query)
 	exit (0);
 }
 
+/**
+ * Print the exported environment variables in ascii name order.
+ *
+ * @param lst The list of exported environment variables.
+ */
 void	exp_print(t_list *lst)
 {
 	int		i;
@@ -81,6 +102,12 @@ void	exp_print(t_list *lst)
 	print(ft_lstsize(lst), copy);
 }
 
+/**
+ * Execute the export command and perform the necessary actions.
+ *
+ * @param ms         The minishell structure.
+ * @param cmd_query  The command and arguments.
+ */
 void	do_export(t_minishell *ms, char **cmd_query)
 {
 	int	i;
