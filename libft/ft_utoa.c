@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_utoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:28:49 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:01:35 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Calculate the length of an unsigned long long integer.
+ *
+ * @param n The unsigned long long integer.
+ *
+ * @return The number of digits in the unsigned long long integer.
+ */
 static int	ft_length(unsigned long long n)
 {
 	int	length;
@@ -27,6 +34,14 @@ static int	ft_length(unsigned long long n)
 	return (length);
 }
 
+/**
+ * Convert an unsigned long long integer to a string representation.
+ *
+ * @param n The unsigned long long integer to be converted.
+ *
+ * @return The string representation of the unsigned long long integer.
+ *         The returned string must be freed after use.
+ */
 char	*ft_utoa(unsigned long long n)
 {
 	char	*result;

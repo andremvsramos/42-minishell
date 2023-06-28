@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strchr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:28:07 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:49:19 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Locate the first occurrence of a character in a string.
+ *
+ * @param str The string in which to search for the character.
+ * @param c   The character to be located.
+ *
+ * @return A pointer to the first occurrence of the character in the string.
+ *         If the character is not found, it returns NULL.
+ */
 char	*ft_strchr(const char *str, int c)
 {
 	int	i;

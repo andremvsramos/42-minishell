@@ -3,15 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putstr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:28:00 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:45:36 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Write a string to the standard output.
+ *
+ * @param str The string to be written.
+ *
+ * @return The total number of characters written.
+ *         If the string is NULL, it also writes "(null)" and returns the count.
+ */
 int	ft_putstr(char *str)
 {
 	int	count;

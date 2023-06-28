@@ -3,15 +3,26 @@
 /*                                                        :::      ::::::::   */
 /*   ft_substr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:28:41 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:59:42 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Create a substring of a given string.
+ *
+ * @param str   The original string.
+ * @param start The starting index of the substring.
+ * @param len   The length of the substring.
+ *
+ * @return A newly allocated string containing the substring, or an empty
+ *         string if `start` is beyond the string length or `len` is zero.
+ *         If memory allocation fails, NULL is returned.
+ */
 char	*ft_substr(char const *str, unsigned int start, size_t len)
 {
 	size_t	i;

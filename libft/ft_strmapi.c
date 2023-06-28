@@ -3,15 +3,27 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strmapi.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:28:27 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:54:45 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Apply a function to each character of a string, creating a new string with
+ * the results.
+ *
+ * @param s The input string.
+ * @param f The function to apply to each character.
+ *
+ * @return A new dynamically allocated string resulting from applying the
+ *         given function to each character of the input string. If the input
+ *         string or the function is NULL, it returns NULL. Note that the
+ *         returned string must be freed to avoid memory leaks.
+ */
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {
 	int		i;

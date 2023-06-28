@@ -3,15 +3,24 @@
 /*                                                        :::      ::::::::   */
 /*   ft_puthexa.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:27:51 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:44:09 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Print the hexadecimal representation of a given number.
+ *
+ * @param nb The number to be converted to hexadecimal.
+ * @param c  The case of the hexadecimal digits
+ * ('x' for lowercase, 'X' for uppercase).
+ *
+ * @return The total number of characters printed.
+ */
 int	ft_puthexa(unsigned long nb, char c)
 {
 	int		count;

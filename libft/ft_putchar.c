@@ -3,15 +3,22 @@
 /*                                                        :::      ::::::::   */
 /*   ft_putchar.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:27:45 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 14:43:23 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Write a single character to the standard output.
+ *
+ * @param c The character to be written.
+ *
+ * @return On success, the number of bytes written is returned. On error, -1 is returned.
+ */
 int	ft_putchar(char c)
 {
 	return (write(1, &c, 1));

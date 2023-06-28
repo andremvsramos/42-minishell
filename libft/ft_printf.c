@@ -3,15 +3,34 @@
 /*                                                        :::      ::::::::   */
 /*   ft_printf.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: andvieir <andvieir@student.42.fr>          +#+  +:+       +#+        */
+/*   By: tsodre-p <tsodre-p@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/24 15:15:48 by andvieir          #+#    #+#             */
-/*   Updated: 2023/03/30 14:27:37 by andvieir         ###   ########.fr       */
+/*   Updated: 2023/06/28 15:21:34 by tsodre-p         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../headers/libft.h"
 
+/**
+ * Check and handle the format specifier in the printf-like function.
+ *
+ * This function checks the conversion type specified in the t_buffer struct
+ * and performs the appropriate action based on the type. The supported types
+ * and corresponding actions are:
+ * - 's': Print a string (char *) argument
+ * - 'c': Print a character (int) argument
+ * - 'd' or 'i': Print a signed decimal integer argument
+ * - 'u': Print an unsigned decimal integer argument
+ * - 'x' or 'X': Print a hexadecimal integer argument (lowercase or uppercase)
+ * - 'p': Print a pointer address argument
+ *
+ * @param args   The va_list containing the variable arguments.
+ * @param values The t_buffer struct containing the format and buffer
+ *               information.
+ *
+ * @return The number of characters successfully printed.
+ */
 int	ft_check_type_format(va_list args, t_buffer *values)
 {
 	int	count;
@@ -32,6 +51,24 @@ int	ft_check_type_format(va_list args, t_buffer *values)
 	return (count);
 }
 
+/**
+ * Check and handle the format specifier in the printf-like function.
+ *
+ * This function checks the provided format specifier and performs the
+ * appropriate action based on the specifier. The supported specifiers and
+ * corresponding actions are:
+ * - 's': Print a string (char *) argument
+ * - 'c': Print a character (int) argument
+ * - 'd' or 'i': Print a signed decimal integer argument
+ * - 'u': Print an unsigned decimal integer argument
+ * - 'x' or 'X': Print a hexadecimal integer argument (lowercase or uppercase)
+ * - 'p': Print a pointer address argument
+ *
+ * @param c    The format specifier character.
+ * @param args The va_list containing the variable arguments.
+ *
+ * @return The number of characters successfully printed.
+ */
 static int	ft_check(char c, va_list args)
 {
 	int	count;
@@ -52,6 +89,23 @@ static int	ft_check(char c, va_list args)
 	return (count);
 }
 
+/**
+ * Custom printf implementation that supports basic format specifiers.
+ *
+ * This function formats and prints output to the standard output stream based
+ * on the format string provided. It supports the following format specifiers:
+ * - %d or %i: Signed decimal integer
+ * - %s: String of characters
+ * - %c: Single character
+ * - %%: Print a '%' character
+ *
+ * Additional flags and modifiers are not supported in this implementation.
+ *
+ * @param str The format string containing the text and format specifiers.
+ * @param ... Additional arguments corresponding to the format specifiers.
+ *
+ * @return The number of characters successfully printed.
+ */
 int	ft_printf(const char *str, ...)
 {
 	va_list	args;
