@@ -154,6 +154,7 @@ char	*expander(char	*arg, t_minishell *ms)
 
 	i = -1;
 	ms->counter = 0;
+	quote = 0;
 	res = ft_calloc(t_length(arg, ms) + 1, sizeof(char));
 	while (arg[++i])
 	{
