@@ -24,6 +24,12 @@ This project was made in collaboration with Tiago Pereira ([@t-pereira06](https:
 1. Run the `make` command to compile the project.
 2. Execute the shell by running `./minishell`.
 
+## Notes
+
+- The project uses fsanitizer in thread mode to analyze leaks.
+- Using valgrind exposes readline library leaks, though this is not a problem solved by the project.
+- There's a random leak caused by readline's `add_history` function, which is also not the project's responsibility to solve.
+
 ## License
 
 - This project was made as part of the 42 Porto curriculum.
